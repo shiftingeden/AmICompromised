@@ -93,10 +93,16 @@ supporter extras such as accent colour themes. No scan limits, no paywall.
       first submission, and the tips must be submitted with an app version.
 - [ ] Try a tip by running from Xcode (the scheme uses
       `Config/AmICompromised.storekit`).
-- [ ] Privacy policy + support page (GitHub Pages).
-- [ ] App Store copy ("known threats", never "antivirus"/"zero-day
-      detection"), review notes, screenshots, `app.json`.
-- [ ] Notarize the Full build and publish it as a GitHub release (the App
+- [x] Website live: https://shiftingeden.github.io/AmICompromised/
+      (privacy.html, support.html), source in `docs/`.
+- [x] App Store text, review notes, 6.9" screenshots and IAP review
+      screenshot in `AppStore/`.
+- [ ] Notarize the Full build and publish it as a GitHub release. Blocked:
+      this Mac has no "Developer ID Application" certificate and no
+      notarytool profile. Create the certificate in Xcode › Settings ›
+      Accounts › Manage Certificates, then run
+      `xcrun notarytool store-credentials notary` (needs an app-specific
+      password). The Full build is (the App
       Store build's "Get the full version" link points there).
 
 **Housekeeping:**
@@ -114,3 +120,12 @@ supporter extras such as accent colour themes. No scan limits, no paywall.
 | This Mac | Running apps only | Settings (SIP, Gatekeeper, FileVault, firewall, Lockdown), all processes, startup items, profiles/MDM, system extensions, hosts file, crash logs |
 | iPhone | Scan a backup folder you pick | Plug in → back up (AppleMobileBackup) → scan; lists Finder backups (needs Full Disk Access) |
 | Sysdiagnose / log folder scan | ✓ | ✓ |
+
+## How to scan an iPhone from the Mac
+
+- **Full version:** plug the iPhone in, open iPhone in the sidebar, click
+  Back Up and Scan. Grant Full Disk Access the first time.
+- **App Store version:** back up the iPhone in Finder (turn on Encrypt local
+  backup), then iPhone › Choose Backup Folder.
+- Run the `AmICompromisedMac` / `AmICompromisedMacDirect` scheme, not the
+  iPhone scheme: the iPhone build no longer runs on Macs.
