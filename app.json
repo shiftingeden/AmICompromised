@@ -1,10 +1,10 @@
 {
-  "_comment": "App record created 24 Oct 2026 by Claude (iOS + macOS, Universal Purchase). Free with four consumable tips. Builds 2 and 3 uploaded 24 Oct for iOS and Mac App Store; full Mac build notarized for GitHub. Nothing submitted for review yet.",
+  "_comment": "ASC record 6826589466 (iOS + macOS). As of 24 Oct 2026 every App Store Connect field is filled for 1.0: text, URLs, screenshots (iPhone 6.3, iPad 13, Mac), review info and notes, App Privacy 'Data Not Collected', 4+ rating, Utilities/Productivity, free in 175 countries, manual release, build 5 attached on both platforms, four tips with review screenshots. NOT submitted for review. Full Mac build 1.0 (5) notarized and published as GitHub release v1.0-5.",
   "asc_app_id": "6826589466",
   "bundle_id": "com.techbitsmix.AmICompromised",
   "sku": "amicompromised",
   "account_type": "individual",
-  "store_status": "unreleased",
+  "store_status": "ready_to_submit",
   "platforms": [
     "iOS",
     "macOS"

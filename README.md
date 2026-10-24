@@ -55,60 +55,38 @@ outside it:
 
 ## Status (2026-10-24)
 
-Done: CompromiseKit engine + tests (iOS/macOS exploited-bug catalog, STIX
-matching, sysdiagnose scanner, Mac system scanner, encrypted iPhone backup
-scanner), iPhone app (Scan Now, device checks, guided sysdiagnose flow,
-"Scan for Spyware" Share action), app icon, Mac app in two builds, public
-data repo with daily Action, public source repo (MIT).
+**Everything is in App Store Connect for 1.0, build 5, iOS and macOS. Nothing
+has been submitted for review.** `presubmit.py` reports *Cleared for
+submission*. Full Mac build 1.0 (5) is notarized and published as GitHub
+release v1.0-5.
 
-**Pricing:** free everywhere, with a tip jar (IAP to donate) that unlocks
-supporter extras such as accent colour themes. No scan limits, no paywall.
+Done: engine + tests, iPhone app, Share action, shiny Navy/Orange/Gold icons,
+Mac app (App Store + full), tip jar with themes and supporter icons, Contact
+section, website (docs/), store text, screenshots (iPhone 6.3", iPad 13",
+Mac), App Privacy, age rating, pricing (free) and availability.
 
-## Due next
+## Due next (Eden)
 
-**Test on a real iPhone:**
-- [ ] "Scan for Spyware" shows in Analytics Data's Share sheet with the
-      shield glyph (the Simulator shows a placeholder icon), and the scan
-      starts when the app opens.
-- [ ] Pressing the sysdiagnose buttons on the scan screen ticks step 1.
-- [ ] Scan time and memory on a real ~300 MB sysdiagnose; false positives
-      on a clean phone.
+- [ ] Real-device checks (APP-REVIEW-CHECKLIST Part 0 and Part 3): five
+      minutes on an iPhone **and an iPad**; Share action in Analytics Data; a
+      real sysdiagnose scan; a sandbox tip against the real App Store product
+      (scheme StoreKit Configuration = None) incl. Restore; Dark Mode and
+      largest Dynamic Type.
+- [ ] Mac: click through both builds; Full build Back Up and Scan with a real
+      encrypted backup.
+- [ ] Then **Add for Review** on iOS and macOS (one submission, one app at a
+      time per the checklist). Tips go in with the version.
+- [ ] Optional: China mainland may need an ICP filing; untick it in
+      Availability if Apple asks.
 
-**Test the Mac app:**
-- [ ] Click through both builds (`Am I Compromised` = App Store,
-      `Am I Compromised Full` = direct download).
-- [ ] Full build: grant Full Disk Access, plug in an iPhone, Back Up and
-      Scan (uses Apple's `AppleMobileBackup`), then scan an encrypted backup
-      with its password. Decryption is only tested on synthetic backups.
-- [ ] App Store build: choosing the MobileSync backup folder in the open
-      panel actually grants read access under the sandbox.
+## Housekeeping
 
-**Build:**
-- [x] Tip jar (StoreKit 2) on iPhone and Mac App Store build, with seven
-      colour themes (Ocean free, six unlocked by any tip). Full Mac build
-      unlocks themes and points to the App Store versions for tipping.
-- [x] App record (ASC 6826589466, iOS + macOS) and the four consumable tips
-      created in App Store Connect on 2026-10-24; details in `app.json`.
-- [ ] Each tip needs a review screenshot (the Support screen) before the
-      first submission, and the tips must be submitted with an app version.
-- [ ] Try a tip by running from Xcode (the scheme uses
-      `Config/AmICompromised.storekit`).
-- [x] Website live: https://shiftingeden.github.io/AmICompromised/
-      (privacy.html, support.html), source in `docs/`.
-- [x] App Store text, review notes, 6.9" screenshots and IAP review
-      screenshot in `AppStore/`.
-- [ ] Notarize the Full build and publish it as a GitHub release. Blocked:
-      this Mac has no "Developer ID Application" certificate and no
-      notarytool profile. Create the certificate in Xcode › Settings ›
-      Accounts › Manage Certificates, then run
-      `xcrun notarytool store-credentials notary` (needs an app-specific
-      password). The Full build is (the App
-      Store build's "Get the full version" link points there).
-
-**Housekeeping:**
 - Commit and push every change to github.com/shiftingeden/AmICompromised.
 - Changes to `Tools/generate_apple_kev.py` or the workflow must be copied to
   the AmICompromised-data repo too.
+- Mac store screenshots: run the Debug `AmICompromisedMac` build with
+  `SNAPSHOT_DIR=/private/tmp/...` set.
+- Build output goes outside Documents (iCloud attributes break codesign).
 
 ## Mac (two builds, one codebase in `Mac/`)
 
@@ -118,7 +96,7 @@ supporter extras such as accent colour themes. No scan limits, no paywall.
 | Sandbox | Yes | No (hardened runtime, notarized) |
 | macOS exploited-bug check | ✓ | ✓ |
 | This Mac | Running apps only | Settings (SIP, Gatekeeper, FileVault, firewall, Lockdown), all processes, startup items, profiles/MDM, system extensions, hosts file, crash logs |
-| iPhone | Scan a backup folder you pick | Plug in → back up (AppleMobileBackup) → scan; lists Finder backups (needs Full Disk Access) |
+| iPhone | Scan a backup folder you pick (no link to the outside download: App Review risk) | Plug in → back up (AppleMobileBackup) → scan; lists Finder backups (needs Full Disk Access) |
 | Sysdiagnose / log folder scan | ✓ | ✓ |
 
 ## How to scan an iPhone from the Mac
