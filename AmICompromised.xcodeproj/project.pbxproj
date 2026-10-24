@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		024CBFBD348A01C6336201FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA956051F97655FC1004B6E2 /* Assets.xcassets */; };
+		05677C8C5662712435BA4CC4 /* sample-sysdiagnose.tar.gz in Resources */ = {isa = PBXBuildFile; fileRef = CAB755A447189D31256CE91A /* sample-sysdiagnose.tar.gz */; };
 		071CAFC934411EC484868ECA /* CompromiseKit in Frameworks */ = {isa = PBXBuildFile; productRef = D79E51B82CFAF4C453BF79C9 /* CompromiseKit */; };
 		07E92193523311CDA4E779CB /* TipJar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E972CE2EDD403ADA7EEA6FE /* TipJar.swift */; };
 		09D362A3015B583867FB4EB3 /* MacApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933A0C8A506EC94DF94D2BF /* MacApp.swift */; };
@@ -103,6 +104,7 @@
 		B908ADADD333F32CEE7A0773 /* CheckViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckViews.swift; sourceTree = "<group>"; };
 		BD0D9587B248943943B30420 /* AmICompromisedTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = AmICompromisedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C495EDF0C525BC47982F4766 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CAB755A447189D31256CE91A /* sample-sysdiagnose.tar.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; path = "sample-sysdiagnose.tar.gz"; sourceTree = "<group>"; };
 		EE3906118225997B9E87D827 /* ScanAction.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = ScanAction.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE1F69946C1E6684B52D0A77 /* DeviceCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceCheck.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -168,6 +170,7 @@
 		11FF3CE1C47C59CB2AE46237 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				EBAC20AEE01A358585D5713D /* Resources */,
 				343FDCDBA3213A0E6C24C783 /* AmICompromisedApp.swift */,
 				5462D5856EC89415907F2B89 /* AppModel.swift */,
 				C495EDF0C525BC47982F4766 /* Assets.xcassets */,
@@ -238,6 +241,14 @@
 				8AECA88006672FA01BF82A86 /* MacViews.swift */,
 			);
 			path = Mac;
+			sourceTree = "<group>";
+		};
+		EBAC20AEE01A358585D5713D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CAB755A447189D31256CE91A /* sample-sysdiagnose.tar.gz */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -402,6 +413,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				652DFBF41CB388708D7A584F /* Assets.xcassets in Resources */,
+				05677C8C5662712435BA4CC4 /* sample-sysdiagnose.tar.gz in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

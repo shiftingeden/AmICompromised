@@ -1,0 +1,22 @@
+Name (30): Am I Compromised?
+Subtitle (30): Check for known spyware traces
+Promotional text (170): Free spyware check for iPhone and Mac. Scans your logs and backups for known traces of Pegasus, Predator and more, using public lists from security researchers.
+Keywords (100): spyware,pegasus,predator,stalkerware,hacked,security,privacy,mvt,sysdiagnose,malware,scan,lockdown
+Category: Utilities (secondary: none)
+Age rating: 4+ (no objectionable content). Answer "No" to everything except "Unrestricted web access": No.
+Price: Free. In-app purchases: four consumable tips (see app.json).
+Copyright: © 2026 TechBitsMix
+Support URL: https://shiftingeden.github.io/AmICompromised/support.html
+Marketing URL: https://shiftingeden.github.io/AmICompromised/
+Privacy Policy URL: https://shiftingeden.github.io/AmICompromised/privacy.html
+
+App Privacy (nutrition label): Data Not Collected.
+  The app downloads public lists from GitHub but sends no user data; no analytics,
+  no tracking, no third-party SDKs. Tips go through Apple.
+
+Export compliance: ITSAppUsesNonExemptEncryption = NO is set. The app uses
+  only Apple's encryption (HTTPS, and CommonCrypto to read the user's own
+  encrypted iPhone backup on the Mac), which is exempt.
+
+Wording rule: say "known threats/traces", never "antivirus", "virus scanner",
+  "zero-day detection" or "guaranteed".

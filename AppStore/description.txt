@@ -1,0 +1,26 @@
+Worried someone is spying on your phone? Am I Compromised? checks your iPhone and Mac for known traces of mercenary spyware and stalkerware, using the same public indicator lists security researchers use.
+
+Free. No ads, no tracking, no account. Everything is scanned on your device.
+
+AN HONEST NOTE FIRST
+No app can prove a phone is clean. Am I Compromised? looks for KNOWN traces published by Amnesty International, Citizen Lab, iVerify and others. Brand-new spyware has no public traces until researchers catch it. A clean result means nothing known was found today; a match is a strong lead, not proof.
+
+WHAT IT CHECKS ON IPHONE
+• Software updates: tells you if your iOS version has bugs that are being used in real attacks (from CISA's Known Exploited Vulnerabilities list), and which update fixes them.
+• Spyware log scan: create a sysdiagnose (a bundle of system logs iOS makes for Apple support) and share it to the app. It's checked for domains, process names and file paths linked to Pegasus, Predator, Operation Triangulation and other campaigns. A guided screen walks you through it, with a notification when the file is ready.
+• Device checks: passcode and signs of a jailbreak, plus a checklist for settings only you can see, like configuration profiles, your Apple Account devices and Lockdown Mode.
+
+ON A MAC
+The same app on a Mac scans a full backup of your iPhone, which holds far more than a sysdiagnose: installed apps, messages, browsing history, data usage and configuration profiles. Encrypted backups are supported; the password never leaves your Mac. It also checks whether your macOS version has bugs used in real attacks.
+
+ALWAYS UP TO DATE
+Indicator lists are downloaded from their public repositories every time you scan, so newly published campaigns are covered without waiting for an app update.
+
+IF SOMETHING IS FOUND
+The app explains what each finding means and what to do, and links to free expert help from the Access Now Digital Security Helpline and Amnesty International's Security Lab.
+
+OPEN SOURCE
+The full source code is on GitHub, so anyone can check exactly what the app does.
+
+SUPPORT THE APP
+Every feature is free. If it helped you, you can leave an optional tip, which also unlocks extra colour themes as a thank-you.

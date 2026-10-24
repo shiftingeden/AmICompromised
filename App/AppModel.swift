@@ -139,7 +139,18 @@ final class AppModel {
 
     // MARK: Log scan
 
-    func scanLogs(at url: URL) async {
+    /// Results of the bundled sample scan. Kept apart from `logReport` so a
+    /// demo never colours the person's own status.
+    var sampleReport: LogScanReport?
+
+    /// Scans a small bundled sample with two planted traces, so people (and
+    /// App Review) can see what results look like without a sysdiagnose.
+    func scanSample() async {
+        guard let url = Bundle.main.url(forResource: "sample-sysdiagnose", withExtension: "tar.gz") else { return }
+        await scanLogs(at: url, sample: true)
+    }
+
+    func scanLogs(at url: URL, sample: Bool = false) async {
         logScanError = nil
         if indicatorsAreStale {
             logScanUpdating = true
@@ -166,7 +177,13 @@ final class AppModel {
 
         logScanProgress = nil
         switch result {
-        case .success(let report):
+        case .success(var report):
+            if sample {
+                report.archiveName = "Sample data (not from your phone)"
+                sampleReport = report
+                return
+            }
+            sampleReport = nil
             logReport = report
             Self.saveReport(report)
             cancelSysdiagnoseCapture()

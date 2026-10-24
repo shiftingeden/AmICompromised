@@ -34,13 +34,28 @@ struct LogScanView: View {
                 Section { Text(error).foregroundStyle(.red).font(.footnote) }
             }
 
-            if let report = model.logReport, model.logScanProgress == nil {
+            if let sample = model.sampleReport, model.logScanProgress == nil {
+                Section {
+                    Label("This is a sample scan of made-up data with two planted traces, to show what results look like. It says nothing about your phone.",
+                          systemImage: "testtube.2")
+                        .foregroundStyle(.orange)
+                    Button("Close sample") { model.sampleReport = nil }
+                }
+                ReportSections(report: sample)
+            } else if let report = model.logReport, model.logScanProgress == nil {
                 ReportSections(report: report)
             }
 
             Section {
                 Text("A sysdiagnose is a bundle of system logs that iOS creates for Apple support. It includes the list of running processes, crash reports and the shutdown log, which is where traces of past spyware have been found. iOS doesn't let apps create or open one themselves, so it takes these three steps.")
                     .font(.footnote).foregroundStyle(.secondary)
+                Button {
+                    Task { await model.scanSample() }
+                } label: {
+                    Label("Try a sample scan", systemImage: "testtube.2")
+                }
+                .font(.subheadline)
+                .disabled(model.logScanProgress != nil)
             }
         }
         .navigationTitle("Spyware Log Scan")
@@ -156,7 +171,7 @@ private struct ReportSections: View {
                           detail: "It didn't contain the process list or shutdown log, so the scan covered less than usual.")
             }
         } header: {
-            Text("Last scan · \(report.scannedAt.formatted(date: .abbreviated, time: .shortened))")
+            Text("\(report.archiveName.hasPrefix("Sample") ? "Sample scan" : "Last scan") · \(report.scannedAt.formatted(date: .abbreviated, time: .shortened))")
         } footer: {
             // A match already says "a lead, not proof"; the clean-result
             // caveat only makes sense when nothing matched.
