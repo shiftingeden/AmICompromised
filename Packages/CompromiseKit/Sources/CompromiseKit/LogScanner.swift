@@ -59,6 +59,31 @@ public struct LogScanner {
         dirPaths = dirs
     }
 
+    // MARK: Lookups
+
+    public func campaign(forProcess name: String) -> String? {
+        processes[(name as NSString).lastPathComponent]
+    }
+
+    public func campaign(forPath path: String) -> String? {
+        exactPaths[path] ?? dirPaths.first { path.hasPrefix($0.0) }?.1
+    }
+
+    public func campaign(forApp id: String) -> String? { appIDs[id] }
+
+    public func campaign(forProfile id: String) -> String? { profileIDs[id.uppercased()] }
+
+    /// Matches a host and every parent domain down to two labels, so a
+    /// subdomain of a listed domain counts.
+    public func campaign(forDomain host: String) -> String? {
+        let labels = host.lowercased().split(separator: ".", omittingEmptySubsequences: false)
+        guard labels.count >= 2, !labels.contains(where: \.isEmpty) else { return nil }
+        for i in 0...(labels.count - 2) {
+            if let c = domains[labels[i...].joined(separator: ".")] { return c }
+        }
+        return nil
+    }
+
     public func scan(path: String, data: Data) -> [Finding] {
         var out = Findings(file: path)
         let name = (path as NSString).lastPathComponent
@@ -210,26 +235,21 @@ public struct LogScanner {
         }
 
         guard host.allSatisfy({ $0.isLetter || $0.isNumber || $0 == "-" || $0 == "." }) else { return }
-        // A subdomain of a listed domain counts too.
-        for i in 0...(labels.count - 2) {
-            let candidate = labels[i...].joined(separator: ".")
-            if let c = domains[candidate] {
-                out.add(.match, "Domain", host, c, "This domain appears in the logs and is listed as infrastructure of this spyware.")
-                return
-            }
+        if let c = campaign(forDomain: host) {
+            out.add(.match, "Domain", host, c, "This domain appears in the logs and is listed as infrastructure of this spyware.")
         }
     }
 }
 
 /// Collects findings for one file, one per kind and value.
-struct Findings {
+public struct Findings {
     let file: String
-    var items: [Finding] = []
+    public private(set) var items: [Finding] = []
     private var seen: Set<String> = []
 
-    init(file: String) { self.file = file }
+    public init(file: String) { self.file = file }
 
-    mutating func add(_ level: Finding.Level, _ kind: String, _ value: String, _ campaign: String?, _ detail: String) {
+    public mutating func add(_ level: Finding.Level, _ kind: String, _ value: String, _ campaign: String?, _ detail: String) {
         guard seen.insert(kind + "\u{0}" + value).inserted else { return }
         items.append(Finding(level: level, kind: kind, value: value, campaign: campaign, file: file, detail: detail))
     }

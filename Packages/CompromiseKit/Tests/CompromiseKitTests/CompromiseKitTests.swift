@@ -133,3 +133,21 @@ final class LiveTests: XCTestCase {
         XCTAssertGreaterThan(update.set.all(.domain).count, 1000)
     }
 }
+
+#if os(macOS)
+/// Scans this Mac for real. Run with LIVE=1 swift test --filter LiveMacScan
+final class LiveMacScan: XCTestCase {
+    func testScanThisMac() async throws {
+        try XCTSkipUnless(ProcessInfo.processInfo.environment["LIVE"] == "1")
+        let dir = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+        let set = try await DataStore(directory: dir).updateIndicators().set
+        let start = Date()
+        let report = MacSystemScanner(indicators: set, fullAccess: true).scan()
+        print("MAC took \(Int(Date().timeIntervalSince(start)))s")
+        for c in report.checks { print("MAC [\(c.status)] \(c.title): \(c.detail) (\(c.items.count) items)") }
+        for f in report.findings { print("MAC FINDING [\(f.level)] \(f.kind): \(f.value)") }
+        let a = ExploitedBugCatalog.bundled.assess(.current, on: .macOS)
+        print("MAC macOS \(a.version): \(a.affecting.count) exploited bugs, update to \(a.updateTo?.description ?? "-")")
+    }
+}
+#endif

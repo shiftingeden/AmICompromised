@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-23T23:45:48Z",
+ "generated": "2026-10-24T12:40:48Z",
  "source": [
   "CISA KEV",
   "NVD"
@@ -14,16 +14,96 @@
     {
      "versionEndExcluding": "26.7.1"
     }
+   ],
+   "macRanges": [
+    {
+     "versionEndExcluding": "15.8.1"
+    },
+    {
+     "versionStartIncluding": "26.0",
+     "versionEndExcluding": "26.7.1"
+    }
    ]
   },
   {
-   "cve": "CVE-2025-31277",
-   "name": "Apple Multiple Products Buffer Overflow Vulnerability",
-   "summary": "Apple Safari, iOS, watchOS, visionOS, iPadOS, macOS, and tvOS contain a buffer overflow vulnerability that could allow the processing of maliciously crafted web content which may lead to memory corruption.",
+   "cve": "CVE-2026-65400",
+   "name": "Apple macOS Improper Authentication Vulnerability",
+   "summary": "Apple macOS contains an improper authentication vulnerability that could allow an attacker on the network to authenticate to Screen Sharing without valid credentials.",
+   "dateAdded": "2026-08-18",
+   "ranges": [],
+   "macRanges": [
+    {
+     "versionStartIncluding": "14.0",
+     "versionEndExcluding": "14.8.9"
+    },
+    {
+     "versionStartIncluding": "15.0",
+     "versionEndExcluding": "15.7.9"
+    },
+    {
+     "versionStartIncluding": "26.0",
+     "versionEndExcluding": "26.6.1"
+    }
+   ]
+  },
+  {
+   "cve": "CVE-2026-11645",
+   "name": "Google Chromium V8 Out-of-Bounds Read and Write Vulnerability",
+   "summary": "Google Chromium V8 out-of-bounds read and write vulnerability that could allow a remote attacker to execute arbitrary code inside a sandbox via a crafted HTML page. This vulnerability could affect multiple web browsers that utilize Chromium, including, but not limited to, Google Chrome, Microsoft Edge, and Opera.",
+   "dateAdded": "2026-06-09",
+   "ranges": [],
+   "macRanges": []
+  },
+  {
+   "cve": "CVE-2026-34621",
+   "name": "Adobe Acrobat and Reader Prototype Pollution Vulnerability",
+   "summary": "Adobe Acrobat and Reader contain a prototype pollution vulnerability that allows for arbitrary code execution.",
+   "dateAdded": "2026-04-13",
+   "ranges": [],
+   "macRanges": []
+  },
+  {
+   "cve": "CVE-2020-9715",
+   "name": "Adobe Acrobat Use-After-Free Vulnerability",
+   "summary": "Adobe Acrobat contains a use-after-free vulnerability that allows for code execution",
+   "dateAdded": "2026-04-13",
+   "ranges": [],
+   "macRanges": []
+  },
+  {
+   "cve": "CVE-2026-5281",
+   "name": "Google Dawn Use-After-Free Vulnerability",
+   "summary": "Google Dawn contains an use-after-free vulnerability that could allow a remote attacker who had compromised the renderer process to execute arbitrary code via a crafted HTML page. This vulnerability could affect multiple Chromium-based products including, but not limited to, Google Chrome, Microsoft Edge, and Opera.",
+   "dateAdded": "2026-04-01",
+   "ranges": [],
+   "macRanges": []
+  },
+  {
+   "cve": "CVE-2025-43520",
+   "name": "Apple Multiple Products Classic Buffer Overflow Vulnerability",
+   "summary": "Apple watchOS, iOS, iPadOS, macOS, visionOS, and tvOS contain a classic buffer overflow vulnerability which could allow a malicious application to cause unexpected system termination or write kernel memory.",
    "dateAdded": "2026-03-20",
    "ranges": [
     {
-     "versionEndExcluding": "18.6"
+     "versionEndExcluding": "18.7.2"
+    },
+    {
+     "versionStartIncluding": "26.0",
+     "versionEndIncluding": "26.0"
+    }
+   ],
+   "macRanges": [
+    {
+     "versionStartIncluding": "14.0",
+     "versionEndExcluding": "14.8.2"
+    },
+    {
+     "versionStartIncluding": "15.0",
+     "versionEndExcluding": "15.7.2"
+    },
+    {
+     "versionStartIncluding": "26.0",
+     "versionEndIncluding": "26.0"
     }
    ]
   },
@@ -40,16 +120,15 @@
      "versionStartIncluding": "26.0",
      "versionEndIncluding": "26.0"
     }
-   ]
-  },
-  {
-   "cve": "CVE-2025-43520",
-   "name": "Apple Multiple Products Classic Buffer Overflow Vulnerability",
-   "summary": "Apple watchOS, iOS, iPadOS, macOS, visionOS, and tvOS contain a classic buffer overflow vulnerability which could allow a malicious application to cause unexpected system termination or write kernel memory.",
-   "dateAdded": "2026-03-20",
-   "ranges": [
+   ],
+   "macRanges": [
     {
-     "versionEndExcluding": "18.7.2"
+     "versionStartIncluding": "14.0",
+     "versionEndExcluding": "14.8.2"
+    },
+    {
+     "versionStartIncluding": "15.0",
+     "versionEndExcluding": "15.7.2"
     },
     {
      "versionStartIncluding": "26.0",
@@ -58,13 +137,55 @@
    ]
   },
   {
-   "cve": "CVE-2021-30952",
-   "name": "Apple Multiple Products Integer Overflow or Wraparound Vulnerability",
-   "summary": "Apple tvOS, macOS, Safari, iPadOS and watchOS contain an integer overflow or wraparound vulnerability due to the processing of maliciously crafted web content that may lead to arbitrary code execution.",
+   "cve": "CVE-2025-31277",
+   "name": "Apple Multiple Products Buffer Overflow Vulnerability",
+   "summary": "Apple Safari, iOS, watchOS, visionOS, iPadOS, macOS, and tvOS contain a buffer overflow vulnerability that could allow the processing of maliciously crafted web content which may lead to memory corruption.",
+   "dateAdded": "2026-03-20",
+   "ranges": [
+    {
+     "versionEndExcluding": "18.6"
+    }
+   ],
+   "macRanges": [
+    {
+     "versionStartIncluding": "15.0",
+     "versionEndExcluding": "15.6"
+    }
+   ]
+  },
+  {
+   "cve": "CVE-2026-3910",
+   "name": "Google Chromium V8 Improper Restriction of Operations Within the Bounds of a Memory Buffer Vulnerability",
+   "summary": "Google Chromium V8 contains an improper restriction of operations within the bounds of a memory buffer vulnerability that could allow a remote attacker to execute arbitrary code inside a sandbox via a crafted HTML page. This vulnerability could affect multiple web browsers that utilize Chromium, including, but not limited to, Google Chrome, Microsoft Edge, and Opera.",
+   "dateAdded": "2026-03-13",
+   "ranges": [],
+   "macRanges": []
+  },
+  {
+   "cve": "CVE-2026-3909",
+   "name": "Google Skia Out-of-Bounds Write Vulnerability",
+   "summary": "Google Skia contains an out-of-bounds write vulnerability that could allow a remote attacker to perform out of bounds memory access via a crafted HTML page. This vulnerability affects Google Chrome and ChromeOS, Android, Flutter, and possibly other products.",
+   "dateAdded": "2026-03-13",
+   "ranges": [],
+   "macRanges": []
+  },
+  {
+   "cve": "CVE-2023-43000",
+   "name": "Apple Multiple products Use-After-Free Vulnerability",
+   "summary": "Apple macOS, iOS, iPadOS, and Safari 16.6 contain a use-after-free vulnerability due to the processing of maliciously crafted web content that may lead to memory corruption.",
    "dateAdded": "2026-03-05",
    "ranges": [
     {
-     "versionEndExcluding": "15.2"
+     "versionEndExcluding": "15.8.7"
+    },
+    {
+     "versionStartIncluding": "16.0",
+     "versionEndExcluding": "16.6"
+    }
+   ],
+   "macRanges": [
+    {
+     "versionEndExcluding": "13.5"
     }
    ]
   },
@@ -84,19 +205,29 @@
    ]
   },
   {
-   "cve": "CVE-2023-43000",
-   "name": "Apple Multiple products Use-After-Free Vulnerability",
-   "summary": "Apple macOS, iOS, iPadOS, and Safari 16.6 contain a use-after-free vulnerability due to the processing of maliciously crafted web content that may lead to memory corruption.",
+   "cve": "CVE-2021-30952",
+   "name": "Apple Multiple Products Integer Overflow or Wraparound Vulnerability",
+   "summary": "Apple tvOS, macOS, Safari, iPadOS and watchOS contain an integer overflow or wraparound vulnerability due to the processing of maliciously crafted web content that may lead to arbitrary code execution.",
    "dateAdded": "2026-03-05",
    "ranges": [
     {
-     "versionEndExcluding": "15.8.7"
-    },
+     "versionEndExcluding": "15.2"
+    }
+   ],
+   "macRanges": [
     {
-     "versionStartIncluding": "16.0",
-     "versionEndExcluding": "16.6"
+     "versionStartIncluding": "12.0",
+     "versionEndExcluding": "12.1"
     }
    ]
+  },
+  {
+   "cve": "CVE-2026-2441",
+   "name": "Google Chromium CSS Use-After-Free Vulnerability",
+   "summary": "Google Chromium CSS contains a use-after-free vulnerability that could allow a remote attacker to potentially exploit heap corruption via a crafted HTML page. This vulnerability could affect multiple web browsers that utilize Chromium, including, but not limited to, Google Chrome, Microsoft Edge, and Opera.",
+   "dateAdded": "2026-02-17",
+   "ranges": [],
+   "macRanges": []
   },
   {
    "cve": "CVE-2026-20700",
@@ -104,6 +235,11 @@
    "summary": "Apple iOS, macOS, tvOS, watchOS, and visionOS contain an improper restriction of operations within the bounds of a memory buffer vulnerability that could allow an attacker with memory write the capability to execute arbitrary code.",
    "dateAdded": "2026-02-12",
    "ranges": [
+    {
+     "versionEndExcluding": "26.3"
+    }
+   ],
+   "macRanges": [
     {
      "versionEndExcluding": "26.3"
     }
@@ -118,6 +254,12 @@
     {
      "versionEndExcluding": "18.7.3"
     },
+    {
+     "versionStartIncluding": "26.0",
+     "versionEndExcluding": "26.2"
+    }
+   ],
+   "macRanges": [
     {
      "versionStartIncluding": "26.0",
      "versionEndExcluding": "26.2"
@@ -137,6 +279,11 @@
      "versionStartIncluding": "26.0",
      "versionEndExcluding": "26.2"
     }
+   ],
+   "macRanges": [
+    {
+     "versionEndExcluding": "26.2"
+    }
    ]
   },
   {
@@ -147,6 +294,12 @@
    "ranges": [
     {
      "versionEndExcluding": "15.6"
+    }
+   ],
+   "macRanges": [
+    {
+     "versionStartIncluding": "12.0.0",
+     "versionEndExcluding": "12.5"
     }
    ]
   },
@@ -167,6 +320,20 @@
      "versionStartIncluding": "17.0",
      "versionEndExcluding": "18.6.2"
     }
+   ],
+   "macRanges": [
+    {
+     "versionStartIncluding": "13.0",
+     "versionEndExcluding": "13.7.8"
+    },
+    {
+     "versionStartIncluding": "14.0",
+     "versionEndExcluding": "14.7.8"
+    },
+    {
+     "versionStartIncluding": "15.0",
+     "versionEndExcluding": "15.6.1"
+    }
    ]
   },
   {
@@ -178,7 +345,20 @@
     {
      "versionEndExcluding": "18.6"
     }
+   ],
+   "macRanges": [
+    {
+     "versionEndExcluding": "15.6"
+    }
    ]
+  },
+  {
+   "cve": "CVE-2025-6554",
+   "name": "Google Chromium V8 Type Confusion Vulnerability",
+   "summary": "Google Chromium V8 contains a type confusion vulnerability that could allow a remote attacker to perform arbitrary read/write via a crafted HTML page. This vulnerability could affect multiple web browsers that utilize Chromium, including, but not limited to, Google Chrome, Microsoft Edge, and Opera.",
+   "dateAdded": "2025-07-02",
+   "ranges": [],
+   "macRanges": []
   },
   {
    "cve": "CVE-2025-43200",
@@ -197,16 +377,19 @@
      "versionStartIncluding": "17.0",
      "versionEndIncluding": "18.3.1"
     }
-   ]
-  },
-  {
-   "cve": "CVE-2025-31200",
-   "name": "Apple Multiple Products Memory Corruption Vulnerability",
-   "summary": "Apple iOS, iPadOS, macOS, and other Apple products contain a memory corruption vulnerability that allows for code execution when processing an audio stream in a maliciously crafted media file.",
-   "dateAdded": "2025-04-17",
-   "ranges": [
+   ],
+   "macRanges": [
     {
-     "versionEndExcluding": "18.4.1"
+     "versionStartIncluding": "13.0",
+     "versionEndExcluding": "13.7.4"
+    },
+    {
+     "versionStartIncluding": "14.0",
+     "versionEndExcluding": "14.7.4"
+    },
+    {
+     "versionStartIncluding": "15.0",
+     "versionEndExcluding": "15.3.1"
     }
    ]
   },
@@ -218,6 +401,29 @@
    "ranges": [
     {
      "versionEndExcluding": "18.4.1"
+    }
+   ],
+   "macRanges": [
+    {
+     "versionStartIncluding": "15.0",
+     "versionEndExcluding": "15.4.1"
+    }
+   ]
+  },
+  {
+   "cve": "CVE-2025-31200",
+   "name": "Apple Multiple Products Memory Corruption Vulnerability",
+   "summary": "Apple iOS, iPadOS, macOS, and other Apple products contain a memory corruption vulnerability that allows for code execution when processing an audio stream in a maliciously crafted media file.",
+   "dateAdded": "2025-04-17",
+   "ranges": [
+    {
+     "versionEndExcluding": "18.4.1"
+    }
+   ],
+   "macRanges": [
+    {
+     "versionStartIncluding": "15.0",
+     "versionEndExcluding": "15.4.1"
     }
    ]
   },
@@ -238,6 +444,12 @@
     {
      "versionStartIncluding": "17.0",
      "versionEndExcluding": "18.3.2"
+    }
+   ],
+   "macRanges": [
+    {
+     "versionStartIncluding": "15.0",
+     "versionEndExcluding": "15.3.2"
     }
    ]
   },
@@ -269,20 +481,19 @@
     {
      "versionEndExcluding": "18.3"
     }
-   ]
-  },
-  {
-   "cve": "CVE-2024-44308",
-   "name": "Apple Multiple Products Code Execution Vulnerability",
-   "summary": "Apple iOS, macOS, and other Apple products contain an unspecified vulnerability when processing maliciously crafted web content that may lead to arbitrary code execution.",
-   "dateAdded": "2024-11-21",
-   "ranges": [
+   ],
+   "macRanges": [
     {
-     "versionEndExcluding": "17.7.2"
+     "versionStartIncluding": "13.0",
+     "versionEndExcluding": "13.7.5"
     },
     {
-     "versionStartIncluding": "18.0",
-     "versionEndExcluding": "18.1.1"
+     "versionStartIncluding": "14.0",
+     "versionEndExcluding": "14.7.5"
+    },
+    {
+     "versionStartIncluding": "15.0",
+     "versionEndExcluding": "15.3"
     }
    ]
   },
@@ -299,6 +510,70 @@
      "versionStartIncluding": "18.0",
      "versionEndExcluding": "18.1.1"
     }
+   ],
+   "macRanges": [
+    {
+     "versionStartIncluding": "15.0",
+     "versionEndExcluding": "15.1.1"
+    }
+   ]
+  },
+  {
+   "cve": "CVE-2024-44308",
+   "name": "Apple Multiple Products Code Execution Vulnerability",
+   "summary": "Apple iOS, macOS, and other Apple products contain an unspecified vulnerability when processing maliciously crafted web content that may lead to arbitrary code execution.",
+   "dateAdded": "2024-11-21",
+   "ranges": [
+    {
+     "versionEndExcluding": "17.7.2"
+    },
+    {
+     "versionStartIncluding": "18.0",
+     "versionEndExcluding": "18.1.1"
+    }
+   ],
+   "macRanges": [
+    {
+     "versionStartIncluding": "15.0",
+     "versionEndExcluding": "15.1.1"
+    }
+   ]
+  },
+  {
+   "cve": "CVE-2014-0497",
+   "name": "Adobe Flash Player Integer Underflow Vulnerablity",
+   "summary": "Adobe Flash Player contains an integer underflow vulnerability that allows a remote attacker to execute arbitrary code.",
+   "dateAdded": "2024-09-17",
+   "ranges": [],
+   "macRanges": []
+  },
+  {
+   "cve": "CVE-2024-23296",
+   "name": "Apple Multiple Products Memory Corruption Vulnerability",
+   "summary": "Apple iOS, iPadOS, macOS, tvOS, and watchOS RTKit contain a memory corruption vulnerability that allows an attacker with arbitrary kernel read and write capability to bypass kernel memory protections.",
+   "dateAdded": "2024-03-06",
+   "ranges": [
+    {
+     "versionEndExcluding": "16.7.8"
+    },
+    {
+     "versionStartIncluding": "17.0",
+     "versionEndExcluding": "17.4"
+    }
+   ],
+   "macRanges": [
+    {
+     "versionStartIncluding": "12.0",
+     "versionEndExcluding": "12.7.6"
+    },
+    {
+     "versionStartIncluding": "13.0",
+     "versionEndExcluding": "13.6.7"
+    },
+    {
+     "versionStartIncluding": "14.0",
+     "versionEndExcluding": "14.4"
+    }
    ]
   },
   {
@@ -314,20 +589,19 @@
      "versionStartIncluding": "17.0",
      "versionEndExcluding": "17.4"
     }
-   ]
-  },
-  {
-   "cve": "CVE-2024-23296",
-   "name": "Apple Multiple Products Memory Corruption Vulnerability",
-   "summary": "Apple iOS, iPadOS, macOS, tvOS, and watchOS RTKit contain a memory corruption vulnerability that allows an attacker with arbitrary kernel read and write capability to bypass kernel memory protections.",
-   "dateAdded": "2024-03-06",
-   "ranges": [
+   ],
+   "macRanges": [
     {
-     "versionEndExcluding": "16.7.8"
+     "versionStartIncluding": "12.0",
+     "versionEndExcluding": "12.7.4"
     },
     {
-     "versionStartIncluding": "17.0",
-     "versionEndExcluding": "17.4"
+     "versionStartIncluding": "13.0",
+     "versionEndExcluding": "13.6.5"
+    },
+    {
+     "versionStartIncluding": "14.0",
+     "versionEndExcluding": "14.4"
     }
    ]
   },
@@ -339,6 +613,12 @@
    "ranges": [
     {
      "versionEndExcluding": "16.2"
+    }
+   ],
+   "macRanges": [
+    {
+     "versionStartIncluding": "13.0",
+     "versionEndExcluding": "13.1"
     }
    ]
   },
@@ -359,6 +639,20 @@
      "versionStartIncluding": "17.0",
      "versionEndExcluding": "17.3"
     }
+   ],
+   "macRanges": [
+    {
+     "versionStartIncluding": "12.0",
+     "versionEndExcluding": "12.7.3"
+    },
+    {
+     "versionStartIncluding": "13.0",
+     "versionEndExcluding": "13.6.4"
+    },
+    {
+     "versionStartIncluding": "14.0",
+     "versionEndExcluding": "14.3"
+    }
    ]
   },
   {
@@ -374,24 +668,18 @@
      "versionStartIncluding": "16.0",
      "versionEndExcluding": "16.3"
     }
-   ]
-  },
-  {
-   "cve": "CVE-2023-42916",
-   "name": "Apple Multiple Products WebKit Out-of-Bounds Read Vulnerability",
-   "summary": "Apple iOS, iPadOS, macOS, and Safari WebKit contain an out-of-bounds read vulnerability that may disclose sensitive information when processing maliciously crafted web content. This vulnerability could impact HTML parsers that use WebKit, including but not limited to Apple Safari and non-Apple products which rely on WebKit for HTML processing.",
-   "dateAdded": "2023-12-04",
-   "ranges": [
+   ],
+   "macRanges": [
     {
-     "versionEndExcluding": "15.8.1"
+     "versionEndExcluding": "11.7.9"
     },
     {
-     "versionStartIncluding": "16.0",
-     "versionEndExcluding": "16.7.3"
+     "versionStartIncluding": "12.0.0",
+     "versionEndExcluding": "12.6.8"
     },
     {
-     "versionStartIncluding": "17.0",
-     "versionEndExcluding": "17.1.2"
+     "versionStartIncluding": "13.0",
+     "versionEndExcluding": "13.2"
     }
    ]
   },
@@ -412,7 +700,46 @@
      "versionStartIncluding": "17.0",
      "versionEndExcluding": "17.1.2"
     }
+   ],
+   "macRanges": [
+    {
+     "versionStartIncluding": "14.0",
+     "versionEndExcluding": "14.1.2"
+    }
    ]
+  },
+  {
+   "cve": "CVE-2023-42916",
+   "name": "Apple Multiple Products WebKit Out-of-Bounds Read Vulnerability",
+   "summary": "Apple iOS, iPadOS, macOS, and Safari WebKit contain an out-of-bounds read vulnerability that may disclose sensitive information when processing maliciously crafted web content. This vulnerability could impact HTML parsers that use WebKit, including but not limited to Apple Safari and non-Apple products which rely on WebKit for HTML processing.",
+   "dateAdded": "2023-12-04",
+   "ranges": [
+    {
+     "versionEndExcluding": "15.8.1"
+    },
+    {
+     "versionStartIncluding": "16.0",
+     "versionEndExcluding": "16.7.3"
+    },
+    {
+     "versionStartIncluding": "17.0",
+     "versionEndExcluding": "17.1.2"
+    }
+   ],
+   "macRanges": [
+    {
+     "versionStartIncluding": "14.0",
+     "versionEndExcluding": "14.1.2"
+    }
+   ]
+  },
+  {
+   "cve": "CVE-2023-21608",
+   "name": "Adobe Acrobat and Reader Use-After-Free Vulnerability",
+   "summary": "Adobe Acrobat and Reader contains a use-after-free vulnerability that allows for code execution in the context of the current user.",
+   "dateAdded": "2023-10-10",
+   "ranges": [],
+   "macRanges": []
   },
   {
    "cve": "CVE-2023-42824",
@@ -446,17 +773,18 @@
    ]
   },
   {
-   "cve": "CVE-2023-41991",
-   "name": "Apple Multiple Products Improper Certificate Validation Vulnerability",
-   "summary": "Apple iOS, iPadOS, macOS, and watchOS contain an improper certificate validation vulnerability that can allow a malicious app to bypass signature validation.",
+   "cve": "CVE-2023-41993",
+   "name": "Apple Multiple Products WebKit Code Execution Vulnerability",
+   "summary": "Apple iOS, iPadOS, macOS, and Safari WebKit contain an unspecified vulnerability that leads to code execution when processing maliciously crafted web content. This vulnerability could impact HTML parsers that use WebKit, including but not limited to Apple Safari and non-Apple products which rely on WebKit for HTML processing.",
    "dateAdded": "2023-09-25",
    "ranges": [
     {
-     "versionEndExcluding": "16.7"
-    },
+     "versionEndExcluding": "17.0.1"
+    }
+   ],
+   "macRanges": [
     {
-     "versionStartIncluding": "17.0",
-     "versionEndIncluding": "17.0"
+     "versionEndExcluding": "14.0"
     }
    ]
   },
@@ -473,29 +801,46 @@
      "versionStartIncluding": "17.0",
      "versionEndIncluding": "17.0"
     }
+   ],
+   "macRanges": [
+    {
+     "versionStartIncluding": "12.0",
+     "versionEndExcluding": "12.7"
+    },
+    {
+     "versionStartIncluding": "13.0",
+     "versionEndExcluding": "13.6"
+    }
    ]
   },
   {
-   "cve": "CVE-2023-41993",
-   "name": "Apple Multiple Products WebKit Code Execution Vulnerability",
-   "summary": "Apple iOS, iPadOS, macOS, and Safari WebKit contain an unspecified vulnerability that leads to code execution when processing maliciously crafted web content. This vulnerability could impact HTML parsers that use WebKit, including but not limited to Apple Safari and non-Apple products which rely on WebKit for HTML processing.",
+   "cve": "CVE-2023-41991",
+   "name": "Apple Multiple Products Improper Certificate Validation Vulnerability",
+   "summary": "Apple iOS, iPadOS, macOS, and watchOS contain an improper certificate validation vulnerability that can allow a malicious app to bypass signature validation.",
    "dateAdded": "2023-09-25",
    "ranges": [
     {
-     "versionEndExcluding": "17.0.1"
+     "versionEndExcluding": "16.7"
+    },
+    {
+     "versionStartIncluding": "17.0",
+     "versionEndIncluding": "17.0"
+    }
+   ],
+   "macRanges": [
+    {
+     "versionStartIncluding": "13.0",
+     "versionEndExcluding": "13.6"
     }
    ]
   },
   {
-   "cve": "CVE-2023-41061",
-   "name": "Apple iOS, iPadOS, and watchOS Wallet Code Execution Vulnerability",
-   "summary": "Apple iOS, iPadOS, and watchOS contain an unspecified vulnerability due to a validation issue affecting Wallet in which a maliciously crafted attachment may result in code execution. This vulnerability was chained with CVE-2023-41064.",
-   "dateAdded": "2023-09-11",
-   "ranges": [
-    {
-     "versionEndExcluding": "16.6.1"
-    }
-   ]
+   "cve": "CVE-2023-26369",
+   "name": "Adobe Acrobat and Reader Out-of-Bounds Write Vulnerability",
+   "summary": "Adobe Acrobat and Reader contains an out-of-bounds write vulnerability that allows for code execution.",
+   "dateAdded": "2023-09-14",
+   "ranges": [],
+   "macRanges": []
   },
   {
    "cve": "CVE-2023-41064",
@@ -508,6 +853,31 @@
     },
     {
      "versionStartIncluding": "16.0",
+     "versionEndExcluding": "16.6.1"
+    }
+   ],
+   "macRanges": [
+    {
+     "versionStartIncluding": "11.0",
+     "versionEndExcluding": "11.7.10"
+    },
+    {
+     "versionStartIncluding": "12.0",
+     "versionEndExcluding": "12.6.9"
+    },
+    {
+     "versionStartIncluding": "13.0",
+     "versionEndExcluding": "13.5.2"
+    }
+   ]
+  },
+  {
+   "cve": "CVE-2023-41061",
+   "name": "Apple iOS, iPadOS, and watchOS Wallet Code Execution Vulnerability",
+   "summary": "Apple iOS, iPadOS, and watchOS contain an unspecified vulnerability due to a validation issue affecting Wallet in which a maliciously crafted attachment may result in code execution. This vulnerability was chained with CVE-2023-41064.",
+   "dateAdded": "2023-09-11",
+   "ranges": [
+    {
      "versionEndExcluding": "16.6.1"
     }
    ]
@@ -525,6 +895,20 @@
      "versionStartIncluding": "16.0",
      "versionEndExcluding": "16.6"
     }
+   ],
+   "macRanges": [
+    {
+     "versionStartIncluding": "11.0",
+     "versionEndExcluding": "11.7.9"
+    },
+    {
+     "versionStartIncluding": "12.0.0",
+     "versionEndExcluding": "12.6.8"
+    },
+    {
+     "versionStartIncluding": "13.0",
+     "versionEndExcluding": "13.5"
+    }
    ]
   },
   {
@@ -536,35 +920,11 @@
     {
      "versionEndExcluding": "16.6"
     }
-   ]
-  },
-  {
-   "cve": "CVE-2023-32434",
-   "name": "Apple Multiple Products Integer Overflow Vulnerability",
-   "summary": "Apple iOS. iPadOS, macOS, and watchOS contain an integer overflow vulnerability that could allow an application to execute code with kernel privileges.",
-   "dateAdded": "2023-06-23",
-   "ranges": [
+   ],
+   "macRanges": [
     {
-     "versionEndExcluding": "15.7.7"
-    },
-    {
-     "versionStartIncluding": "16.0",
-     "versionEndExcluding": "16.5.1"
-    }
-   ]
-  },
-  {
-   "cve": "CVE-2023-32435",
-   "name": "Apple Multiple Products WebKit Memory Corruption Vulnerability",
-   "summary": "Apple iOS, iPadOS, macOS, and Safari WebKit contain a memory corruption vulnerability that leads to code execution when processing maliciously crafted web content. This vulnerability could impact HTML parsers that use WebKit, including but not limited to Apple Safari and non-Apple products which rely on WebKit for HTML processing.",
-   "dateAdded": "2023-06-23",
-   "ranges": [
-    {
-     "versionEndExcluding": "15.7.7"
-    },
-    {
-     "versionStartIncluding": "16.0",
-     "versionEndExcluding": "16.4"
+     "versionStartIncluding": "13.0",
+     "versionEndExcluding": "13.5"
     }
    ]
   },
@@ -581,36 +941,61 @@
      "versionStartIncluding": "16.0",
      "versionEndExcluding": "16.5.1"
     }
-   ]
-  },
-  {
-   "cve": "CVE-2023-28204",
-   "name": "Apple Multiple Products WebKit Out-of-Bounds Read Vulnerability",
-   "summary": "Apple iOS, iPadOS, macOS, tvOS, watchOS, and Safari WebKit contain an out-of-bounds read vulnerability that may disclose sensitive information when processing maliciously crafted web content. This vulnerability could impact HTML parsers that use WebKit, including but not limited to Apple Safari and non-Apple products which rely on WebKit for HTML processing.",
-   "dateAdded": "2023-05-22",
-   "ranges": [
+   ],
+   "macRanges": [
     {
-     "versionEndExcluding": "15.7.6"
-    },
-    {
-     "versionStartIncluding": "16.0",
-     "versionEndExcluding": "16.5"
+     "versionStartIncluding": "13.0",
+     "versionEndExcluding": "13.4.1"
     }
    ]
   },
   {
-   "cve": "CVE-2023-32373",
-   "name": "Apple Multiple Products WebKit Use-After-Free Vulnerability",
-   "summary": "Apple iOS, iPadOS, macOS, tvOS, watchOS, and Safari WebKit contain a use-after-free vulnerability that leads to code execution when processing maliciously crafted web content. This vulnerability could impact HTML parsers that use WebKit, including but not limited to Apple Safari and non-Apple products which rely on WebKit for HTML processing.",
-   "dateAdded": "2023-05-22",
+   "cve": "CVE-2023-32435",
+   "name": "Apple Multiple Products WebKit Memory Corruption Vulnerability",
+   "summary": "Apple iOS, iPadOS, macOS, and Safari WebKit contain a memory corruption vulnerability that leads to code execution when processing maliciously crafted web content. This vulnerability could impact HTML parsers that use WebKit, including but not limited to Apple Safari and non-Apple products which rely on WebKit for HTML processing.",
+   "dateAdded": "2023-06-23",
    "ranges": [
     {
-     "versionStartIncluding": "15.0",
-     "versionEndExcluding": "15.7.6"
+     "versionEndExcluding": "15.7.7"
     },
     {
      "versionStartIncluding": "16.0",
-     "versionEndExcluding": "16.5"
+     "versionEndExcluding": "16.4"
+    }
+   ],
+   "macRanges": [
+    {
+     "versionStartIncluding": "13.0",
+     "versionEndExcluding": "13.3"
+    }
+   ]
+  },
+  {
+   "cve": "CVE-2023-32434",
+   "name": "Apple Multiple Products Integer Overflow Vulnerability",
+   "summary": "Apple iOS. iPadOS, macOS, and watchOS contain an integer overflow vulnerability that could allow an application to execute code with kernel privileges.",
+   "dateAdded": "2023-06-23",
+   "ranges": [
+    {
+     "versionEndExcluding": "15.7.7"
+    },
+    {
+     "versionStartIncluding": "16.0",
+     "versionEndExcluding": "16.5.1"
+    }
+   ],
+   "macRanges": [
+    {
+     "versionStartIncluding": "11.0",
+     "versionEndExcluding": "11.7.8"
+    },
+    {
+     "versionStartIncluding": "12.0.0",
+     "versionEndExcluding": "12.6.7"
+    },
+    {
+     "versionStartIncluding": "13.0",
+     "versionEndExcluding": "13.4.1"
     }
    ]
   },
@@ -628,20 +1013,53 @@
      "versionStartIncluding": "16.0",
      "versionEndExcluding": "16.5"
     }
+   ],
+   "macRanges": [
+    {
+     "versionStartIncluding": "13.0",
+     "versionEndExcluding": "13.4"
+    }
    ]
   },
   {
-   "cve": "CVE-2023-28205",
+   "cve": "CVE-2023-32373",
    "name": "Apple Multiple Products WebKit Use-After-Free Vulnerability",
-   "summary": "Apple iOS, iPadOS, macOS, and Safari WebKit contain a use-after-free vulnerability that leads to code execution when processing maliciously crafted web content. This vulnerability could impact HTML parsers that use WebKit, including but not limited to Apple Safari and non-Apple products which rely on WebKit for HTML processing.",
-   "dateAdded": "2023-04-10",
+   "summary": "Apple iOS, iPadOS, macOS, tvOS, watchOS, and Safari WebKit contain a use-after-free vulnerability that leads to code execution when processing maliciously crafted web content. This vulnerability could impact HTML parsers that use WebKit, including but not limited to Apple Safari and non-Apple products which rely on WebKit for HTML processing.",
+   "dateAdded": "2023-05-22",
    "ranges": [
     {
-     "versionEndExcluding": "15.7.5"
+     "versionStartIncluding": "15.0",
+     "versionEndExcluding": "15.7.6"
     },
     {
      "versionStartIncluding": "16.0",
-     "versionEndExcluding": "16.4.1"
+     "versionEndExcluding": "16.5"
+    }
+   ],
+   "macRanges": [
+    {
+     "versionEndExcluding": "13.4"
+    }
+   ]
+  },
+  {
+   "cve": "CVE-2023-28204",
+   "name": "Apple Multiple Products WebKit Out-of-Bounds Read Vulnerability",
+   "summary": "Apple iOS, iPadOS, macOS, tvOS, watchOS, and Safari WebKit contain an out-of-bounds read vulnerability that may disclose sensitive information when processing maliciously crafted web content. This vulnerability could impact HTML parsers that use WebKit, including but not limited to Apple Safari and non-Apple products which rely on WebKit for HTML processing.",
+   "dateAdded": "2023-05-22",
+   "ranges": [
+    {
+     "versionEndExcluding": "15.7.6"
+    },
+    {
+     "versionStartIncluding": "16.0",
+     "versionEndExcluding": "16.5"
+    }
+   ],
+   "macRanges": [
+    {
+     "versionStartIncluding": "13.0",
+     "versionEndExcluding": "13.4"
     }
    ]
   },
@@ -658,6 +1076,39 @@
      "versionStartIncluding": "16.0",
      "versionEndExcluding": "16.4.1"
     }
+   ],
+   "macRanges": [
+    {
+     "versionEndExcluding": "11.7.6"
+    },
+    {
+     "versionStartIncluding": "12.0",
+     "versionEndExcluding": "12.6.5"
+    },
+    {
+     "versionStartIncluding": "13.0",
+     "versionEndExcluding": "13.3.1"
+    }
+   ]
+  },
+  {
+   "cve": "CVE-2023-28205",
+   "name": "Apple Multiple Products WebKit Use-After-Free Vulnerability",
+   "summary": "Apple iOS, iPadOS, macOS, and Safari WebKit contain a use-after-free vulnerability that leads to code execution when processing maliciously crafted web content. This vulnerability could impact HTML parsers that use WebKit, including but not limited to Apple Safari and non-Apple products which rely on WebKit for HTML processing.",
+   "dateAdded": "2023-04-10",
+   "ranges": [
+    {
+     "versionEndExcluding": "15.7.5"
+    },
+    {
+     "versionStartIncluding": "16.0",
+     "versionEndExcluding": "16.4.1"
+    }
+   ],
+   "macRanges": [
+    {
+     "versionEndExcluding": "13.3.1"
+    }
    ]
   },
   {
@@ -672,6 +1123,11 @@
     {
      "versionStartIncluding": "15.0",
      "versionEndIncluding": "15.0"
+    }
+   ],
+   "macRanges": [
+    {
+     "versionEndExcluding": "11.6.1"
     }
    ]
   },
@@ -688,6 +1144,12 @@
      "versionStartIncluding": "16.0",
      "versionEndExcluding": "16.3.1"
     }
+   ],
+   "macRanges": [
+    {
+     "versionStartIncluding": "13.0",
+     "versionEndExcluding": "13.2.1"
+    }
    ]
   },
   {
@@ -702,6 +1164,11 @@
     {
      "versionStartIncluding": "16.0",
      "versionEndExcluding": "16.1.2"
+    }
+   ],
+   "macRanges": [
+    {
+     "versionEndExcluding": "13.1"
     }
    ]
   },
@@ -729,6 +1196,16 @@
     {
      "versionEndExcluding": "15.7"
     }
+   ],
+   "macRanges": [
+    {
+     "versionStartIncluding": "11.0",
+     "versionEndExcluding": "11.7"
+    },
+    {
+     "versionStartIncluding": "12.0.0",
+     "versionEndExcluding": "12.6"
+    }
    ]
   },
   {
@@ -739,6 +1216,26 @@
    "ranges": [
     {
      "versionEndExcluding": "13.6"
+    }
+   ]
+  },
+  {
+   "cve": "CVE-2022-2294",
+   "name": "WebRTC Heap Buffer Overflow Vulnerability",
+   "summary": "WebRTC, an open-source project providing web browsers with real-time communication, contains a heap buffer overflow vulnerability that allows an attacker to perform shellcode execution. This vulnerability impacts web browsers using WebRTC including but not limited to Google Chrome.",
+   "dateAdded": "2022-08-25",
+   "ranges": [
+    {
+     "versionEndExcluding": "15.6"
+    }
+   ],
+   "macRanges": [
+    {
+     "versionEndExcluding": "11.6.8"
+    },
+    {
+     "versionStartIncluding": "12.0",
+     "versionEndExcluding": "12.5"
     }
    ]
   },
@@ -756,27 +1253,11 @@
      "versionStartIncluding": "14.0",
      "versionEndExcluding": "14.8"
     }
-   ]
-  },
-  {
-   "cve": "CVE-2022-2294",
-   "name": "WebRTC Heap Buffer Overflow Vulnerability",
-   "summary": "WebRTC, an open-source project providing web browsers with real-time communication, contains a heap buffer overflow vulnerability that allows an attacker to perform shellcode execution. This vulnerability impacts web browsers using WebRTC including but not limited to Google Chrome.",
-   "dateAdded": "2022-08-25",
-   "ranges": [
+   ],
+   "macRanges": [
     {
-     "versionEndExcluding": "15.6"
-    }
-   ]
-  },
-  {
-   "cve": "CVE-2022-32893",
-   "name": "Apple iOS and macOS Out-of-Bounds Write Vulnerability",
-   "summary": "Apple iOS and macOS contain an out-of-bounds write vulnerability that could allow for remote code execution when processing malicious crafted web content.",
-   "dateAdded": "2022-08-18",
-   "ranges": [
-    {
-     "versionEndExcluding": "15.6.1"
+     "versionStartIncluding": "11.0",
+     "versionEndExcluding": "11.6"
     }
    ]
   },
@@ -789,38 +1270,51 @@
     {
      "versionEndExcluding": "15.6.1"
     }
-   ]
-  },
-  {
-   "cve": "CVE-2018-4344",
-   "name": "Apple Multiple Products Memory Corruption Vulnerability",
-   "summary": "Apple iOS, macOS, tvOS, and watchOS contain a memory corruption vulnerability which can allow for code execution.",
-   "dateAdded": "2022-06-27",
-   "ranges": [
+   ],
+   "macRanges": [
     {
-     "versionEndExcluding": "12.0"
+     "versionStartIncluding": "11.0",
+     "versionEndExcluding": "11.7"
+    },
+    {
+     "versionStartIncluding": "12.0",
+     "versionEndExcluding": "12.5.1"
     }
    ]
   },
   {
-   "cve": "CVE-2019-8605",
-   "name": "Apple Multiple Products Use-After-Free Vulnerability",
-   "summary": "A use-after-free vulnerability in Apple iOS, macOS, tvOS, and watchOS could allow a malicious application to execute code with system privileges.",
-   "dateAdded": "2022-06-27",
+   "cve": "CVE-2022-32893",
+   "name": "Apple iOS and macOS Out-of-Bounds Write Vulnerability",
+   "summary": "Apple iOS and macOS contain an out-of-bounds write vulnerability that could allow for remote code execution when processing malicious crafted web content.",
+   "dateAdded": "2022-08-18",
    "ranges": [
     {
-     "versionEndExcluding": "12.3"
+     "versionEndExcluding": "15.6.1"
+    }
+   ],
+   "macRanges": [
+    {
+     "versionStartIncluding": "12.0",
+     "versionEndExcluding": "12.5.1"
     }
    ]
   },
   {
-   "cve": "CVE-2020-3837",
-   "name": "Apple Multiple Products Memory Corruption Vulnerability",
-   "summary": "Apple iOS, iPadOS, macOS, tvOS, and watchOS contain a memory corruption vulnerability that could allow an application to execute code with kernel privileges.",
+   "cve": "CVE-2022-2856",
+   "name": "Google Chromium Intents Insufficient Input Validation Vulnerability",
+   "summary": "Google Chromium Intents contains an insufficient validation of untrusted input vulnerability that allows a remote attacker to browse to a malicious website via a crafted HTML page. This vulnerability could affect multiple web browsers that utilize Chromium, including, but not limited to, Google Chrome, Microsoft Edge, and Opera.",
+   "dateAdded": "2022-08-18",
+   "ranges": [],
+   "macRanges": []
+  },
+  {
+   "cve": "CVE-2021-30983",
+   "name": "Apple iOS and iPadOS Buffer Overflow Vulnerability",
+   "summary": "Apple iOS and iPadOS contain a buffer overflow vulnerability that could allow an application to execute code with kernel privileges.",
    "dateAdded": "2022-06-27",
    "ranges": [
     {
-     "versionEndExcluding": "13.3.1"
+     "versionEndExcluding": "15.2"
     }
    ]
   },
@@ -836,20 +1330,82 @@
    ]
   },
   {
-   "cve": "CVE-2021-30983",
-   "name": "Apple iOS and iPadOS Buffer Overflow Vulnerability",
-   "summary": "Apple iOS and iPadOS contain a buffer overflow vulnerability that could allow an application to execute code with kernel privileges.",
+   "cve": "CVE-2020-3837",
+   "name": "Apple Multiple Products Memory Corruption Vulnerability",
+   "summary": "Apple iOS, iPadOS, macOS, tvOS, and watchOS contain a memory corruption vulnerability that could allow an application to execute code with kernel privileges.",
    "dateAdded": "2022-06-27",
    "ranges": [
     {
-     "versionEndExcluding": "15.2"
+     "versionEndExcluding": "13.3.1"
     }
    ]
   },
   {
-   "cve": "CVE-2015-8651",
-   "name": "Adobe Flash Player Integer Overflow Vulnerability",
-   "summary": "Integer overflow in Adobe Flash Player allows attackers to execute code.",
+   "cve": "CVE-2019-8605",
+   "name": "Apple Multiple Products Use-After-Free Vulnerability",
+   "summary": "A use-after-free vulnerability in Apple iOS, macOS, tvOS, and watchOS could allow a malicious application to execute code with system privileges.",
+   "dateAdded": "2022-06-27",
+   "ranges": [
+    {
+     "versionEndExcluding": "12.3"
+    }
+   ]
+  },
+  {
+   "cve": "CVE-2018-4344",
+   "name": "Apple Multiple Products Memory Corruption Vulnerability",
+   "summary": "Apple iOS, macOS, tvOS, and watchOS contain a memory corruption vulnerability which can allow for code execution.",
+   "dateAdded": "2022-06-27",
+   "ranges": [
+    {
+     "versionEndExcluding": "12.0"
+    }
+   ]
+  },
+  {
+   "cve": "CVE-2017-5070",
+   "name": "Google Chromium V8 Type Confusion Vulnerability",
+   "summary": "Google Chromium V8 Engine contains a type confusion vulnerability that allows a remote attacker to execute code inside a sandbox via a crafted HTML page. This vulnerability could affect multiple web browsers that utilize Chromium, including, but not limited to, Google Chrome, Microsoft Edge, and Opera.",
+   "dateAdded": "2022-06-08",
+   "ranges": [],
+   "macRanges": []
+  },
+  {
+   "cve": "CVE-2017-5030",
+   "name": "Google Chromium V8 Memory Corruption Vulnerability",
+   "summary": "Google Chromium V8 Engine contains a memory corruption vulnerability that allows a remote attacker to execute code via a crafted HTML page. This vulnerability could affect multiple web browsers that utilize Chromium, including, but not limited to, Google Chrome, Microsoft Edge, and Opera.",
+   "dateAdded": "2022-06-08",
+   "ranges": [],
+   "macRanges": []
+  },
+  {
+   "cve": "CVE-2016-5198",
+   "name": "Google Chromium V8 Out-of-Bounds Memory Vulnerability",
+   "summary": "Google Chromium V8 Engine contains an out-of-bounds memory access vulnerability that allows a remote attacker to perform read/write operations, leading to code execution, via a crafted HTML page. This vulnerability could affect multiple web browsers that utilize Chromium, including, but not limited to, Google Chrome, Microsoft Edge, and Opera.",
+   "dateAdded": "2022-06-08",
+   "ranges": [],
+   "macRanges": []
+  },
+  {
+   "cve": "CVE-2011-0609",
+   "name": "Adobe Flash Player Unspecified Vulnerability",
+   "summary": "Adobe Flash Player contains an unspecified vulnerability that allows remote attackers to execute code or cause denial-of-service (DoS).",
+   "dateAdded": "2022-06-08",
+   "ranges": [],
+   "macRanges": []
+  },
+  {
+   "cve": "CVE-2010-2883",
+   "name": "Adobe Acrobat and Reader Stack-Based Buffer Overflow Vulnerability",
+   "summary": "Adobe Acrobat and Reader contain a stack-based buffer overflow vulnerability that allows remote attackers to execute code or cause denial-of-service (DoS).",
+   "dateAdded": "2022-06-08",
+   "ranges": [],
+   "macRanges": []
+  },
+  {
+   "cve": "CVE-2016-1010",
+   "name": "Adobe Flash Player and AIR Integer Overflow Vulnerability",
+   "summary": "Integer overflow vulnerability in Adobe Flash Player and AIR allows attackers to execute code.",
    "dateAdded": "2022-05-25",
    "ranges": []
   },
@@ -861,11 +1417,41 @@
    "ranges": []
   },
   {
-   "cve": "CVE-2016-1010",
-   "name": "Adobe Flash Player and AIR Integer Overflow Vulnerability",
-   "summary": "Integer overflow vulnerability in Adobe Flash Player and AIR allows attackers to execute code.",
+   "cve": "CVE-2015-8651",
+   "name": "Adobe Flash Player Integer Overflow Vulnerability",
+   "summary": "Integer overflow in Adobe Flash Player allows attackers to execute code.",
    "dateAdded": "2022-05-25",
    "ranges": []
+  },
+  {
+   "cve": "CVE-2014-8439",
+   "name": "Adobe Flash Player Dereferenced Pointer Vulnerability",
+   "summary": "Adobe Flash Player has a vulnerability in the way it handles a dereferenced memory pointer which could lead to code execution.",
+   "dateAdded": "2022-05-25",
+   "ranges": [],
+   "macRanges": []
+  },
+  {
+   "cve": "CVE-2016-4657",
+   "name": "Apple iOS Webkit Memory Corruption Vulnerability",
+   "summary": "Apple iOS WebKit contains a memory corruption vulnerability that allows attackers to execute remote code or cause a denial-of-service (DoS) via a crafted web site. This vulnerability could impact HTML parsers that use WebKit, including but not limited to Apple Safari and non-Apple products which rely on WebKit for HTML processing.",
+   "dateAdded": "2022-05-24",
+   "ranges": [
+    {
+     "versionEndExcluding": "9.3.5"
+    }
+   ]
+  },
+  {
+   "cve": "CVE-2016-4656",
+   "name": "Apple iOS Memory Corruption Vulnerability",
+   "summary": "A memory corruption vulnerability in Apple iOS kernel allows attackers to execute code in a privileged context or cause a denial-of-service (DoS) via a crafted application.",
+   "dateAdded": "2022-05-24",
+   "ranges": [
+    {
+     "versionEndExcluding": "9.3.5"
+    }
+   ]
   },
   {
    "cve": "CVE-2016-4655",
@@ -883,35 +1469,27 @@
    ]
   },
   {
-   "cve": "CVE-2016-4656",
-   "name": "Apple iOS Memory Corruption Vulnerability",
-   "summary": "A memory corruption vulnerability in Apple iOS kernel allows attackers to execute code in a privileged context or cause a denial-of-service (DoS) via a crafted application.",
-   "dateAdded": "2022-05-24",
-   "ranges": [
-    {
-     "versionEndExcluding": "9.3.5"
-    }
-   ]
-  },
-  {
-   "cve": "CVE-2016-4657",
-   "name": "Apple iOS Webkit Memory Corruption Vulnerability",
-   "summary": "Apple iOS WebKit contains a memory corruption vulnerability that allows attackers to execute remote code or cause a denial-of-service (DoS) via a crafted web site. This vulnerability could impact HTML parsers that use WebKit, including but not limited to Apple Safari and non-Apple products which rely on WebKit for HTML processing.",
-   "dateAdded": "2022-05-24",
-   "ranges": [
-    {
-     "versionEndExcluding": "9.3.5"
-    }
-   ]
-  },
-  {
-   "cve": "CVE-2019-7286",
+   "cve": "CVE-2021-30883",
    "name": "Apple Multiple Products Memory Corruption Vulnerability",
-   "summary": "Apple iOS, macOS, watchOS, and tvOS contain a memory corruption vulnerability that could allow for privilege escalation.",
+   "summary": "Apple iOS, macOS, watchOS, and tvOS contain a memory corruption vulnerability that could allow for remote code execution.",
    "dateAdded": "2022-05-23",
    "ranges": [
     {
-     "versionEndExcluding": "12.1.4"
+     "versionEndExcluding": "14.8.1"
+    },
+    {
+     "versionStartIncluding": "15.0",
+     "versionEndExcluding": "15.0.2"
+    }
+   ],
+   "macRanges": [
+    {
+     "versionStartIncluding": "11.0",
+     "versionEndExcluding": "11.6.1"
+    },
+    {
+     "versionStartIncluding": "12.0",
+     "versionEndIncluding": "12.0"
     }
    ]
   },
@@ -927,17 +1505,30 @@
    ]
   },
   {
-   "cve": "CVE-2021-30883",
+   "cve": "CVE-2019-7286",
    "name": "Apple Multiple Products Memory Corruption Vulnerability",
-   "summary": "Apple iOS, macOS, watchOS, and tvOS contain a memory corruption vulnerability that could allow for remote code execution.",
+   "summary": "Apple iOS, macOS, watchOS, and tvOS contain a memory corruption vulnerability that could allow for privilege escalation.",
    "dateAdded": "2022-05-23",
    "ranges": [
     {
-     "versionEndExcluding": "14.8.1"
-    },
+     "versionEndExcluding": "12.1.4"
+    }
+   ]
+  },
+  {
+   "cve": "CVE-2021-1789",
+   "name": "Apple Multiple Products Type Confusion Vulnerability",
+   "summary": "A type confusion issue affecting multiple Apple products allows processing of maliciously crafted web content, leading to arbitrary code execution.",
+   "dateAdded": "2022-05-04",
+   "ranges": [
     {
-     "versionStartIncluding": "15.0",
-     "versionEndExcluding": "15.0.2"
+     "versionEndExcluding": "14.4"
+    }
+   ],
+   "macRanges": [
+    {
+     "versionStartIncluding": "11.0",
+     "versionEndExcluding": "11.2"
     }
    ]
   },
@@ -953,15 +1544,20 @@
    ]
   },
   {
-   "cve": "CVE-2021-1789",
-   "name": "Apple Multiple Products Type Confusion Vulnerability",
-   "summary": "A type confusion issue affecting multiple Apple products allows processing of maliciously crafted web content, leading to arbitrary code execution.",
-   "dateAdded": "2022-05-04",
-   "ranges": [
-    {
-     "versionEndExcluding": "14.4"
-    }
-   ]
+   "cve": "CVE-2015-5123",
+   "name": "Adobe Flash Player Use-After-Free Vulnerability",
+   "summary": "Use-after-free vulnerability in the BitmapData class in the ActionScript 3 (AS3) implementation in Adobe Flash Player allows remote attackers to execute code or cause a denial-of-service (DoS).",
+   "dateAdded": "2022-04-13",
+   "ranges": [],
+   "macRanges": []
+  },
+  {
+   "cve": "CVE-2015-5122",
+   "name": "Adobe Flash Player Use-After-Free Vulnerability",
+   "summary": "Use-after-free vulnerability in the DisplayObject class in the ActionScript 3 (AS3) implementation in Adobe Flash Player allows remote attackers to execute code or cause a denial-of-service (DoS).",
+   "dateAdded": "2022-04-13",
+   "ranges": [],
+   "macRanges": []
   },
   {
    "cve": "CVE-2022-22675",
@@ -972,7 +1568,50 @@
     {
      "versionEndExcluding": "15.4.1"
     }
+   ],
+   "macRanges": [
+    {
+     "versionStartIncluding": "11.0",
+     "versionEndExcluding": "11.6.6"
+    },
+    {
+     "versionStartIncluding": "12.0.0",
+     "versionEndExcluding": "12.3.1"
+    }
    ]
+  },
+  {
+   "cve": "CVE-2022-22674",
+   "name": "Apple macOS Out-of-Bounds Read Vulnerability",
+   "summary": "macOS Monterey contains an out-of-bounds read vulnerability that could allow an application to read kernel memory.",
+   "dateAdded": "2022-04-04",
+   "ranges": [],
+   "macRanges": [
+    {
+     "versionStartIncluding": "11.0",
+     "versionEndExcluding": "11.6.6"
+    },
+    {
+     "versionStartIncluding": "12.0.0",
+     "versionEndExcluding": "12.3.1"
+    }
+   ]
+  },
+  {
+   "cve": "CVE-2012-2034",
+   "name": "Adobe Flash Player Memory Corruption Vulnerability",
+   "summary": "Adobe Flash Player contains a memory corruption vulnerability that allows for remote code execution or denial-of-service (DoS).",
+   "dateAdded": "2022-03-28",
+   "ranges": [],
+   "macRanges": []
+  },
+  {
+   "cve": "CVE-2016-4171",
+   "name": "Adobe Flash Player Remote Code Execution Vulnerability",
+   "summary": "Unspecified vulnerability in Adobe Flash Player allows for remote code execution.",
+   "dateAdded": "2022-03-25",
+   "ranges": [],
+   "macRanges": []
   },
   {
    "cve": "CVE-2016-1019",
@@ -989,6 +1628,12 @@
    "ranges": [
     {
      "versionEndExcluding": "15.3.1"
+    }
+   ],
+   "macRanges": [
+    {
+     "versionStartIncluding": "12.0.0",
+     "versionEndExcluding": "12.2.1"
     }
    ]
   },
@@ -1012,16 +1657,294 @@
     {
      "versionEndExcluding": "15.3"
     }
+   ],
+   "macRanges": [
+    {
+     "versionEndExcluding": "11.6.3"
+    },
+    {
+     "versionStartIncluding": "12.0",
+     "versionEndExcluding": "12.2"
+    }
    ]
   },
   {
-   "cve": "CVE-2019-6223",
-   "name": "Apple iOS and macOS Group Facetime Vulnerability",
-   "summary": "Apple iOS and macOS Group FaceTime contains an unspecified vulnerability where the call initiator can cause the recipient's Apple device to answer unknowingly or without user interaction.",
+   "cve": "CVE-2021-30869",
+   "name": "Apple iOS, iPadOS, and macOS Type Confusion Vulnerability",
+   "summary": "Apple iOS, iPadOS, and macOS contain a type confusion vulnerability in the XNU which may allow a malicious application to execute code with kernel privileges.",
    "dateAdded": "2021-11-03",
    "ranges": [
     {
-     "versionEndExcluding": "12.1.4"
+     "versionStartIncluding": "12.0",
+     "versionEndExcluding": "12.5.5"
+    },
+    {
+     "versionStartIncluding": "14.0",
+     "versionEndExcluding": "14.4"
+    }
+   ],
+   "macRanges": [
+    {
+     "versionStartIncluding": "11.0",
+     "versionEndExcluding": "11.2"
+    }
+   ]
+  },
+  {
+   "cve": "CVE-2021-30860",
+   "name": "Apple Multiple Products Integer Overflow Vulnerability",
+   "summary": "Apple iOS, iPadOS, macOS, and watchOS CoreGraphics contain an integer overflow vulnerability which may allow code execution when processing a maliciously crafted PDF. The vulnerability is also known under the moniker of FORCEDENTRY.",
+   "dateAdded": "2021-11-03",
+   "ranges": [
+    {
+     "versionEndExcluding": "12.5.5"
+    },
+    {
+     "versionStartIncluding": "13.0",
+     "versionEndExcluding": "14.8"
+    }
+   ],
+   "macRanges": [
+    {
+     "versionEndExcluding": "11.6"
+    }
+   ]
+  },
+  {
+   "cve": "CVE-2021-30858",
+   "name": "Apple iOS, iPadOS, macOS Use-After-Free Vulnerability",
+   "summary": "Apple iOS, iPadOS, and macOS WebKit contain a use-after-free vulnerability that leads to code execution when processing maliciously crafted web content. This vulnerability could impact HTML parsers that use WebKit, including but not limited to Apple Safari and non-Apple products which rely on WebKit for HTML processing.",
+   "dateAdded": "2021-11-03",
+   "ranges": [
+    {
+     "versionEndExcluding": "12.5.5"
+    },
+    {
+     "versionStartIncluding": "13.0",
+     "versionEndExcluding": "14.8"
+    }
+   ],
+   "macRanges": [
+    {
+     "versionEndExcluding": "11.6"
+    }
+   ]
+  },
+  {
+   "cve": "CVE-2021-30807",
+   "name": "Apple Multiple Products Memory Corruption Vulnerability",
+   "summary": "Apple iOS, iPadOS, macOS, and watchOS IOMobileFrameBuffer contain a memory corruption vulnerability which may allow an application to execute code with kernel privileges.",
+   "dateAdded": "2021-11-03",
+   "ranges": [
+    {
+     "versionEndExcluding": "14.7.1"
+    }
+   ],
+   "macRanges": [
+    {
+     "versionEndExcluding": "11.5.1"
+    }
+   ]
+  },
+  {
+   "cve": "CVE-2021-30762",
+   "name": "Apple iOS WebKit Use-After-Free Vulnerability",
+   "summary": "Apple iOS WebKit contains a use-after-free vulnerability that leads to code execution when processing maliciously crafted web content. This vulnerability could impact HTML parsers that use WebKit, including but not limited to Apple Safari and non-Apple products which rely on WebKit for HTML processing.",
+   "dateAdded": "2021-11-03",
+   "ranges": [
+    {
+     "versionEndExcluding": "12.5.4"
+    }
+   ]
+  },
+  {
+   "cve": "CVE-2021-30761",
+   "name": "Apple iOS WebKit Memory Corruption Vulnerability",
+   "summary": "Apple iOS WebKit contains a memory corruption vulnerability that leads to code execution when processing maliciously crafted web content. This vulnerability could impact HTML parsers that use WebKit, including but not limited to Apple Safari and non-Apple products which rely on WebKit for HTML processing.",
+   "dateAdded": "2021-11-03",
+   "ranges": [
+    {
+     "versionEndExcluding": "12.5.4"
+    }
+   ]
+  },
+  {
+   "cve": "CVE-2021-30713",
+   "name": "Apple macOS Unspecified Vulnerability",
+   "summary": "Apple macOS Transparency, Consent, and Control (TCC) contains an unspecified permissions issue which may allow a malicious application to bypass privacy preferences.",
+   "dateAdded": "2021-11-03",
+   "ranges": [],
+   "macRanges": [
+    {
+     "versionEndExcluding": "11.4"
+    }
+   ]
+  },
+  {
+   "cve": "CVE-2021-30666",
+   "name": "Apple iOS WebKit Buffer Overflow Vulnerability",
+   "summary": "Apple iOS WebKit contains a buffer-overflow vulnerability that leads to code execution when processing maliciously crafted web content. This vulnerability could impact HTML parsers that use WebKit, including but not limited to Apple Safari and non-Apple products which rely on WebKit for HTML processing.",
+   "dateAdded": "2021-11-03",
+   "ranges": [
+    {
+     "versionEndExcluding": "12.5.3"
+    }
+   ]
+  },
+  {
+   "cve": "CVE-2021-30665",
+   "name": "Apple Multiple Products WebKit Memory Corruption Vulnerability",
+   "summary": "Apple iOS, iPadOS, macOS, watchOS, and tvOS WebKit contain a memory corruption vulnerability that leads to code execution when processing maliciously crafted web content. This vulnerability could impact HTML parsers that use WebKit, including but not limited to Apple Safari and non-Apple products which rely on WebKit for HTML processing.",
+   "dateAdded": "2021-11-03",
+   "ranges": [
+    {
+     "versionEndExcluding": "12.5.3"
+    },
+    {
+     "versionStartIncluding": "13.0",
+     "versionEndExcluding": "14.5.1"
+    }
+   ],
+   "macRanges": [
+    {
+     "versionEndExcluding": "11.3.1"
+    }
+   ]
+  },
+  {
+   "cve": "CVE-2021-30663",
+   "name": "Apple Multiple Products WebKit Integer Overflow Vulnerability",
+   "summary": "Apple iOS, iPadOS, macOS, tvOS, and Safari WebKit contain an integer overflow vulnerability that leads to code execution when processing maliciously crafted web content. This vulnerability could impact HTML parsers that use WebKit, including but not limited to Apple Safari and non-Apple products which rely on WebKit for HTML processing.",
+   "dateAdded": "2021-11-03",
+   "ranges": [
+    {
+     "versionEndExcluding": "12.5.3"
+    },
+    {
+     "versionStartIncluding": "14.0",
+     "versionEndExcluding": "14.5.1"
+    }
+   ],
+   "macRanges": [
+    {
+     "versionStartIncluding": "11.0",
+     "versionEndExcluding": "11.3.1"
+    }
+   ]
+  },
+  {
+   "cve": "CVE-2021-30661",
+   "name": "Apple Multiple Products WebKit Storage Use-After-Free Vulnerability",
+   "summary": "Apple iOS, iPadOS, macOS, tvOS, watchOS, and Safari WebKit Storage contain a use-after-free vulnerability that leads to code execution when processing maliciously crafted web content. This vulnerability could impact HTML parsers that use WebKit, including but not limited to Apple Safari and non-Apple products which rely on WebKit for HTML processing.",
+   "dateAdded": "2021-11-03",
+   "ranges": [
+    {
+     "versionEndExcluding": "12.5.3"
+    },
+    {
+     "versionStartIncluding": "14.0",
+     "versionEndExcluding": "14.5"
+    }
+   ],
+   "macRanges": [
+    {
+     "versionStartIncluding": "11.0",
+     "versionEndExcluding": "11.3"
+    }
+   ]
+  },
+  {
+   "cve": "CVE-2021-30657",
+   "name": "Apple macOS Unspecified Vulnerability",
+   "summary": "Apple macOS contains an unspecified logic issue in System Preferences that may allow a malicious application to bypass Gatekeeper checks.",
+   "dateAdded": "2021-11-03",
+   "ranges": [],
+   "macRanges": [
+    {
+     "versionStartIncluding": "11.0",
+     "versionEndExcluding": "11.3"
+    }
+   ]
+  },
+  {
+   "cve": "CVE-2021-28550",
+   "name": "Adobe Acrobat and Reader Use-After-Free Vulnerability",
+   "summary": "Adobe Acrobat and Reader contains a use-after-free vulnerability that could allow an unauthenticated attacker to achieve code execution in the context of the current user.",
+   "dateAdded": "2021-11-03",
+   "ranges": [],
+   "macRanges": []
+  },
+  {
+   "cve": "CVE-2021-21017",
+   "name": "Adobe Acrobat and Reader Heap-based Buffer Overflow Vulnerability",
+   "summary": "Acrobat Acrobat and Reader contain a heap-based buffer overflow vulnerability that could allow an unauthenticated attacker to achieve code execution in the context of the current user.",
+   "dateAdded": "2021-11-03",
+   "ranges": [],
+   "macRanges": []
+  },
+  {
+   "cve": "CVE-2021-1879",
+   "name": "Apple iOS, iPadOS, and watchOS WebKit Cross-Site Scripting (XSS) Vulnerability",
+   "summary": "Apple iOS, iPadOS, and watchOS WebKit contain an unspecified vulnerability that allows for universal cross-site scripting (XSS) when processing maliciously crafted web content. This vulnerability could impact HTML parsers that use WebKit, including but not limited to Apple Safari and non-Apple products which rely on WebKit for HTML processing.",
+   "dateAdded": "2021-11-03",
+   "ranges": [
+    {
+     "versionEndExcluding": "12.5.2"
+    },
+    {
+     "versionStartIncluding": "13.0",
+     "versionEndExcluding": "14.4.2"
+    }
+   ]
+  },
+  {
+   "cve": "CVE-2021-1871",
+   "name": "Apple iOS, iPadOS, and macOS WebKit Remote Code Execution Vulnerability",
+   "summary": "Apple iOS, iPadOS, and macOS WebKit contain an unspecified logic vulnerability that allows a remote attacker to execute code. This vulnerability could impact HTML parsers that use WebKit, including but not limited to Apple Safari and non-Apple products which rely on WebKit for HTML processing.",
+   "dateAdded": "2021-11-03",
+   "ranges": [
+    {
+     "versionEndExcluding": "14.4"
+    }
+   ],
+   "macRanges": [
+    {
+     "versionStartIncluding": "11.0.1",
+     "versionEndExcluding": "11.2"
+    }
+   ]
+  },
+  {
+   "cve": "CVE-2021-1870",
+   "name": "Apple iOS, iPadOS, and macOS WebKit Remote Code Execution Vulnerability",
+   "summary": "Apple iOS, iPadOS, and macOS WebKit contain an unspecified logic vulnerability that allows a remote attacker to execute code. This vulnerability could impact HTML parsers that use WebKit, including but not limited to Apple Safari and non-Apple products which rely on WebKit for HTML processing.",
+   "dateAdded": "2021-11-03",
+   "ranges": [
+    {
+     "versionEndExcluding": "14.4"
+    }
+   ],
+   "macRanges": [
+    {
+     "versionStartIncluding": "11.0.1",
+     "versionEndExcluding": "11.2"
+    }
+   ]
+  },
+  {
+   "cve": "CVE-2021-1782",
+   "name": "Apple Multiple Products Race Condition Vulnerability",
+   "summary": "Apple iOS, iPadOs, macOS, watchOS, and tvOS contain a race condition vulnerability that may allow a malicious application to elevate privileges.",
+   "dateAdded": "2021-11-03",
+   "ranges": [
+    {
+     "versionEndExcluding": "14.4"
+    }
+   ],
+   "macRanges": [
+    {
+     "versionStartIncluding": "11.0",
+     "versionEndExcluding": "11.2"
     }
    ]
   },
@@ -1033,21 +1956,6 @@
    "ranges": [
     {
      "versionEndExcluding": "13.5.1"
-    }
-   ]
-  },
-  {
-   "cve": "CVE-2020-9818",
-   "name": "Apple iOS, iPadOS, and watchOS Out-of-Bounds Write Vulnerability",
-   "summary": "Apple iOS, iPadOS, and watchOS Mail contains an out-of-bounds write vulnerability which may allow memory modification or application termination when processing a maliciously crafted mail message.",
-   "dateAdded": "2021-11-03",
-   "ranges": [
-    {
-     "versionEndExcluding": "12.4.7"
-    },
-    {
-     "versionStartIncluding": "13.0",
-     "versionEndExcluding": "13.5"
     }
    ]
   },
@@ -1067,9 +1975,32 @@
    ]
   },
   {
-   "cve": "CVE-2020-27930",
-   "name": "Apple Multiple Products Memory Corruption Vulnerability",
-   "summary": "Apple iOS, iPadOS, macOS, and watchOS FontParser contain a memory corruption vulnerability which may allow for code execution when processing maliciously crafted front.",
+   "cve": "CVE-2020-9818",
+   "name": "Apple iOS, iPadOS, and watchOS Out-of-Bounds Write Vulnerability",
+   "summary": "Apple iOS, iPadOS, and watchOS Mail contains an out-of-bounds write vulnerability which may allow memory modification or application termination when processing a maliciously crafted mail message.",
+   "dateAdded": "2021-11-03",
+   "ranges": [
+    {
+     "versionEndExcluding": "12.4.7"
+    },
+    {
+     "versionStartIncluding": "13.0",
+     "versionEndExcluding": "13.5"
+    }
+   ]
+  },
+  {
+   "cve": "CVE-2020-3950",
+   "name": "VMware Multiple Products Privilege Escalation Vulnerability",
+   "summary": "VMware Fusion, Remote Console (VMRC) for Mac, and Horizon Client for Mac contain a privilege escalation vulnerability due to improper use of setuid binaries that allows attackers to escalate privileges to root.",
+   "dateAdded": "2021-11-03",
+   "ranges": [],
+   "macRanges": []
+  },
+  {
+   "cve": "CVE-2020-27950",
+   "name": "Apple Multiple Products Memory Initialization Vulnerability",
+   "summary": "Apple iOS, iPadOS, macOS, and watchOS contain a memory initialization vulnerability that may allow a malicious application to disclose kernel memory.",
    "dateAdded": "2021-11-03",
    "ranges": [
     {
@@ -1078,6 +2009,15 @@
     {
      "versionStartIncluding": "14.0",
      "versionEndExcluding": "14.2"
+    }
+   ],
+   "macRanges": [
+    {
+     "versionEndExcluding": "10.15.7"
+    },
+    {
+     "versionStartIncluding": "11.0",
+     "versionEndExcluding": "11.0.1"
     }
    ]
   },
@@ -1094,12 +2034,18 @@
      "versionStartIncluding": "14.0",
      "versionEndExcluding": "14.2"
     }
+   ],
+   "macRanges": [
+    {
+     "versionStartIncluding": "11.0",
+     "versionEndExcluding": "11.0.1"
+    }
    ]
   },
   {
-   "cve": "CVE-2020-27950",
-   "name": "Apple Multiple Products Memory Initialization Vulnerability",
-   "summary": "Apple iOS, iPadOS, macOS, and watchOS contain a memory initialization vulnerability that may allow a malicious application to disclose kernel memory.",
+   "cve": "CVE-2020-27930",
+   "name": "Apple Multiple Products Memory Corruption Vulnerability",
+   "summary": "Apple iOS, iPadOS, macOS, and watchOS FontParser contain a memory corruption vulnerability which may allow for code execution when processing maliciously crafted front.",
    "dateAdded": "2021-11-03",
    "ranges": [
     {
@@ -1109,190 +2055,32 @@
      "versionStartIncluding": "14.0",
      "versionEndExcluding": "14.2"
     }
-   ]
-  },
-  {
-   "cve": "CVE-2021-1782",
-   "name": "Apple Multiple Products Race Condition Vulnerability",
-   "summary": "Apple iOS, iPadOs, macOS, watchOS, and tvOS contain a race condition vulnerability that may allow a malicious application to elevate privileges.",
-   "dateAdded": "2021-11-03",
-   "ranges": [
+   ],
+   "macRanges": [
     {
-     "versionEndExcluding": "14.4"
+     "versionStartIncluding": "11.0",
+     "versionEndExcluding": "11.0.1"
     }
    ]
   },
   {
-   "cve": "CVE-2021-1870",
-   "name": "Apple iOS, iPadOS, and macOS WebKit Remote Code Execution Vulnerability",
-   "summary": "Apple iOS, iPadOS, and macOS WebKit contain an unspecified logic vulnerability that allows a remote attacker to execute code. This vulnerability could impact HTML parsers that use WebKit, including but not limited to Apple Safari and non-Apple products which rely on WebKit for HTML processing.",
+   "cve": "CVE-2019-6223",
+   "name": "Apple iOS and macOS Group Facetime Vulnerability",
+   "summary": "Apple iOS and macOS Group FaceTime contains an unspecified vulnerability where the call initiator can cause the recipient's Apple device to answer unknowingly or without user interaction.",
    "dateAdded": "2021-11-03",
    "ranges": [
     {
-     "versionEndExcluding": "14.4"
+     "versionEndExcluding": "12.1.4"
     }
    ]
   },
   {
-   "cve": "CVE-2021-1871",
-   "name": "Apple iOS, iPadOS, and macOS WebKit Remote Code Execution Vulnerability",
-   "summary": "Apple iOS, iPadOS, and macOS WebKit contain an unspecified logic vulnerability that allows a remote attacker to execute code. This vulnerability could impact HTML parsers that use WebKit, including but not limited to Apple Safari and non-Apple products which rely on WebKit for HTML processing.",
+   "cve": "CVE-2018-4878",
+   "name": "Adobe Flash Player Use-After-Free Vulnerability",
+   "summary": "Adobe Flash Player contains a use-after-free vulnerability that could allow for code execution.",
    "dateAdded": "2021-11-03",
-   "ranges": [
-    {
-     "versionEndExcluding": "14.4"
-    }
-   ]
-  },
-  {
-   "cve": "CVE-2021-1879",
-   "name": "Apple iOS, iPadOS, and watchOS WebKit Cross-Site Scripting (XSS) Vulnerability",
-   "summary": "Apple iOS, iPadOS, and watchOS WebKit contain an unspecified vulnerability that allows for universal cross-site scripting (XSS) when processing maliciously crafted web content. This vulnerability could impact HTML parsers that use WebKit, including but not limited to Apple Safari and non-Apple products which rely on WebKit for HTML processing.",
-   "dateAdded": "2021-11-03",
-   "ranges": [
-    {
-     "versionEndExcluding": "12.5.2"
-    },
-    {
-     "versionStartIncluding": "13.0",
-     "versionEndExcluding": "14.4.2"
-    }
-   ]
-  },
-  {
-   "cve": "CVE-2021-30858",
-   "name": "Apple iOS, iPadOS, macOS Use-After-Free Vulnerability",
-   "summary": "Apple iOS, iPadOS, and macOS WebKit contain a use-after-free vulnerability that leads to code execution when processing maliciously crafted web content. This vulnerability could impact HTML parsers that use WebKit, including but not limited to Apple Safari and non-Apple products which rely on WebKit for HTML processing.",
-   "dateAdded": "2021-11-03",
-   "ranges": [
-    {
-     "versionEndExcluding": "12.5.5"
-    },
-    {
-     "versionStartIncluding": "13.0",
-     "versionEndExcluding": "14.8"
-    }
-   ]
-  },
-  {
-   "cve": "CVE-2021-30860",
-   "name": "Apple Multiple Products Integer Overflow Vulnerability",
-   "summary": "Apple iOS, iPadOS, macOS, and watchOS CoreGraphics contain an integer overflow vulnerability which may allow code execution when processing a maliciously crafted PDF. The vulnerability is also known under the moniker of FORCEDENTRY.",
-   "dateAdded": "2021-11-03",
-   "ranges": [
-    {
-     "versionEndExcluding": "12.5.5"
-    },
-    {
-     "versionStartIncluding": "13.0",
-     "versionEndExcluding": "14.8"
-    }
-   ]
-  },
-  {
-   "cve": "CVE-2021-30869",
-   "name": "Apple iOS, iPadOS, and macOS Type Confusion Vulnerability",
-   "summary": "Apple iOS, iPadOS, and macOS contain a type confusion vulnerability in the XNU which may allow a malicious application to execute code with kernel privileges.",
-   "dateAdded": "2021-11-03",
-   "ranges": [
-    {
-     "versionStartIncluding": "12.0",
-     "versionEndExcluding": "12.5.5"
-    },
-    {
-     "versionStartIncluding": "14.0",
-     "versionEndExcluding": "14.4"
-    }
-   ]
-  },
-  {
-   "cve": "CVE-2021-30761",
-   "name": "Apple iOS WebKit Memory Corruption Vulnerability",
-   "summary": "Apple iOS WebKit contains a memory corruption vulnerability that leads to code execution when processing maliciously crafted web content. This vulnerability could impact HTML parsers that use WebKit, including but not limited to Apple Safari and non-Apple products which rely on WebKit for HTML processing.",
-   "dateAdded": "2021-11-03",
-   "ranges": [
-    {
-     "versionEndExcluding": "12.5.4"
-    }
-   ]
-  },
-  {
-   "cve": "CVE-2021-30762",
-   "name": "Apple iOS WebKit Use-After-Free Vulnerability",
-   "summary": "Apple iOS WebKit contains a use-after-free vulnerability that leads to code execution when processing maliciously crafted web content. This vulnerability could impact HTML parsers that use WebKit, including but not limited to Apple Safari and non-Apple products which rely on WebKit for HTML processing.",
-   "dateAdded": "2021-11-03",
-   "ranges": [
-    {
-     "versionEndExcluding": "12.5.4"
-    }
-   ]
-  },
-  {
-   "cve": "CVE-2021-30661",
-   "name": "Apple Multiple Products WebKit Storage Use-After-Free Vulnerability",
-   "summary": "Apple iOS, iPadOS, macOS, tvOS, watchOS, and Safari WebKit Storage contain a use-after-free vulnerability that leads to code execution when processing maliciously crafted web content. This vulnerability could impact HTML parsers that use WebKit, including but not limited to Apple Safari and non-Apple products which rely on WebKit for HTML processing.",
-   "dateAdded": "2021-11-03",
-   "ranges": [
-    {
-     "versionEndExcluding": "12.5.3"
-    },
-    {
-     "versionStartIncluding": "14.0",
-     "versionEndExcluding": "14.5"
-    }
-   ]
-  },
-  {
-   "cve": "CVE-2021-30663",
-   "name": "Apple Multiple Products WebKit Integer Overflow Vulnerability",
-   "summary": "Apple iOS, iPadOS, macOS, tvOS, and Safari WebKit contain an integer overflow vulnerability that leads to code execution when processing maliciously crafted web content. This vulnerability could impact HTML parsers that use WebKit, including but not limited to Apple Safari and non-Apple products which rely on WebKit for HTML processing.",
-   "dateAdded": "2021-11-03",
-   "ranges": [
-    {
-     "versionEndExcluding": "12.5.3"
-    },
-    {
-     "versionStartIncluding": "14.0",
-     "versionEndExcluding": "14.5.1"
-    }
-   ]
-  },
-  {
-   "cve": "CVE-2021-30665",
-   "name": "Apple Multiple Products WebKit Memory Corruption Vulnerability",
-   "summary": "Apple iOS, iPadOS, macOS, watchOS, and tvOS WebKit contain a memory corruption vulnerability that leads to code execution when processing maliciously crafted web content. This vulnerability could impact HTML parsers that use WebKit, including but not limited to Apple Safari and non-Apple products which rely on WebKit for HTML processing.",
-   "dateAdded": "2021-11-03",
-   "ranges": [
-    {
-     "versionEndExcluding": "12.5.3"
-    },
-    {
-     "versionStartIncluding": "13.0",
-     "versionEndExcluding": "14.5.1"
-    }
-   ]
-  },
-  {
-   "cve": "CVE-2021-30666",
-   "name": "Apple iOS WebKit Buffer Overflow Vulnerability",
-   "summary": "Apple iOS WebKit contains a buffer-overflow vulnerability that leads to code execution when processing maliciously crafted web content. This vulnerability could impact HTML parsers that use WebKit, including but not limited to Apple Safari and non-Apple products which rely on WebKit for HTML processing.",
-   "dateAdded": "2021-11-03",
-   "ranges": [
-    {
-     "versionEndExcluding": "12.5.3"
-    }
-   ]
-  },
-  {
-   "cve": "CVE-2021-30807",
-   "name": "Apple Multiple Products Memory Corruption Vulnerability",
-   "summary": "Apple iOS, iPadOS, macOS, and watchOS IOMobileFrameBuffer contain a memory corruption vulnerability which may allow an application to execute code with kernel privileges.",
-   "dateAdded": "2021-11-03",
-   "ranges": [
-    {
-     "versionEndExcluding": "14.7.1"
-    }
-   ]
+   "ranges": [],
+   "macRanges": []
   }
  ]
 }
