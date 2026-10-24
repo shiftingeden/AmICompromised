@@ -1,3 +1,4 @@
+import CompromiseKit
 import SwiftUI
 import UserNotifications
 
@@ -5,6 +6,7 @@ import UserNotifications
 struct AmICompromisedApp: App {
     @UIApplicationDelegateAdaptor private var delegate: AppDelegate
     @State private var incomingArchive: URL?
+    @Environment(\.scenePhase) private var scenePhase
 
     var body: some Scene {
         WindowGroup {
@@ -14,6 +16,13 @@ struct AmICompromisedApp: App {
                 // A sysdiagnose shared from Settings › Analytics Data lands here.
                 .onOpenURL { url in
                     if url.isFileURL { incomingArchive = url }
+                }
+                // One dropped by the Share sheet's "Scan with" action.
+                .onChange(of: scenePhase, initial: true) { _, phase in
+                    if phase == .active, incomingArchive == nil, delegate.model.logScanProgress == nil,
+                       let url = SharedInbox.pending() {
+                        incomingArchive = url
+                    }
                 }
         }
     }

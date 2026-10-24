@@ -10,6 +10,8 @@
 		24FB495C2BEB5D21DEE21405 /* Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF5CC52690270735AF3F3DD /* Components.swift */; };
 		3BA68F4870B69520BDB3AC90 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0660FC20318D8928BF972181 /* HomeView.swift */; };
 		652DFBF41CB388708D7A584F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C495EDF0C525BC47982F4766 /* Assets.xcassets */; };
+		78CD00833144B3D24999B2A2 /* ScanAction.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = EE3906118225997B9E87D827 /* ScanAction.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		7A096579BDF12C3EF3F2639E /* CompromiseKit in Frameworks */ = {isa = PBXBuildFile; productRef = BDFE189DB7C0771934D41885 /* CompromiseKit */; };
 		87E8E2F9D83F50E32AAB1ABA /* DeviceCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1F69946C1E6684B52D0A77 /* DeviceCheck.swift */; };
 		9069719D0A04C73B5A6BDB4D /* SysdiagnoseCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E37ECBE67B1471ADC3EF3AF /* SysdiagnoseCapture.swift */; };
 		B69A6A6B2F1B77CE593FFFF7 /* LogScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CEC0EEFF9A0AC7F4C20117 /* LogScanView.swift */; };
@@ -17,7 +19,32 @@
 		C3366A783E5E09C9CF81F453 /* CheckViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = B908ADADD333F32CEE7A0773 /* CheckViews.swift */; };
 		C472C1273369F43B8F215074 /* AmICompromisedApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343FDCDBA3213A0E6C24C783 /* AmICompromisedApp.swift */; };
 		D85A657E635CA4F5923D1D3A /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5462D5856EC89415907F2B89 /* AppModel.swift */; };
+		E52908DD210ED0ABB738A0FB /* ActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B90330D3C8B30B5A1696240 /* ActionViewController.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C14C7B713B9A01ABB65A4046 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5108D3B80E4987F78700E577 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9091BEF7AB48C3AEED272C62;
+			remoteInfo = ScanAction;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		966F57DD3EA0AE4600861359 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				78CD00833144B3D24999B2A2 /* ScanAction.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0660FC20318D8928BF972181 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -25,12 +52,14 @@
 		343FDCDBA3213A0E6C24C783 /* AmICompromisedApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmICompromisedApp.swift; sourceTree = "<group>"; };
 		402090D16AF9C855A3B95B5F /* AmICompromised.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = AmICompromised.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5462D5856EC89415907F2B89 /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
+		6B90330D3C8B30B5A1696240 /* ActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionViewController.swift; sourceTree = "<group>"; };
 		7E3089AD723C0D623B93309A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		9BF5CC52690270735AF3F3DD /* Components.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Components.swift; sourceTree = "<group>"; };
 		9EA5A844E6D409264B17EE61 /* CompromiseKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = CompromiseKit; path = Packages/CompromiseKit; sourceTree = SOURCE_ROOT; };
 		B0CEC0EEFF9A0AC7F4C20117 /* LogScanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogScanView.swift; sourceTree = "<group>"; };
 		B908ADADD333F32CEE7A0773 /* CheckViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckViews.swift; sourceTree = "<group>"; };
 		C495EDF0C525BC47982F4766 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EE3906118225997B9E87D827 /* ScanAction.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = ScanAction.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE1F69946C1E6684B52D0A77 /* DeviceCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceCheck.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -43,6 +72,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E9D6F9304652D69DC90A4902 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7A096579BDF12C3EF3F2639E /* CompromiseKit in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -51,6 +88,7 @@
 			children = (
 				11FF3CE1C47C59CB2AE46237 /* App */,
 				0D0DBC632C87B29EB1830000 /* Packages */,
+				AF5BFCC5D9FDEC46907145B5 /* ScanAction */,
 				6C6A1A30ABD1DFA03817CDB5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -84,13 +122,41 @@
 			isa = PBXGroup;
 			children = (
 				402090D16AF9C855A3B95B5F /* AmICompromised.app */,
+				EE3906118225997B9E87D827 /* ScanAction.appex */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		AF5BFCC5D9FDEC46907145B5 /* ScanAction */ = {
+			isa = PBXGroup;
+			children = (
+				6B90330D3C8B30B5A1696240 /* ActionViewController.swift */,
+			);
+			path = ScanAction;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		9091BEF7AB48C3AEED272C62 /* ScanAction */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 401007202357C38DD3E0B103 /* Build configuration list for PBXNativeTarget "ScanAction" */;
+			buildPhases = (
+				FD087C184A66B51D8DA299B0 /* Sources */,
+				E9D6F9304652D69DC90A4902 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ScanAction;
+			packageProductDependencies = (
+				BDFE189DB7C0771934D41885 /* CompromiseKit */,
+			);
+			productName = ScanAction;
+			productReference = EE3906118225997B9E87D827 /* ScanAction.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		D9033F7976DC57FEB62F53D5 /* AmICompromised */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 47FB22EEFF903759E0B9EC60 /* Build configuration list for PBXNativeTarget "AmICompromised" */;
@@ -98,10 +164,12 @@
 				34DCCD8E40241C69915892F7 /* Sources */,
 				2A6F07B9A55FDFB917F451EE /* Resources */,
 				69BD365B1D97EC623588C81F /* Frameworks */,
+				966F57DD3EA0AE4600861359 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				B59F19878DCA3B2E68DF821B /* PBXTargetDependency */,
 			);
 			name = AmICompromised;
 			packageProductDependencies = (
@@ -120,6 +188,9 @@
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
+					9091BEF7AB48C3AEED272C62 = {
+						DevelopmentTeam = XNGW97HPY6;
+					};
 					D9033F7976DC57FEB62F53D5 = {
 						DevelopmentTeam = XNGW97HPY6;
 					};
@@ -143,6 +214,7 @@
 			projectRoot = "";
 			targets = (
 				D9033F7976DC57FEB62F53D5 /* AmICompromised */,
+				9091BEF7AB48C3AEED272C62 /* ScanAction */,
 			);
 		};
 /* End PBXProject section */
@@ -174,7 +246,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FD087C184A66B51D8DA299B0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E52908DD210ED0ABB738A0FB /* ActionViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B59F19878DCA3B2E68DF821B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9091BEF7AB48C3AEED272C62 /* ScanAction */;
+			targetProxy = C14C7B713B9A01ABB65A4046 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		05800FFF9888C745D7F6C190 /* Release */ = {
@@ -182,6 +270,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Config/AmICompromised.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Info.plist;
@@ -200,6 +289,24 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.techbitsmix.AmICompromised;
 				PRODUCT_NAME = AmICompromised;
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		45DBAA640F129A63272BFEC5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Config/ScanAction.entitlements;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "Config/ScanAction-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.techbitsmix.AmICompromised.ScanAction;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -333,11 +440,30 @@
 			};
 			name = Release;
 		};
+		D8843B6CA1E65F47475FD0C9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Config/ScanAction.entitlements;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "Config/ScanAction-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.techbitsmix.AmICompromised.ScanAction;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
 		E19AB481AE9FF4396017B016 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Config/AmICompromised.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Info.plist;
@@ -363,6 +489,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		401007202357C38DD3E0B103 /* Build configuration list for PBXNativeTarget "ScanAction" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D8843B6CA1E65F47475FD0C9 /* Debug */,
+				45DBAA640F129A63272BFEC5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
 		47FB22EEFF903759E0B9EC60 /* Build configuration list for PBXNativeTarget "AmICompromised" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -392,6 +527,10 @@
 
 /* Begin XCSwiftPackageProductDependency section */
 		3638AA324073286662EC0686 /* CompromiseKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CompromiseKit;
+		};
+		BDFE189DB7C0771934D41885 /* CompromiseKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = CompromiseKit;
 		};

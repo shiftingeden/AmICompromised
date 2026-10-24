@@ -36,6 +36,7 @@ targets:
       - path: App
     dependencies:
       - package: CompromiseKit
+      - target: ScanAction
     info:
       path: App/Info.plist
       properties:
@@ -52,6 +53,7 @@ targets:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.techbitsmix.AmICompromised
         PRODUCT_NAME: AmICompromised
+        CODE_SIGN_ENTITLEMENTS: Config/AmICompromised.entitlements
         TARGETED_DEVICE_FAMILY: "1,2"
         GENERATE_INFOPLIST_FILE: YES
         INFOPLIST_KEY_CFBundleDisplayName: Am I Compromised?
@@ -63,3 +65,19 @@ targets:
         INFOPLIST_KEY_LSApplicationCategoryType: public.app-category.utilities
         INFOPLIST_KEY_NSHumanReadableCopyright: © 2026 TechBitsMix
         ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+
+  ScanAction:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: ScanAction
+    dependencies:
+      - package: CompromiseKit
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.techbitsmix.AmICompromised.ScanAction
+        GENERATE_INFOPLIST_FILE: false
+        INFOPLIST_FILE: Config/ScanAction-Info.plist
+        CODE_SIGN_ENTITLEMENTS: Config/ScanAction.entitlements
+        TARGETED_DEVICE_FAMILY: "1,2"
+        SKIP_INSTALL: YES

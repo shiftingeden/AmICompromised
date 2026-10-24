@@ -170,6 +170,7 @@ final class AppModel {
             logReport = report
             Self.saveReport(report)
             cancelSysdiagnoseCapture()
+            if SharedInbox.contains(url) { try? FileManager.default.removeItem(at: url) }
         case .failure(let error):
             logScanError = (error as? LocalizedError)?.errorDescription ?? error.localizedDescription
         }

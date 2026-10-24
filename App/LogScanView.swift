@@ -79,7 +79,7 @@ struct LogScanView: View {
             }
 
             step(3, done: false, title: "Share it to this app",
-                 text: "Open Settings › Privacy & Security › Analytics & Improvements › Analytics Data. Search for \"sysdiagnose\", tap the newest file, tap Share, then pick Am I Compromised?. The scan starts by itself.")
+                 text: "Open Settings › Privacy & Security › Analytics & Improvements › Analytics Data. Search for \"sysdiagnose\", tap the newest file, tap Share, then tap Scan for Spyware in the row of actions. The scan starts by itself.")
             Button {
                 importing = true
             } label: {
