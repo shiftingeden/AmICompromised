@@ -11,7 +11,7 @@ struct TipJarView: View {
                 VStack(alignment: .leading, spacing: 8) {
                     Image(systemName: "heart.circle.fill").font(.system(size: 44)).foregroundStyle(.pink)
                     Text("Am I Compromised? is free").font(.title2.bold())
-                    Text("No ads, no tracking, no scan limits, and the code is open source. If it helped you, a tip keeps it maintained. Tipping once also unlocks the colour themes below as a thank-you.")
+                    Text("No ads, no tracking, no scan limits, and the code is open source. If it helped you, a tip keeps it maintained. Tipping once also unlocks the Orange and Gold app icons and the colour themes below as a thank-you.")
                         .foregroundStyle(.secondary)
                 }
                 .padding(.vertical, 6)
@@ -19,7 +19,7 @@ struct TipJarView: View {
 
             if jar.isSupporter, TipJar.storeAvailable {
                 Section {
-                    Label(jar.justTipped ? "Thank you! Themes unlocked." : "You're a supporter. Thank you!",
+                    Label(jar.justTipped ? "Thank you! Icons and themes unlocked." : "You're a supporter. Thank you!",
                           systemImage: "sparkles")
                         .font(.headline)
                         .foregroundStyle(.pink)
@@ -60,12 +60,22 @@ struct TipJarView: View {
             }
 
             Section {
+                AppIconPicker(unlocked: jar.isSupporter)
+            } header: {
+                Text("App icon")
+            } footer: {
+                if !jar.isSupporter { Text("Navy is free. Orange and Gold unlock with any tip.") }
+            }
+
+            Section {
                 ThemePicker(selection: $theme, unlocked: jar.isSupporter)
             } header: {
                 Text("Colour theme")
             } footer: {
                 if !jar.isSupporter { Text("Ocean is free. The others unlock with any tip.") }
             }
+
+            FeedbackSection()
         }
         .formStyle(.grouped)
         .navigationTitle("Support")

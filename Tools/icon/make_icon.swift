@@ -4,6 +4,15 @@ import AppKit
 import CoreGraphics
 
 let out = URL(fileURLWithPath: CommandLine.arguments.count > 1 ? CommandLine.arguments[1] : ".")
+
+/// Colour schemes: the default navy, plus the supporter icons.
+struct Palette { var name: String; var bgTop: UInt32; var bgBottom: UInt32; var glow: UInt32; var mark: UInt32; var dot: UInt32 }
+let palettes = [
+    Palette(name: "", bgTop: 0x0B1B3F, bgBottom: 0x2A2F8F, glow: 0x2FD4C4, mark: 0x1A2366, dot: 0x14B8A6),
+    Palette(name: "-orange", bgTop: 0x7C2D12, bgBottom: 0xF97316, glow: 0xFFD08A, mark: 0x7C2D12, dot: 0xEA580C),
+    Palette(name: "-gold", bgTop: 0x4A3500, bgBottom: 0xC99A1E, glow: 0xFFF1B8, mark: 0x4A3500, dot: 0xB8860B),
+]
+var p = palettes[0]
 try? FileManager.default.createDirectory(at: out, withIntermediateDirectories: true)
 
 func color(_ hex: UInt32, _ a: CGFloat = 1) -> CGColor {
@@ -75,10 +84,10 @@ func save(_ image: CGImage, _ name: String) {
 
 /// The artwork inside a square of side `s` at origin `o`.
 func artwork(_ ctx: CGContext, o: CGPoint, s: CGFloat) {
-    let bg = CGGradient(colorsSpace: nil, colors: [color(0x0B1B3F), color(0x2A2F8F)] as CFArray, locations: [0, 1])!
+    let bg = CGGradient(colorsSpace: nil, colors: [color(p.bgTop), color(p.bgBottom)] as CFArray, locations: [0, 1])!
     ctx.drawLinearGradient(bg, start: CGPoint(x: o.x, y: o.y + s), end: CGPoint(x: o.x + s, y: o.y), options: [])
     // Teal glow behind the shield.
-    let glow = CGGradient(colorsSpace: nil, colors: [color(0x2FD4C4, 0.55), color(0x2FD4C4, 0)] as CFArray, locations: [0, 1])!
+    let glow = CGGradient(colorsSpace: nil, colors: [color(p.glow, 0.55), color(p.glow, 0)] as CFArray, locations: [0, 1])!
     let c = CGPoint(x: o.x + s / 2, y: o.y + s * 0.49)
     ctx.drawRadialGradient(glow, startCenter: c, startRadius: 0, endCenter: c, endRadius: s * 0.48, options: [])
 
@@ -92,16 +101,18 @@ func artwork(_ ctx: CGContext, o: CGPoint, s: CGFloat) {
     // Faint inner edge so the shield reads as an object, not a cut-out.
     ctx.saveGState()
     ctx.addPath(shieldPath(cx: c.x, cy: c.y, w: s * 0.50))
-    ctx.setStrokeColor(color(0x2A2F8F, 0.12))
+    ctx.setStrokeColor(color(p.bgBottom, 0.12))
     ctx.setLineWidth(s * 0.008)
     ctx.strokePath()
     ctx.restoreGState()
 
-    drawQuestion(ctx, cx: c.x, cy: c.y + s * 0.01, s: s * 0.40, fill: color(0x1A2366), dotFill: color(0x14B8A6))
+    drawQuestion(ctx, cx: c.x, cy: c.y + s * 0.01, s: s * 0.40, fill: color(p.mark), dotFill: color(p.dot))
 }
 
+for palette in palettes {
+    p = palette
 // iPhone / iPad: full bleed, the system masks the corners.
-save(render(size: 1024) { ctx, s in artwork(ctx, o: .zero, s: s) }, "ios-1024.png")
+save(render(size: 1024) { ctx, s in artwork(ctx, o: .zero, s: s) }, "ios\(p.name)-1024.png")
 
 // Mac: Apple's grid puts an 824-pt rounded square inside 1024 with a shadow.
 for px in [16, 32, 64, 128, 256, 512, 1024] {
@@ -111,14 +122,17 @@ for px in [16, 32, 64, 128, 256, 512, 1024] {
         let shape = CGPath(roundedRect: rect, cornerWidth: side * 0.225, cornerHeight: side * 0.225, transform: nil)
         ctx.saveGState()
         ctx.setShadow(offset: CGSize(width: 0, height: -s * 0.01), blur: s * 0.03, color: color(0x000000, 0.35))
-        ctx.addPath(shape); ctx.setFillColor(color(0x0B1B3F)); ctx.fillPath()
+        ctx.addPath(shape); ctx.setFillColor(color(p.bgTop)); ctx.fillPath()
         ctx.restoreGState()
         ctx.saveGState()
         ctx.addPath(shape); ctx.clip()
         artwork(ctx, o: rect.origin, s: side)
         ctx.restoreGState()
-    }, "mac-\(px).png")
+    }, "mac\(p.name)-\(px).png")
 }
+
+}
+p = palettes[0]
 
 // Share-sheet action: a template, so only the alpha matters.
 save(render(size: 1024) { ctx, s in

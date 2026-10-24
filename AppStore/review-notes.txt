@@ -13,7 +13,7 @@ MAC
 The Mac version (same app, Universal Purchase) scans an iPhone backup folder the user chooses in Finder (sandboxed, user-selected read-only access) and checks the macOS version against exploited bugs. To review without a backup, open Log Files and choose any folder of text logs.
 
 IN-APP PURCHASES
-Four optional consumable tips. Every feature is free; tipping unlocks six accent colour themes (Ocean is always free). Restore Earlier Tip is on the Support screen.
+Four optional consumable tips. Every feature is free; tipping unlocks Orange and Gold alternate app icons and six accent colour themes (Navy icon and Ocean theme are always free). Restore Earlier Tip is on the Support screen.
 
 NOTIFICATIONS
 Local notifications only, used to say "your sysdiagnose should be ready" about 10 minutes after the user starts one. Requested only when the user starts a sysdiagnose.

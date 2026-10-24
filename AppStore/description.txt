@@ -23,4 +23,4 @@ OPEN SOURCE
 The full source code is on GitHub, so anyone can check exactly what the app does.
 
 SUPPORT THE APP
-Every feature is free. If it helped you, you can leave an optional tip, which also unlocks extra colour themes as a thank-you.
+Every feature is free. If it helped you, you can leave an optional tip, which also unlocks Orange and Gold app icons and extra colour themes as a thank-you.

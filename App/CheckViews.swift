@@ -202,6 +202,7 @@ struct AboutView: View {
                 Text("Keep your sysdiagnose file: experts can examine it further. Turn on Lockdown Mode and update iOS.")
                     .font(.footnote).foregroundStyle(.secondary)
             }
+            FeedbackSection()
             Section {
                 NoGuaranteeNote()
             }

@@ -16,6 +16,7 @@ struct AmICompromisedMacApp: App {
             MacRootView()
                 .environment(model)
                 .appTheme(theme, supporter: jar.isSupporter)
+                .task(id: jar.isSupporter) { AppIconChoice.restore(supporter: jar.isSupporter) }
                 #if FULL_SCAN
                 .environment(watcher)
                 .onAppear { watcher.start() }

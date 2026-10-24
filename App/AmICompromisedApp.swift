@@ -15,6 +15,7 @@ struct AmICompromisedApp: App {
             HomeView(incomingArchive: $incomingArchive)
                 .environment(delegate.model)
                 .appTheme(theme, supporter: jar.isSupporter)
+                .task(id: jar.isSupporter) { AppIconChoice.restore(supporter: jar.isSupporter) }
                 .task { await delegate.model.start() }
                 // A sysdiagnose shared from Settings › Analytics Data lands here.
                 .onOpenURL { url in

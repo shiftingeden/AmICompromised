@@ -498,6 +498,7 @@ struct MacAboutView: View {
                 Link("Source code on GitHub", destination: URL(string: "https://github.com/shiftingeden/AmICompromised")!)
                 Link("Mobile Verification Toolkit (Amnesty International)", destination: URL(string: "https://github.com/mvt-project/mvt")!)
             }
+            FeedbackSection()
             Section { MacNoGuarantee() }
         }
         .formStyle(.grouped)
