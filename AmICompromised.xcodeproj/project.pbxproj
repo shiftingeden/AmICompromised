@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		024CBFBD348A01C6336201FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA956051F97655FC1004B6E2 /* Assets.xcassets */; };
 		24FB495C2BEB5D21DEE21405 /* Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF5CC52690270735AF3F3DD /* Components.swift */; };
 		3BA68F4870B69520BDB3AC90 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0660FC20318D8928BF972181 /* HomeView.swift */; };
 		652DFBF41CB388708D7A584F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C495EDF0C525BC47982F4766 /* Assets.xcassets */; };
@@ -56,6 +57,7 @@
 		7E3089AD723C0D623B93309A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		9BF5CC52690270735AF3F3DD /* Components.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Components.swift; sourceTree = "<group>"; };
 		9EA5A844E6D409264B17EE61 /* CompromiseKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = CompromiseKit; path = Packages/CompromiseKit; sourceTree = SOURCE_ROOT; };
+		AA956051F97655FC1004B6E2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B0CEC0EEFF9A0AC7F4C20117 /* LogScanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogScanView.swift; sourceTree = "<group>"; };
 		B908ADADD333F32CEE7A0773 /* CheckViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckViews.swift; sourceTree = "<group>"; };
 		C495EDF0C525BC47982F4766 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				6B90330D3C8B30B5A1696240 /* ActionViewController.swift */,
+				AA956051F97655FC1004B6E2 /* Assets.xcassets */,
 			);
 			path = ScanAction;
 			sourceTree = "<group>";
@@ -143,6 +146,7 @@
 			buildConfigurationList = 401007202357C38DD3E0B103 /* Build configuration list for PBXNativeTarget "ScanAction" */;
 			buildPhases = (
 				FD087C184A66B51D8DA299B0 /* Sources */,
+				69744F1BD80DCCE80426CE71 /* Resources */,
 				E9D6F9304652D69DC90A4902 /* Frameworks */,
 			);
 			buildRules = (
@@ -228,6 +232,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		69744F1BD80DCCE80426CE71 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				024CBFBD348A01C6336201FA /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -296,6 +308,7 @@
 		45DBAA640F129A63272BFEC5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Config/ScanAction.entitlements;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = "Config/ScanAction-Info.plist";
@@ -443,6 +456,7 @@
 		D8843B6CA1E65F47475FD0C9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Config/ScanAction.entitlements;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = "Config/ScanAction-Info.plist";
