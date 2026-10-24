@@ -41,7 +41,7 @@
     }
   ],
   "has_login": false,
-  "current_build": 4,
+  "current_build": 5,
   "source_dirs": [
     "App",
     "Shared",
@@ -67,7 +67,7 @@
     "storeAvailable"
   ],
   "privacy_policy_file": "docs/privacy.html",
-  "highest_build_on_testflight": 3,
+  "highest_build_on_testflight": 4,
   "submission_hold_until": "",
   "alpha_icons_ok": [
     "icon-action-1024.png"

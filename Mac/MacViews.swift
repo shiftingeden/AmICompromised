@@ -20,6 +20,16 @@ enum SidebarItem: String, CaseIterable, Identifiable {
 struct MacRootView: View {
     @Environment(MacModel.self) private var model
     @State private var section: SidebarItem? = .overview
+    #if DEBUG
+    @State private var snapshotItem: SidebarItem?
+    #endif
+
+    private var shown: SidebarItem {
+        #if DEBUG
+        if let snapshotItem { return snapshotItem }
+        #endif
+        return section ?? .overview
+    }
 
     var body: some View {
         NavigationSplitView {
@@ -48,7 +58,7 @@ struct MacRootView: View {
                     .padding(.horizontal).padding(.vertical, 8)
                     .background(.red.opacity(0.08))
                 }
-                switch section ?? .overview {
+                switch shown {
                 case .overview: OverviewView(section: $section)
                 case .mac: ThisMacView()
                 case .iphone: IPhoneView()
@@ -59,8 +69,57 @@ struct MacRootView: View {
                 }
             }
         }
+        #if DEBUG
+        .task { await StoreSnapshots.runIfRequested(model: model, select: { section = nil; snapshotItem = $0 }) }
+        #endif
     }
 }
+
+#if DEBUG
+/// App Store screenshots. Run a Debug build with SNAPSHOT_DIR set: the app
+/// sizes its window to 1440×900, visits each screen and writes PNGs of its
+/// own window (no Screen Recording permission needed), then quits.
+@MainActor
+enum StoreSnapshots {
+    static func runIfRequested(model: MacModel, select: (SidebarItem) -> Void) async {
+        guard let dir = ProcessInfo.processInfo.environment["SNAPSHOT_DIR"] else { return }
+        print("SNAPSHOTS \(dir)")
+        try? await Task.sleep(for: .seconds(2))
+        guard let window = NSApp.windows.first(where: { $0.isVisible }) else { print("SNAPSHOTS no window"); return }
+        window.setContentSize(NSSize(width: 1440, height: 900))
+        window.center()
+        await model.scanMac()
+        let shots: [(SidebarItem, String)] = [(.overview, "01-overview"), (.mac, "02-this-mac"),
+                                              (.iphone, "03-iphone"), (.sources, "04-sources"), (.support, "05-support")]
+        for (item, name) in shots {
+            select(item)
+            try? await Task.sleep(for: .seconds(2))
+            guard let view = window.contentView?.superview ?? window.contentView,
+                  let rep = view.bitmapImageRepForCachingDisplay(in: view.bounds) else { continue }
+            view.cacheDisplay(in: view.bounds, to: rep)
+            // Flatten onto white: App Store screenshots can't have alpha.
+            let flat = NSImage(size: rep.size)
+            flat.lockFocus()
+            NSColor.windowBackgroundColor.setFill()
+            NSRect(origin: .zero, size: rep.size).fill()
+            rep.draw(in: NSRect(origin: .zero, size: rep.size))
+            flat.unlockFocus()
+            guard let cg = flat.cgImage(forProposedRect: nil, context: nil, hints: nil),
+                  let opaque = cg.copy(colorSpace: CGColorSpace(name: CGColorSpace.sRGB)!) else { continue }
+            let ctx = CGContext(data: nil, width: cg.width, height: cg.height, bitsPerComponent: 8, bytesPerRow: 0,
+                                space: CGColorSpace(name: CGColorSpace.sRGB)!, bitmapInfo: CGImageAlphaInfo.noneSkipLast.rawValue)!
+            ctx.draw(opaque, in: CGRect(x: 0, y: 0, width: cg.width, height: cg.height))
+            let out = NSBitmapImageRep(cgImage: ctx.makeImage()!)
+            do {
+                try out.representation(using: .png, properties: [:])?
+                    .write(to: URL(fileURLWithPath: dir).appendingPathComponent(name + ".png"))
+                print("SNAPSHOTS wrote \(name) \(out.pixelsWide)x\(out.pixelsHigh)")
+            } catch { print("SNAPSHOTS failed \(error)") }
+        }
+        NSApp.terminate(nil)
+    }
+}
+#endif
 
 // MARK: Overview
 
@@ -105,13 +164,6 @@ struct OverviewView: View {
                     title: "iPhone", detail: iphoneSummary)
             }
 
-            if !Build.fullAccess {
-                Section {
-                    StatusLine(status: .info, title: "Want the full Mac scan?",
-                               detail: "Apps from the Mac App Store can't look at background programs, startup items or a connected iPhone. The free direct download from GitHub can. It's the same open-source app, notarized by Apple.")
-                    Link("Get the free full version", destination: Build.directDownloadURL)
-                }
-            }
         }
         .formStyle(.grouped)
         .navigationTitle("Am I Compromised?")
@@ -487,7 +539,7 @@ struct MacAboutView: View {
                 Text("Whether macOS and your iPhone's iOS have bugs being used in real attacks.")
                 Text(Build.fullAccess
                      ? "This Mac: security settings, running programs, startup items, profiles, system extensions, the hosts file and crash logs."
-                     : "This Mac: running apps (the full version also checks background programs, startup items and settings).")
+                     : "This Mac: running apps, matched against the published spyware lists.")
                 Text("iPhone backups: installed apps, messages, Safari and Chrome history, WhatsApp, data usage and configuration profiles, matched against published spyware traces.")
             }
             Section("What it can't do") {

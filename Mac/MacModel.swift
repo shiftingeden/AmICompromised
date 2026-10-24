@@ -13,7 +13,6 @@ enum Build {
     static let fullAccess = false
     #endif
 
-    static let directDownloadURL = URL(string: "https://github.com/shiftingeden/AmICompromised/releases/latest")!
     static let fullDiskAccessSettings = URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy_AllFiles")!
 }
 

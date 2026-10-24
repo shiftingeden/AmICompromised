@@ -194,7 +194,7 @@ public struct MacSystemScanner {
         }
         let status: SystemCheck.Status = !findings.items.isEmpty ? .alert : (unsigned.isEmpty ? .good : .warning)
         return (SystemCheck(id: "apps", title: "Running apps", status: status,
-                            detail: "Checked \(apps.count) running apps. The App Store version can't see background programs or startup items; the free direct download can.",
+                            detail: "Checked \(apps.count) running apps. Apps from the Mac App Store can only see other apps, not background programs or startup items.",
                             items: unsigned.map { "Unsigned: \($0)" }), findings.items)
     }
 

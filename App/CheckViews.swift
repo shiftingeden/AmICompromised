@@ -220,9 +220,8 @@ struct MacScanView: View {
                 Text("Deep scan on a Mac")
             }
             Section {
-                Label("Mac App Store: the same free app. Scans a backup you make in Finder.", systemImage: "bag")
-                Label("Full version from GitHub: also scans the whole Mac and backs up a connected iPhone for you.", systemImage: "arrow.down.circle")
-                Link("Get the full Mac version", destination: URL(string: "https://github.com/shiftingeden/AmICompromised/releases/latest")!)
+                Label("Get Am I Compromised? on your Mac from the Mac App Store. It's the same free app.", systemImage: "desktopcomputer")
+                Label("Back up your iPhone in Finder, then choose the backup in the app's iPhone section.", systemImage: "externaldrive")
             } footer: {
                 Text("Turn on Encrypt local backup in Finder for the deepest scan. Your backup and its password never leave your Mac.")
             }
