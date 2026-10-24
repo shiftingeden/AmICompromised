@@ -7,7 +7,7 @@ struct HomeView: View {
     @Binding var incomingArchive: URL?
     @State private var path: [Screen] = []
 
-    enum Screen: Hashable { case updates, device, logs, sources, about, mac }
+    enum Screen: Hashable { case updates, device, logs, sources, about, mac, support }
 
     var body: some View {
         NavigationStack(path: $path) {
@@ -34,11 +34,14 @@ struct HomeView: View {
                 Section("Thorough Scan") {
                     NavigationLink(value: Screen.mac) {
                         StatusRow(status: .info, title: "Deep scan on a Mac",
-                                  detail: "Coming soon: this app on a Mac will scan a full encrypted backup of your iPhone.")
+                                  detail: "Use this app on a Mac to scan a full backup of your iPhone.")
                     }
                 }
 
                 Section {
+                    NavigationLink(value: Screen.support) {
+                        Label("Support & colour themes", systemImage: "heart")
+                    }
                     NavigationLink(value: Screen.sources) {
                         Label("Indicator sources", systemImage: "list.bullet.rectangle")
                     }
@@ -57,6 +60,7 @@ struct HomeView: View {
                 case .sources: SourcesView()
                 case .about: AboutView()
                 case .mac: MacScanView()
+                case .support: TipJarView()
                 }
             }
         }

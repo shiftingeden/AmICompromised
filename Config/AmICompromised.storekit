@@ -1,0 +1,89 @@
+{
+  "identifier": "amicompromised-local",
+  "nonRenewingSubscriptions": [],
+  "products": [
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "tip-small",
+      "localizations": [
+        {
+          "description": "A coffee for the developer. Thank you!",
+          "displayName": "Coffee",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.techbitsmix.AmICompromised.tip.small",
+      "referenceName": "Tip Coffee",
+      "type": "Consumable"
+    },
+    {
+      "displayPrice": "2.99",
+      "familyShareable": false,
+      "internalID": "tip-medium",
+      "localizations": [
+        {
+          "description": "Lunch for the developer. Thank you!",
+          "displayName": "Lunch",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.techbitsmix.AmICompromised.tip.medium",
+      "referenceName": "Tip Lunch",
+      "type": "Consumable"
+    },
+    {
+      "displayPrice": "4.99",
+      "familyShareable": false,
+      "internalID": "tip-large",
+      "localizations": [
+        {
+          "description": "Dinner for the developer. Thank you!",
+          "displayName": "Dinner",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.techbitsmix.AmICompromised.tip.large",
+      "referenceName": "Tip Dinner",
+      "type": "Consumable"
+    },
+    {
+      "displayPrice": "9.99",
+      "familyShareable": false,
+      "internalID": "tip-huge",
+      "localizations": [
+        {
+          "description": "A big thank-you that keeps the app maintained.",
+          "displayName": "Big thank-you",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.techbitsmix.AmICompromised.tip.huge",
+      "referenceName": "Tip Big thank-you",
+      "type": "Consumable"
+    }
+  ],
+  "settings": {
+    "_applicationInternalID": "6825999999",
+    "_developerTeamID": "XNGW97HPY6",
+    "_failTransactionsEnabled": false,
+    "_locale": "en_US",
+    "_storefront": "USA",
+    "_storeKitErrors": []
+  },
+  "subscriptionGroups": [],
+  "version": {
+    "major": 4,
+    "minor": 0
+  },
+  "appPolicies": {
+    "eula": "",
+    "policies": [
+      {
+        "locale": "en_US",
+        "policyText": "",
+        "policyURL": ""
+      }
+    ]
+  }
+}

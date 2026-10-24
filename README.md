@@ -84,7 +84,14 @@ supporter extras such as accent colour themes. No scan limits, no paywall.
       panel actually grants read access under the sandbox.
 
 **Build:**
-- [ ] Tip jar (StoreKit 2) on iPhone and Mac with supporter colour themes.
+- [x] Tip jar (StoreKit 2) on iPhone and Mac App Store build, with seven
+      colour themes (Ocean free, six unlocked by any tip). Full Mac build
+      unlocks themes and points to the App Store versions for tipping.
+- [ ] Create the four consumables in App Store Connect with the IDs in
+      `Shared/TipJar.swift` (tip.small/medium/large/huge at 0.99 / 2.99 /
+      4.99 / 9.99), then try a tip by running from Xcode (the scheme uses
+      `Config/AmICompromised.storekit`). `xcodebuild test` skips the purchase
+      test because it gets no StoreKit test environment here.
 - [ ] Privacy policy + support page (GitHub Pages).
 - [ ] App Store copy ("known threats", never "antivirus"/"zero-day
       detection"), review notes, screenshots, `app.json`.

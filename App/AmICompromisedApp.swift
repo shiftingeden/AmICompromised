@@ -7,11 +7,14 @@ struct AmICompromisedApp: App {
     @UIApplicationDelegateAdaptor private var delegate: AppDelegate
     @State private var incomingArchive: URL?
     @Environment(\.scenePhase) private var scenePhase
+    @AppStorage("theme") private var theme = Theme.ocean.rawValue
+    @State private var jar = TipJar.shared
 
     var body: some Scene {
         WindowGroup {
             HomeView(incomingArchive: $incomingArchive)
                 .environment(delegate.model)
+                .appTheme(theme, supporter: jar.isSupporter)
                 .task { await delegate.model.start() }
                 // A sysdiagnose shared from Settings › Analytics Data lands here.
                 .onOpenURL { url in

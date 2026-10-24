@@ -37,5 +37,7 @@
 	<string>1</string>
 	<key>LSSupportsOpeningDocumentsInPlace</key>
 	<false/>
+	<key>SKIncludeConsumableInAppPurchaseHistory</key>
+	<true/>
 </dict>
 </plist>

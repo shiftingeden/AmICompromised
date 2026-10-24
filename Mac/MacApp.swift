@@ -5,6 +5,8 @@ import SwiftUI
 struct AmICompromisedMacApp: App {
     @State private var model = MacModel()
     @AppStorage("acceptedDisclaimer") private var acceptedDisclaimer = false
+    @AppStorage("theme") private var theme = Theme.ocean.rawValue
+    @State private var jar = TipJar.shared
     #if FULL_SCAN
     @State private var watcher = DeviceWatcher()
     #endif
@@ -13,6 +15,7 @@ struct AmICompromisedMacApp: App {
         WindowGroup {
             MacRootView()
                 .environment(model)
+                .appTheme(theme, supporter: jar.isSupporter)
                 #if FULL_SCAN
                 .environment(watcher)
                 .onAppear { watcher.start() }

@@ -33,8 +33,13 @@ targets:
   AmICompromised:
     type: application
     platform: iOS
+    scheme:
+      storeKitConfiguration: Config/AmICompromised.storekit
+      testTargets:
+        - AmICompromisedTests
     sources:
       - path: App
+      - path: Shared
     dependencies:
       - package: CompromiseKit
       - target: ScanAction
@@ -42,6 +47,7 @@ targets:
       path: App/Info.plist
       properties:
         LSSupportsOpeningDocumentsInPlace: false
+        SKIncludeConsumableInAppPurchaseHistory: true
         CFBundleDocumentTypes:
           - CFBundleTypeName: Sysdiagnose archive
             CFBundleTypeRole: Viewer
@@ -89,12 +95,19 @@ targets:
   # Purchase.
   AmICompromisedMac:
     type: application
+    scheme:
+      storeKitConfiguration: Config/AmICompromised.storekit
     platform: macOS
     sources:
       - path: Mac
+      - path: Shared
       - path: App/Assets.xcassets
     dependencies:
       - package: CompromiseKit
+    info:
+      path: Config/Mac-Info.plist
+      properties:
+        SKIncludeConsumableInAppPurchaseHistory: true
     settings:
       base:
         GENERATE_INFOPLIST_FILE: YES
@@ -118,9 +131,14 @@ targets:
     platform: macOS
     sources:
       - path: Mac
+      - path: Shared
       - path: App/Assets.xcassets
     dependencies:
       - package: CompromiseKit
+    info:
+      path: Config/Mac-Info.plist
+      properties:
+        SKIncludeConsumableInAppPurchaseHistory: true
     settings:
       base:
         GENERATE_INFOPLIST_FILE: YES
@@ -138,3 +156,17 @@ targets:
         PRODUCT_NAME: Am I Compromised Full
         CODE_SIGN_ENTITLEMENTS: Config/Mac-Direct.entitlements
         SWIFT_ACTIVE_COMPILATION_CONDITIONS: $(inherited) FULL_SCAN
+
+  AmICompromisedTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: AppTests
+      - path: Config/AmICompromised.storekit
+        buildPhase: resources
+    dependencies:
+      - target: AmICompromised
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.techbitsmix.AmICompromisedTests
+        GENERATE_INFOPLIST_FILE: YES

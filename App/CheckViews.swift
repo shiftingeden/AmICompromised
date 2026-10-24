@@ -193,13 +193,16 @@ struct MacScanView: View {
     var body: some View {
         List {
             Section {
-                Text("The Mac version of this app will scan a full encrypted backup of your iPhone. A backup holds much more than a sysdiagnose, such as browsing history, data usage and message metadata, so it finds more.")
+                Text("Am I Compromised? also runs on a Mac. Plug in your iPhone and it backs it up and scans the backup, which holds far more than a sysdiagnose: messages, browsing history, data usage and installed apps. It checks the Mac itself too.")
             } header: {
-                Text("Coming soon")
+                Text("Deep scan on a Mac")
             }
-            Section("Until then") {
-                Text("Experts use the free Mobile Verification Toolkit (MVT) on a computer. It runs from the command line.")
-                Link("MVT documentation", destination: URL(string: "https://docs.mvt.re/en/latest/ios/install/")!)
+            Section {
+                Label("Mac App Store: the same free app. Scans a backup you make in Finder.", systemImage: "bag")
+                Label("Full version from GitHub: also scans the whole Mac and backs up a connected iPhone for you.", systemImage: "arrow.down.circle")
+                Link("Get the full Mac version", destination: URL(string: "https://github.com/shiftingeden/AmICompromised/releases/latest")!)
+            } footer: {
+                Text("Turn on Encrypt local backup in Finder for the deepest scan. Your backup and its password never leave your Mac.")
             }
         }
         .navigationTitle("Thorough Scan")

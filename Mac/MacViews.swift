@@ -2,7 +2,7 @@ import CompromiseKit
 import SwiftUI
 
 enum SidebarItem: String, CaseIterable, Identifiable {
-    case overview = "Overview", mac = "This Mac", iphone = "iPhone", logs = "Log Files", sources = "Indicator Sources", about = "About"
+    case overview = "Overview", mac = "This Mac", iphone = "iPhone", logs = "Log Files", sources = "Indicator Sources", support = "Support", about = "About"
     var id: String { rawValue }
     var symbol: String {
         switch self {
@@ -11,6 +11,7 @@ enum SidebarItem: String, CaseIterable, Identifiable {
         case .iphone: "iphone"
         case .logs: "doc.text.magnifyingglass"
         case .sources: "list.bullet.rectangle"
+        case .support: "heart"
         case .about: "info.circle"
         }
     }
@@ -53,6 +54,7 @@ struct MacRootView: View {
                 case .iphone: IPhoneView()
                 case .logs: LogFilesView()
                 case .sources: MacSourcesView()
+                case .support: TipJarView()
                 case .about: MacAboutView()
                 }
             }
