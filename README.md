@@ -53,18 +53,40 @@ outside it:
     swift test --scratch-path /tmp/ck-build
     LIVE=1 swift test --scratch-path /tmp/ck-build --filter LiveTests   # hits GitHub
 
-## To do before submission
+## Status (paused 2026-10-23)
 
-- [x] Public data repo https://github.com/shiftingeden/AmICompromised-data
-      (created 2026-10-23). Daily Action regenerates `apple-kev.json`; commits
-      only when the bug list changes. Copy script/workflow changes from
-      `Tools/` there by hand.
+Done: CompromiseKit engine + tests, iPhone app (Scan Now that updates lists
+first, device checks, guided sysdiagnose flow with countdown + notification),
+public data repo with daily Action, public source repo (MIT).
+
+## Due next
+
+**Test on a real iPhone** (the Simulator can't do these):
+- [ ] Pressing the sysdiagnose buttons on the scan screen ticks step 1
+      (screenshot detection).
+- [ ] Am I Compromised? appears in Analytics Data's Share sheet and the scan
+      starts by itself.
+- [ ] Scan time and memory on a real ~300 MB sysdiagnose; check for false
+      positives on a clean phone.
+- [ ] "Ready" notification arrives after 10 min and opens the scan screen.
+
+**Before App Store submission:**
 - [ ] App icon (`App/Assets.xcassets/AppIcon.appiconset` is empty).
-- [ ] Test the share-sheet flow with a real sysdiagnose on a device (Simulator
-      can't make one); check scan time and memory on a ~300 MB archive.
-- [ ] Privacy policy + support page; App Store copy that says "known
-      threats", never "antivirus" or "zero-day detection".
-- [ ] Decide IAP (scan limits / Mac Thorough Scan).
+- [ ] Privacy policy + support page (GitHub Pages, like the other apps).
+- [ ] App Store copy: "known threats", never "antivirus" or "zero-day
+      detection". Review notes explaining the sysdiagnose flow.
+- [ ] Screenshots; `app.json` like the other apps.
+- [ ] Decide IAP (scan limits per week / Mac Thorough Scan).
+
+**v2 (Mac):**
+- [ ] Find out whether the Mac App Store sandbox allows talking to an iPhone
+      over USB. If yes: plug in, back up, scan in-app. If no: notarized
+      build outside the store, or scan a Finder backup.
+
+**Housekeeping:**
+- Commit and push every change to github.com/shiftingeden/AmICompromised.
+- Changes to `Tools/generate_apple_kev.py` or the workflow must be copied to
+  the AmICompromised-data repo too.
 
 ## v2: Mac Thorough Scan
 
