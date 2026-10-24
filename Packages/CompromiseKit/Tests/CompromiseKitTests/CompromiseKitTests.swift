@@ -151,3 +151,132 @@ final class LiveMacScan: XCTestCase {
     }
 }
 #endif
+
+// MARK: - Backups
+
+import CommonCrypto
+
+/// Stands in for Apple's MBFile so the archive has EncryptionKey and Size
+/// keys the way real Manifest.db rows do.
+@objc(MBFile) final class FakeMBFile: NSObject, NSSecureCoding {
+    static var supportsSecureCoding: Bool { true }
+    let key: Data, size: Int
+    init(key: Data, size: Int) { self.key = key; self.size = size }
+    func encode(with coder: NSCoder) {
+        coder.encode(NSMutableData(data: key), forKey: "EncryptionKey")
+        coder.encode(size, forKey: "Size")
+        coder.encode(3, forKey: "ProtectionClass")
+    }
+    init?(coder: NSCoder) { nil }
+}
+
+final class BackupTests: XCTestCase {
+    func wrap(_ key: Data, kek: Data) -> Data {
+        var len = CCSymmetricWrappedSize(CCWrappingAlgorithm(kCCWRAPAES), key.count)
+        var out = Data(count: len)
+        _ = out.withUnsafeMutableBytes { o in key.withUnsafeBytes { k in kek.withUnsafeBytes { e in
+            CCSymmetricKeyWrap(CCWrappingAlgorithm(kCCWRAPAES), CCrfc3394_iv, CCrfc3394_ivLen,
+                               e.baseAddress!.assumingMemoryBound(to: UInt8.self), kek.count,
+                               k.baseAddress!.assumingMemoryBound(to: UInt8.self), key.count,
+                               o.baseAddress!.assumingMemoryBound(to: UInt8.self), &len) } } }
+        return out.prefix(len)
+    }
+
+    func encrypt(_ data: Data, key: Data) -> Data {
+        var out = Data(count: data.count + 32); var moved = 0
+        let n = out.count
+        _ = out.withUnsafeMutableBytes { o in data.withUnsafeBytes { d in key.withUnsafeBytes { k in
+            CCCrypt(CCOperation(kCCEncrypt), CCAlgorithm(kCCAlgorithmAES), CCOptions(kCCOptionPKCS7Padding),
+                    k.baseAddress, key.count, nil, d.baseAddress, data.count, o.baseAddress, n, &moved) } } }
+        return out.prefix(moved)
+    }
+
+    func random(_ n: Int) -> Data { Data((0..<n).map { _ in UInt8.random(in: 0...255) }) }
+
+    func tlv(_ tag: String, _ value: Data) -> Data {
+        var d = Data(tag.utf8); let n = UInt32(value.count).bigEndian
+        withUnsafeBytes(of: n) { d.append(contentsOf: $0) }; return d + value
+    }
+    func be(_ v: UInt32) -> Data { withUnsafeBytes(of: v.bigEndian) { Data($0) } }
+
+    func sqlite(_ url: URL, _ sql: String) throws {
+        let p = Process(); p.executableURL = URL(fileURLWithPath: "/usr/bin/sqlite3")
+        p.arguments = [url.path, sql]; try p.run(); p.waitUntilExit()
+    }
+
+    func makeBackup(encrypted: Bool, password: String = "hunter2") throws -> URL {
+        let root = FileManager.default.temporaryDirectory.appendingPathComponent("bk-\(UUID().uuidString)")
+        try FileManager.default.createDirectory(at: root, withIntermediateDirectories: true)
+
+        let history = root.appendingPathComponent("plain-history.db")
+        try sqlite(history, "CREATE TABLE history_items(url TEXT); INSERT INTO history_items VALUES('https://news.example.org/a'),('https://x.badhost.xyz/track');")
+        let historyData = try Data(contentsOf: history)
+        let fileID = "3d0d7e5fb2ce288813306e4d4636395e047a3d28"
+
+        // Keys: one class key (class 3) wrapped by the password key.
+        let salt = random(20), dpsl = random(20)
+        let pass1 = try Crypto.pbkdf2(Data(password.utf8), salt: dpsl, rounds: 1000, prf: CCPseudoRandomAlgorithm(kCCPRFHmacAlgSHA256))
+        let passKey = try Crypto.pbkdf2(pass1, salt: salt, rounds: 10, prf: CCPseudoRandomAlgorithm(kCCPRFHmacAlgSHA1))
+        let classKey = random(32), fileKey = random(32), manifestKey = random(32)
+        func classBlob(_ key: Data) -> Data { Data([3, 0, 0, 0]) + wrap(key, kek: classKey) }
+
+        let meta = try NSKeyedArchiver.archivedData(withRootObject: FakeMBFile(key: classBlob(fileKey), size: historyData.count),
+                                                    requiringSecureCoding: false)
+        let manifestPlain = root.appendingPathComponent("manifest-plain.db")
+        try sqlite(manifestPlain, """
+            CREATE TABLE Files(fileID TEXT, domain TEXT, relativePath TEXT, flags INTEGER, file BLOB);
+            INSERT INTO Files VALUES('\(fileID)','HomeDomain','Library/Safari/History.db',1,X'\(meta.map { String(format: "%02X", $0) }.joined())');
+            INSERT INTO Files VALUES('aa','AppDomain-com.stalker.app','Library',2,NULL);
+            """)
+        try FileManager.default.createDirectory(at: root.appendingPathComponent("3d"), withIntermediateDirectories: true)
+
+        var manifest: [String: Any] = ["IsEncrypted": encrypted, "Lockdown": ["ProductVersion": "18.5", "DeviceName": "Test iPhone"]]
+        if encrypted {
+            try encrypt(historyData, key: fileKey).write(to: root.appendingPathComponent("3d/\(fileID)"))
+            try encrypt(Data(contentsOf: manifestPlain), key: manifestKey).write(to: root.appendingPathComponent("Manifest.db"))
+            manifest["ManifestKey"] = classBlob(manifestKey)
+            let parts: [Data] = [
+                tlv("VERS", be(3)), tlv("UUID", random(16)), tlv("WRAP", be(1)),
+                tlv("SALT", salt), tlv("ITER", be(10)), tlv("DPWT", be(1)), tlv("DPIC", be(1000)), tlv("DPSL", dpsl),
+                tlv("UUID", random(16)), tlv("CLAS", be(3)), tlv("WRAP", be(3)), tlv("KTYP", be(0)),
+                tlv("WPKY", wrap(classKey, kek: passKey)),
+            ]
+            manifest["BackupKeyBag"] = parts.reduce(Data(), +)
+        } else {
+            try historyData.write(to: root.appendingPathComponent("3d/\(fileID)"))
+            try FileManager.default.copyItem(at: manifestPlain, to: root.appendingPathComponent("Manifest.db"))
+        }
+        (manifest as NSDictionary).write(to: root.appendingPathComponent("Manifest.plist"), atomically: true)
+        (["Device Name": "Test iPhone", "Product Version": "18.5"] as NSDictionary)
+            .write(to: root.appendingPathComponent("Info.plist"), atomically: true)
+        try? FileManager.default.removeItem(at: history)
+        try? FileManager.default.removeItem(at: manifestPlain)
+        return root
+    }
+
+    func indicators() throws -> IndicatorSet {
+        var set = IndicatorSet()
+        try set.addSTIX(Data("""
+        {"objects":[{"type":"indicator","pattern":"[domain-name:value='badhost.xyz']"},
+                    {"type":"indicator","pattern":"[app:id='com.stalker.app']"}]}
+        """.utf8), campaign: "Test")
+        return set
+    }
+
+    func testEncryptedBackup() throws {
+        let folder = try makeBackup(encrypted: true)
+        let info = try BackupInfo(folder: folder)
+        XCTAssertTrue(info.isEncrypted)
+        XCTAssertThrowsError(try BackupScanner(info: info, indicators: indicators(), password: nil))
+        XCTAssertThrowsError(try BackupScanner(info: info, indicators: indicators(), password: "wrong"))
+        let report = try BackupScanner(info: info, indicators: indicators(), password: "hunter2").scan()
+        XCTAssertEqual(Set(report.matches.map(\.kind)), ["Domain", "Installed app"], "\(report.findings)")
+        XCTAssertTrue(report.coverage.contains { $0.hasPrefix("Safari history: 2") }, "\(report.coverage)")
+    }
+
+    func testUnencryptedBackup() throws {
+        let folder = try makeBackup(encrypted: false)
+        let report = try BackupScanner(info: BackupInfo(folder: folder), indicators: indicators(), password: nil).scan()
+        XCTAssertEqual(Set(report.matches.map(\.kind)), ["Domain", "Installed app"])
+    }
+}
