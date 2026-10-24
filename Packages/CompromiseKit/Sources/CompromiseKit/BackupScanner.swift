@@ -41,6 +41,7 @@ public struct BackupInfo: Codable, Hashable, Sendable {
         udid = info["Unique Identifier"] as? String ?? lockdown["UniqueDeviceID"] as? String ?? folder.lastPathComponent
     }
 
+    #if os(macOS)
     /// Backups Finder made on this Mac, newest first. Reading the folder
     /// needs Full Disk Access; without it this throws.
     public static func finderBackups() throws -> [BackupInfo] {
@@ -50,6 +51,7 @@ public struct BackupInfo: Codable, Hashable, Sendable {
         return folders.compactMap { try? BackupInfo(folder: $0) }
             .sorted { ($0.lastBackup ?? .distantPast) > ($1.lastBackup ?? .distantPast) }
     }
+    #endif
 }
 
 public struct BackupScanReport: Codable, Sendable {

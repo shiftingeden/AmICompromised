@@ -53,45 +53,56 @@ outside it:
     swift test --scratch-path /tmp/ck-build
     LIVE=1 swift test --scratch-path /tmp/ck-build --filter LiveTests   # hits GitHub
 
-## Status (paused 2026-10-23)
+## Status (2026-10-24)
 
-Done: CompromiseKit engine + tests, iPhone app (Scan Now that updates lists
-first, device checks, guided sysdiagnose flow with countdown + notification),
-public data repo with daily Action, public source repo (MIT).
+Done: CompromiseKit engine + tests (iOS/macOS exploited-bug catalog, STIX
+matching, sysdiagnose scanner, Mac system scanner, encrypted iPhone backup
+scanner), iPhone app (Scan Now, device checks, guided sysdiagnose flow,
+"Scan for Spyware" Share action), app icon, Mac app in two builds, public
+data repo with daily Action, public source repo (MIT).
+
+**Pricing:** free everywhere, with a tip jar (IAP to donate) that unlocks
+supporter extras such as accent colour themes. No scan limits, no paywall.
 
 ## Due next
 
-**Test on a real iPhone** (the Simulator can't do these):
-- [ ] Pressing the sysdiagnose buttons on the scan screen ticks step 1
-      (screenshot detection).
-- [ ] Am I Compromised? appears in Analytics Data's Share sheet and the scan
-      starts by itself.
-- [ ] Scan time and memory on a real ~300 MB sysdiagnose; check for false
-      positives on a clean phone.
-- [ ] "Ready" notification arrives after 10 min and opens the scan screen.
+**Test on a real iPhone:**
+- [ ] "Scan for Spyware" shows in Analytics Data's Share sheet with the
+      shield glyph (the Simulator shows a placeholder icon), and the scan
+      starts when the app opens.
+- [ ] Pressing the sysdiagnose buttons on the scan screen ticks step 1.
+- [ ] Scan time and memory on a real ~300 MB sysdiagnose; false positives
+      on a clean phone.
 
-**Before App Store submission:**
-- [ ] App icon (`App/Assets.xcassets/AppIcon.appiconset` is empty).
-- [ ] Privacy policy + support page (GitHub Pages, like the other apps).
-- [ ] App Store copy: "known threats", never "antivirus" or "zero-day
-      detection". Review notes explaining the sysdiagnose flow.
-- [ ] Screenshots; `app.json` like the other apps.
-- [ ] Decide IAP (scan limits per week / Mac Thorough Scan).
+**Test the Mac app:**
+- [ ] Click through both builds (`Am I Compromised` = App Store,
+      `Am I Compromised Full` = direct download).
+- [ ] Full build: grant Full Disk Access, plug in an iPhone, Back Up and
+      Scan (uses Apple's `AppleMobileBackup`), then scan an encrypted backup
+      with its password. Decryption is only tested on synthetic backups.
+- [ ] App Store build: choosing the MobileSync backup folder in the open
+      panel actually grants read access under the sandbox.
 
-**v2 (Mac):**
-- [ ] Find out whether the Mac App Store sandbox allows talking to an iPhone
-      over USB. If yes: plug in, back up, scan in-app. If no: notarized
-      build outside the store, or scan a Finder backup.
+**Build:**
+- [ ] Tip jar (StoreKit 2) on iPhone and Mac with supporter colour themes.
+- [ ] Privacy policy + support page (GitHub Pages).
+- [ ] App Store copy ("known threats", never "antivirus"/"zero-day
+      detection"), review notes, screenshots, `app.json`.
+- [ ] Notarize the Full build and publish it as a GitHub release (the App
+      Store build's "Get the full version" link points there).
 
 **Housekeeping:**
 - Commit and push every change to github.com/shiftingeden/AmICompromised.
 - Changes to `Tools/generate_apple_kev.py` or the workflow must be copied to
   the AmICompromised-data repo too.
 
-## v2: Mac Thorough Scan
+## Mac (two builds, one codebase in `Mac/`)
 
-Add a macOS destination to the same target (Universal Purchase). The Mac side
-opens an encrypted Finder backup (user picks the folder), decrypts it with
-the backup password, and runs MVT's backup checks in Swift on top of
-CompromiseKit's indicator matching. `SysdiagnoseScanner` already accepts an
-extracted folder.
+| | `AmICompromisedMac` (App Store) | `AmICompromisedMacDirect` (GitHub) |
+|---|---|---|
+| Bundle ID | `com.techbitsmix.AmICompromised` (Universal Purchase with iOS) | `com.techbitsmix.AmICompromised.direct` |
+| Sandbox | Yes | No (hardened runtime, notarized) |
+| macOS exploited-bug check | ✓ | ✓ |
+| This Mac | Running apps only | Settings (SIP, Gatekeeper, FileVault, firewall, Lockdown), all processes, startup items, profiles/MDM, system extensions, hosts file, crash logs |
+| iPhone | Scan a backup folder you pick | Plug in → back up (AppleMobileBackup) → scan; lists Finder backups (needs Full Disk Access) |
+| Sysdiagnose / log folder scan | ✓ | ✓ |
