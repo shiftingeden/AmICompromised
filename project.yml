@@ -62,6 +62,10 @@ targets:
         PRODUCT_NAME: AmICompromised
         CODE_SIGN_ENTITLEMENTS: Config/AmICompromised.entitlements
         TARGETED_DEVICE_FAMILY: "1,2"
+        # The native Mac app covers the Mac; the iPhone build there would
+        # check the wrong machine.
+        SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD: NO
+        SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD: NO
         GENERATE_INFOPLIST_FILE: YES
         INFOPLIST_KEY_CFBundleDisplayName: Am I Compromised?
         INFOPLIST_KEY_UILaunchScreen_Generation: YES

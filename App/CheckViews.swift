@@ -73,6 +73,9 @@ struct DeviceChecksView: View {
             Section("Checked automatically") {
                 ForEach(model.deviceChecks) { check in
                     StatusRow(status: check.status, title: check.title, detail: check.detail)
+                    if !check.fix.isEmpty {
+                        FixSteps(steps: check.fix)
+                    }
                 }
             }
             Section {
@@ -107,6 +110,24 @@ struct DeviceChecksView: View {
         var set = done
         if !set.insert(id).inserted { set.remove(id) }
         doneRaw = set.sorted().joined(separator: ",")
+    }
+}
+
+/// Numbered "what to do" steps under a check that found a problem.
+struct FixSteps: View {
+    var steps: [String]
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text("What to do").font(.subheadline.bold())
+            ForEach(Array(steps.enumerated()), id: \.offset) { i, step in
+                HStack(alignment: .firstTextBaseline, spacing: 8) {
+                    Text("\(i + 1).").font(.subheadline.monospacedDigit()).foregroundStyle(.secondary)
+                    Text(step).font(.subheadline)
+                }
+            }
+        }
+        .padding(.vertical, 4)
     }
 }
 

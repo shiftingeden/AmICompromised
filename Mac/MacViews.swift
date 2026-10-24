@@ -251,6 +251,16 @@ struct MacFindingsSection: View {
                 }
                 .padding(.vertical, 3)
             }
+            if findings.contains(where: { $0.level == .suspicious }) {
+                VStack(alignment: .leading, spacing: 6) {
+                    Text("What to do with \"unusual\" items").font(.headline)
+                    Text("1. Look at the path. If you installed it (Homebrew tools, developer tools, a cleaner or game launcher), it's expected.")
+                    Text("2. If you don't recognise it, search the file name online before deleting anything.")
+                    Text("3. To stop an unwanted startup item, open System Settings › General › Login Items & Extensions and turn it off, or move its .plist from the LaunchAgents/LaunchDaemons folder to the Trash, then restart.")
+                    Text("4. Run Scan Now again to confirm it's gone.")
+                }
+                .foregroundStyle(.secondary)
+            }
             if findings.contains(where: { $0.level == .match }) {
                 Text("A match is a lead, not proof. Keep the evidence and contact the Access Now Digital Security Helpline or Amnesty's Security Lab for a free expert check.")
                     .foregroundStyle(.secondary)

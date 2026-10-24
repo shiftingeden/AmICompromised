@@ -7,6 +7,8 @@ struct DeviceCheck: Identifiable {
     var title: String
     var status: CheckStatus
     var detail: String
+    /// Steps to take when the check finds a problem.
+    var fix: [String] = []
 
     static func runAll() -> [DeviceCheck] {
         [passcode(), jailbreak()]
@@ -22,8 +24,9 @@ struct DeviceCheck: Identifiable {
             detail: set
                 ? "A passcode is set, so your data is encrypted when the phone is locked."
                 : (missing
-                    ? "No passcode is set. Anyone holding the phone can open it, and your data isn't fully encrypted. Set one in Settings › Face ID & Passcode."
-                    : "The app couldn't tell whether a passcode is set."))
+                    ? "No passcode is set. Anyone holding the phone can open it, and your data isn't fully encrypted."
+                    : "The app couldn't tell whether a passcode is set."),
+            fix: missing ? ["Open Settings › Face ID & Passcode and tap Turn Passcode On.", "Use six digits or more; an alphanumeric code is stronger."] : [])
     }
 
     /// Traces common jailbreak tools leave. A jailbroken phone loses most of
@@ -33,6 +36,12 @@ struct DeviceCheck: Identifiable {
         return DeviceCheck(id: "jailbreak", title: "Jailbreak signs", status: .info,
                            detail: "Not checked in the Simulator.")
         #else
+        // On a Mac the iPhone build sees macOS's own files (ssh, bash), which
+        // would look exactly like a jailbreak.
+        if ProcessInfo.processInfo.isiOSAppOnMac || ProcessInfo.processInfo.isMacCatalystApp {
+            return DeviceCheck(id: "jailbreak", title: "Jailbreak signs", status: .info,
+                               detail: "This is the iPhone version running on a Mac, so there's no phone to check. Use the Mac version of Am I Compromised? to scan this Mac.")
+        }
         let paths = [
             "/Applications/Cydia.app", "/Applications/Sileo.app", "/Applications/Zebra.app",
             "/var/jb", "/var/binpack", "/private/var/lib/apt", "/etc/apt", "/usr/sbin/sshd",
@@ -50,7 +59,14 @@ struct DeviceCheck: Identifiable {
             status: found.isEmpty ? .good : .alert,
             detail: found.isEmpty
                 ? "No signs of common jailbreak tools."
-                : "Found signs of a jailbreak: \(found.joined(separator: ", ")). If you didn't jailbreak this phone yourself, treat it as compromised.")
+                : "Found signs of a jailbreak: \(found.joined(separator: ", ")). If you didn't jailbreak this phone yourself, treat it as compromised.",
+            fix: found.isEmpty ? [] : [
+                "If you jailbroke it on purpose, this is expected, but the phone has lost most of iOS's protections.",
+                "Otherwise, save your photos and contacts to iCloud. Don't restore a full device backup afterwards: it can bring the problem back.",
+                "Connect the iPhone to a Mac, select it in Finder and click Restore iPhone. This reinstalls iOS and removes the jailbreak.",
+                "Set it up as a new iPhone, then change your Apple Account password and remove any device you don't recognise from it.",
+                "If you think someone targeted you, contact the Access Now Digital Security Helpline (free) before erasing, so experts can look first.",
+            ])
         #endif
     }
 }
