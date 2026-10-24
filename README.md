@@ -4,6 +4,16 @@ One app for iPhone, iPad and (v2) Mac that checks for **known** traces of
 mercenary spyware and stalkerware. It never claims a phone is clean: new
 spyware has no public indicators until researchers catch it.
 
+Everything runs on the device. The app downloads public indicator lists
+(Amnesty International, Citizen Lab, iVerify and others, via
+[mvt-indicators](https://github.com/mvt-project/mvt-indicators)) and the
+exploited-bug catalog from
+[AmICompromised-data](https://github.com/shiftingeden/AmICompromised-data);
+it never uploads logs or results.
+
+Issues and pull requests are welcome, especially new checks and false-positive
+reports. MIT licensed; see `LICENSE` and `THIRD_PARTY_NOTICES.md`.
+
     xcodegen generate && open AmICompromised.xcodeproj
 
 Bundle ID `com.techbitsmix.AmICompromised`, team XNGW97HPY6, iOS 17+.
