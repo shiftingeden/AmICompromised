@@ -1,0 +1,18 @@
+{
+  "_comment": "App record created 24 Oct 2026 by Claude in App Store Connect (iOS + macOS, Universal Purchase). Free; four consumable tips created the same day, all 175 countries, English (U.S.) names. Each tip still needs a review screenshot of the Support screen before its first submission, and must ship with an app version.",
+  "asc_app_id": "6826589466",
+  "bundle_id": "com.techbitsmix.AmICompromised",
+  "sku": "amicompromised",
+  "account_type": "individual",
+  "store_status": "unreleased",
+  "platforms": ["iOS", "macOS"],
+  "price": "free",
+  "in_app_purchases": [
+    {"product_id": "com.techbitsmix.AmICompromised.tip.small", "apple_id": "6826589697", "name": "Coffee Tip", "price_usd": "0.99", "type": "consumable"},
+    {"product_id": "com.techbitsmix.AmICompromised.tip.medium", "apple_id": "6826589953", "name": "Lunch Tip", "price_usd": "2.99", "type": "consumable"},
+    {"product_id": "com.techbitsmix.AmICompromised.tip.large", "apple_id": "6826590482", "name": "Dinner Tip", "price_usd": "4.99", "type": "consumable"},
+    {"product_id": "com.techbitsmix.AmICompromised.tip.huge", "apple_id": "6826591056", "name": "Big Thank-You Tip", "price_usd": "9.99", "type": "consumable"}
+  ],
+  "has_login": false,
+  "current_build": 1
+}
