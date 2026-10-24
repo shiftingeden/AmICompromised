@@ -12,6 +12,12 @@ The app only downloads public lists (raw.githubusercontent.com). Logs, backups, 
 MAC
 The Mac version (same app, Universal Purchase) scans an iPhone backup folder the user chooses in Finder (sandboxed, user-selected read-only access) and checks the macOS version against exploited bugs. To review without a backup, open Log Files and choose any folder of text logs.
 
+CODE SHARED WITH THE FREE MAC DOWNLOAD (disclosed under 2.3.1)
+The Mac code is also built, outside the App Store, as a free Developer ID download on GitHub. Two compile-time switches separate the builds, and neither can change after review:
+- fullAccess: false in this build. The engine's broader Mac system scan (settings, startup items, profiles) is compiled in but unreachable here; the sandbox would block it anyway.
+- storeAvailable: true in this build. Tips use the App Store. In the GitHub download it is false, the tip jar is hidden and the themes are simply unlocked, because that download can't use App Store payments.
+There is no remote switch and no hidden menu.
+
 IN-APP PURCHASES
 Four optional consumable tips. Every feature is free; tipping unlocks Orange and Gold alternate app icons and six accent colour themes (Navy icon and Ocean theme are always free). Restore Earlier Tip is on the Support screen.
 

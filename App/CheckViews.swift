@@ -29,7 +29,7 @@ struct UpdateCheckView: View {
                                         Text(bug.cve).font(.headline.monospaced())
                                         Spacer()
                                         if let fixed = bug.fixedVersion(for: a.version) {
-                                            Text("Fixed in \(fixed)").font(.caption).foregroundStyle(.secondary)
+                                            Text("Fixed in \(fixed.description)").font(.caption).foregroundStyle(.secondary)
                                         }
                                     }
                                     Text(bug.summary).font(.subheadline).foregroundStyle(.secondary)
@@ -189,7 +189,7 @@ struct AboutView: View {
             Section("What it checks") {
                 Text("Whether your iOS version has bugs that are being used in real attacks.")
                 Text("Basic device security: passcode and signs of a jailbreak.")
-                Text("A sysdiagnose (diagnostic logs you create) for known traces of mercenary spyware and stalkerware: domains, process names, file paths and more.")
+                Text("A sysdiagnose (system logs you create) for known traces of mercenary spyware and stalkerware: domains, process names, file paths and more.")
             }
             Section("What it can't do") {
                 Text("Find spyware nobody has published traces for yet. Zero-day attacks are, by definition, unknown until someone catches them.")

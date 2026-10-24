@@ -85,7 +85,7 @@ struct MacDisclaimer: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             Text("Before you start").font(.largeTitle.bold())
-            Text("Am I Compromised? checks your Mac and iPhone against public lists of spyware traces from Amnesty International, Citizen Lab, iVerify and others, and against bugs known to be used in real attacks.")
+            Text("Am I Compromised? checks your Mac and iPhone against public lists of spyware traces published by human-rights and security researchers, and against bugs known to be used in real attacks.")
             Text("**There is no guarantee.** New spyware has no public traces until researchers catch it. A clean result doesn't prove a device is clean, and a match is a lead, not proof.")
             Text("**Everything stays on your Mac.** Logs and backups are scanned locally; the app only downloads the indicator lists.")
             Toggle("I understand this app can't guarantee my devices are clean.", isOn: $understood)

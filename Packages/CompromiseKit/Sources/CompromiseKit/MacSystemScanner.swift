@@ -61,7 +61,7 @@ public struct MacSystemScanner {
                 ("Profiles and device management", { checks.append(profiles()) }),
                 ("System extensions", { checks.append(systemExtensions()) }),
                 ("Hosts file", { let r = hostsFile(); checks.append(r.0); findings += r.1 }),
-                ("Crash and diagnostic logs", { let r = diagnosticLogs(); checks.append(r.0); findings += r.1 }),
+                ("Crash reports", { let r = diagnosticLogs(); checks.append(r.0); findings += r.1 }),
             ]
             : [
                 ("Running apps", { let r = runningApps(); checks.append(r.0); findings += r.1 }),
@@ -275,19 +275,20 @@ public struct MacSystemScanner {
     func hostsFile() -> (SystemCheck, [Finding]) {
         var findings = Findings(file: "/etc/hosts")
         let text = (try? String(contentsOfFile: "/etc/hosts", encoding: .utf8)) ?? ""
-        let defaults: Set<String> = ["localhost", "broadcasthost", "ip6-localhost", "ip6-loopback"]
         var custom: [String] = []
         for raw in text.split(separator: "\n") {
             let line = raw.split(separator: "#", maxSplits: 1).first.map(String.init)?
                 .trimmingCharacters(in: .whitespaces) ?? ""
             let parts = line.split(whereSeparator: \.isWhitespace).map(String.init)
             guard parts.count >= 2 else { continue }
-            for host in parts.dropFirst() where !defaults.contains(host) {
+            // macOS's own entries are single-label aliases for this machine;
+            // anything with a dot was added by someone.
+            for host in parts.dropFirst() where host.contains(".") {
                 custom.append("\(host) → \(parts[0])")
                 if let c = scanner.campaign(forDomain: host) {
                     findings.add(.match, "Domain in hosts file", host, c, "Your hosts file mentions a domain used by this spyware.")
                 } else if ["apple.com", "icloud.com", "mzstatic.com", "google.com"].contains(where: { host == $0 || host.hasSuffix("." + $0) }),
-                          !["0.0.0.0", "127.0.0.1", "::1"].contains(parts[0]) {
+                          !Self.isBlockAddress(parts[0]) {
                     findings.add(.suspicious, "Redirected domain", "\(host) → \(parts[0])", nil,
                                  "Traffic for this well-known domain is sent to another address, which can be used to intercept it.")
                 }
@@ -298,6 +299,21 @@ public struct MacSystemScanner {
         return (SystemCheck(id: "hosts", title: "Hosts file", status: status,
                             detail: custom.isEmpty ? "No custom entries." : "\(custom.count) custom entries. Ad blockers and developer tools add these.",
                             items: custom), findings.items)
+    }
+
+    /// True for loopback and "unspecified" addresses, which ad blockers use to
+    /// block a domain rather than redirect it.
+    static func isBlockAddress(_ address: String) -> Bool {
+        var v4 = in_addr()
+        if inet_pton(AF_INET, address, &v4) == 1 {
+            let value = UInt32(bigEndian: v4.s_addr)
+            return value == 0 || value >> 24 == 127
+        }
+        var v6 = in6_addr()
+        if inet_pton(AF_INET6, address, &v6) == 1 {
+            return withUnsafeBytes(of: &v6) { bytes in bytes.dropLast().allSatisfy { $0 == 0 } && (bytes.last ?? 0) <= 1 }
+        }
+        return false
     }
 
     // MARK: Logs
@@ -314,8 +330,8 @@ public struct MacSystemScanner {
             all += report.findings.map { var f = $0; f.file = folder + "/" + f.file; return f }
         }
         let status: SystemCheck.Status = all.contains { $0.level == .match } ? .alert : (all.isEmpty ? .good : .warning)
-        return (SystemCheck(id: "logs", title: "Crash and diagnostic logs", status: status,
-                            detail: "Scanned \(count) crash and diagnostic reports for known spyware names, domains and paths."),
+        return (SystemCheck(id: "logs", title: "Crash reports", status: status,
+                            detail: "Scanned \(count) crash reports for known spyware names, domains and paths."),
                 all)
     }
 

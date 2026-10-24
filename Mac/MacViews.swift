@@ -161,7 +161,7 @@ struct OverviewView: View {
     }
 
     private var iphoneSummary: String {
-        guard let r = model.backupReport else { return "Scan a backup of your iPhone for traces of Pegasus, Predator and others." }
+        guard let r = model.backupReport else { return "Scan a backup of your iPhone for known traces of mercenary spyware." }
         return "\(r.device.deviceName), backup scanned \(r.scannedAt.formatted(.relative(presentation: .named))): \(r.matches.isEmpty ? "no known indicators" : "\(r.matches.count) match(es)")."
     }
 }

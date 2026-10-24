@@ -137,7 +137,7 @@ struct HomeView: View {
     }
 
     private var logSummary: String {
-        guard let r = model.logReport else { return "Scan a sysdiagnose for traces of Pegasus, Predator and others." }
+        guard let r = model.logReport else { return "Scan a sysdiagnose for known traces of mercenary spyware." }
         let when = r.scannedAt.formatted(date: .abbreviated, time: .shortened)
         if !r.matches.isEmpty { return "\(r.matches.count) match\(r.matches.count == 1 ? "" : "es") found (\(when))." }
         if !r.suspicious.isEmpty { return "\(r.suspicious.count) unusual item\(r.suspicious.count == 1 ? "" : "s") (\(when))." }
@@ -158,7 +158,7 @@ struct DisclaimerView: View {
                 Text("Before you start").font(.largeTitle.bold())
 
                 point("magnifyingglass", "It looks for known traces",
-                      "This app checks your phone against public lists of spyware traces published by Amnesty International, Citizen Lab, iVerify and others, and against bugs known to be used in real attacks.")
+                      "This app checks your phone against public lists of spyware traces published by human-rights and security researchers, and against bugs known to be used in real attacks.")
                 point("exclamationmark.triangle", "There is no guarantee",
                       "New spyware has no public traces until researchers catch it. A clean result does not prove your phone is clean, and a match is a lead, not proof.")
                 point("lock.iphone", "iOS limits what any app can see",

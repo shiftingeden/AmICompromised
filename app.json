@@ -1,18 +1,76 @@
 {
-  "_comment": "App record created 24 Oct 2026 by Claude in App Store Connect (iOS + macOS, Universal Purchase). Free; four consumable tips created the same day, all 175 countries, English (U.S.) names. Each tip still needs a review screenshot of the Support screen before its first submission, and must ship with an app version.",
+  "_comment": "App record created 24 Oct 2026 by Claude (iOS + macOS, Universal Purchase). Free with four consumable tips. Builds 2 and 3 uploaded 24 Oct for iOS and Mac App Store; full Mac build notarized for GitHub. Nothing submitted for review yet.",
   "asc_app_id": "6826589466",
   "bundle_id": "com.techbitsmix.AmICompromised",
   "sku": "amicompromised",
   "account_type": "individual",
   "store_status": "unreleased",
-  "platforms": ["iOS", "macOS"],
+  "platforms": [
+    "iOS",
+    "macOS"
+  ],
   "price": "free",
   "in_app_purchases": [
-    {"product_id": "com.techbitsmix.AmICompromised.tip.small", "apple_id": "6826589697", "name": "Coffee Tip", "price_usd": "0.99", "type": "consumable"},
-    {"product_id": "com.techbitsmix.AmICompromised.tip.medium", "apple_id": "6826589953", "name": "Lunch Tip", "price_usd": "2.99", "type": "consumable"},
-    {"product_id": "com.techbitsmix.AmICompromised.tip.large", "apple_id": "6826590482", "name": "Dinner Tip", "price_usd": "4.99", "type": "consumable"},
-    {"product_id": "com.techbitsmix.AmICompromised.tip.huge", "apple_id": "6826591056", "name": "Big Thank-You Tip", "price_usd": "9.99", "type": "consumable"}
+    {
+      "product_id": "com.techbitsmix.AmICompromised.tip.small",
+      "apple_id": "6826589697",
+      "name": "Coffee Tip",
+      "price_usd": "0.99",
+      "type": "consumable"
+    },
+    {
+      "product_id": "com.techbitsmix.AmICompromised.tip.medium",
+      "apple_id": "6826589953",
+      "name": "Lunch Tip",
+      "price_usd": "2.99",
+      "type": "consumable"
+    },
+    {
+      "product_id": "com.techbitsmix.AmICompromised.tip.large",
+      "apple_id": "6826590482",
+      "name": "Dinner Tip",
+      "price_usd": "4.99",
+      "type": "consumable"
+    },
+    {
+      "product_id": "com.techbitsmix.AmICompromised.tip.huge",
+      "apple_id": "6826591056",
+      "name": "Big Thank-You Tip",
+      "price_usd": "9.99",
+      "type": "consumable"
+    }
   ],
   "has_login": false,
-  "current_build": 1
+  "current_build": 4,
+  "source_dirs": [
+    "App",
+    "Shared",
+    "Mac",
+    "ScanAction",
+    "Packages/CompromiseKit/Sources"
+  ],
+  "info_plist": "App/Info.plist",
+  "metadata": {
+    "name": "Am I Compromised?",
+    "subtitle": "Check for known spyware traces",
+    "keywords": "stalkerware,hacked,security,privacy,sysdiagnose,malware,scanner,lockdown,infected,surveillance",
+    "promo": "Free spyware check for iPhone and Mac. Scans your logs and backups for known traces of mercenary spyware and stalkerware, using public lists from security researchers.",
+    "description_file": "AppStore/description.txt",
+    "review_notes_file": "AppStore/review-notes.txt",
+    "support_url": "https://shiftingeden.github.io/AmICompromised/support.html",
+    "privacy_url": "https://shiftingeden.github.io/AmICompromised/privacy.html"
+  },
+  "requires_hardware": false,
+  "age_rating_simulated_gambling": false,
+  "declared_dormant_features": [
+    "fullAccess",
+    "storeAvailable"
+  ],
+  "privacy_policy_file": "docs/privacy.html",
+  "highest_build_on_testflight": 3,
+  "submission_hold_until": "",
+  "alpha_icons_ok": [
+    "icon-action-1024.png"
+  ],
+  "_alpha_icons_ok_why": "Share-sheet action glyph is a template drawn from its alpha; iOS uploads with it were accepted (builds 2 and 3)."
 }
