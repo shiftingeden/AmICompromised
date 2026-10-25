@@ -33,6 +33,8 @@ public struct LogScanner {
     private let appIDs: [String: String]
     private let emails: [String: String]
     private let urls: [String: String]
+    /// When set, every candidate trace is recorded for later re-checks.
+    public var recorder: TraceRecorder?
 
     /// Locations Pegasus and similar implants have run from. A process here
     /// at shutdown is unusual, so the Kaspersky "iShutdown" method flags it.
@@ -91,6 +93,7 @@ public struct LogScanner {
         if let c = fileNames[name] {
             out.add(.match, "File name", name, c, "A file with this name is listed as a trace of this spyware.")
         }
+        if let process = Self.crashLogProcess(name) { recorder?.process(process) }
         if let process = Self.crashLogProcess(name), let c = processes[process] {
             out.add(.match, "Crashed process", process, c, "A crash log exists for a process named like this spyware's components.")
         }
@@ -124,6 +127,7 @@ public struct LogScanner {
         for line in lines where line.count > offset {
             let command = line.dropFirst(offset).split(separator: " ").first.map(String.init) ?? ""
             let process = (command as NSString).lastPathComponent
+            if !process.isEmpty { recorder?.process(process) }
             if let c = processes[process] {
                 out.add(.match, "Running process", command, c, "This process was running when the sysdiagnose was taken.")
             }
@@ -134,6 +138,8 @@ public struct LogScanner {
         for m in text.matches(of: #/remaining client pid: \d+ \((.+?)\)/#) {
             let path = String(m.1)
             let process = (path as NSString).lastPathComponent
+            recorder?.process(process)
+            recorder?.path(path)
             if let c = processes[process] {
                 out.add(.match, "Process at shutdown", path, c, "This process was still running when the phone was last restarted.")
             } else if Self.suspiciousLaunchDirs.contains(where: { path.hasPrefix($0) }) {
@@ -192,6 +198,7 @@ public struct LogScanner {
         guard token.count >= 4 else { return }
 
         if token.first == "/" {
+            recorder?.path(token)
             if let c = exactPaths[token] {
                 out.add(.match, "File path", token, c, "This path appears in the logs and is listed as a trace of this spyware.")
             } else if let (dir, c) = dirPaths.first(where: { token.hasPrefix($0.0) }) {
@@ -200,6 +207,7 @@ public struct LogScanner {
             return
         }
 
+        if token.count == 36, token.filter({ $0 == "-" }).count == 4 { recorder?.profileID(token) }
         if token.count == 36, token.filter({ $0 == "-" }).count == 4, let c = profileIDs[token.uppercased()] {
             out.add(.match, "Configuration profile", token, c, "A configuration profile with this ID is linked to this spyware.")
             return
@@ -208,6 +216,7 @@ public struct LogScanner {
         let lower = token.lowercased()
         if lower.contains("@") {
             let address = lower.hasPrefix("mailto:") ? String(lower.dropFirst(7)) : lower
+            recorder?.email(address)
             if let c = emails[address] {
                 out.add(.match, "Email address", address, c, "This address is linked to this spyware.")
             }
@@ -216,6 +225,7 @@ public struct LogScanner {
 
         var host = lower
         if let scheme = lower.range(of: "://") {
+            recorder?.url(token)
             if let c = urls[token] {
                 out.add(.match, "Web address", token, c, "This link is listed as a trace of this spyware.")
                 return
@@ -228,6 +238,7 @@ public struct LogScanner {
         guard labels.count >= 2, !labels.contains(where: \.isEmpty) else { return }
 
         if Self.reverseDNSRoots.contains(String(labels[0])), labels.count >= 3, !lower.contains("://") {
+            recorder?.appID(token)
             if let c = appIDs[token] {
                 out.add(.match, "App ID", token, c, "An app with this ID is listed as spyware or stalkerware.")
             }
@@ -235,6 +246,7 @@ public struct LogScanner {
         }
 
         guard host.allSatisfy({ $0.isLetter || $0.isNumber || $0 == "-" || $0 == "." }) else { return }
+        recorder?.domain(host)
         if let c = campaign(forDomain: host) {
             out.add(.match, "Domain", host, c, "This domain appears in the logs and is listed as infrastructure of this spyware.")
         }

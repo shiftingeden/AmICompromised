@@ -65,6 +65,21 @@ Mac app (App Store + full), tip jar with themes and supporter icons, Contact
 section, website (docs/), store text, screenshots (iPhone 6.3", iPad 13",
 Mac), App Privacy, age rating, pricing (free) and availability.
 
+## Added 2026-10-25 (build 6, not uploaded yet)
+
+- **Widget** (`StatusWidget/`): small/medium Home Screen and lock-screen
+  widget; status from `SharedStatus` in the App Group; tap = Scan Now via
+  `amicompromised://scan`; days since restart + reminder.
+- **Background protection** (`App/BackgroundMonitor.swift`, Protection
+  screen): opt-in BGAppRefreshTask; refreshes lists, re-checks saved traces
+  (`TraceSet`, recorded during every real log scan), warns about new
+  exploited bugs, restart reminders. Alerts are time-sensitive with
+  "Cut connections" (runs the user's "Am I Compromised Emergency" Shortcut
+  via shortcuts://) and "Not now". iOS can't toggle Airplane Mode itself.
+- Review notes, description and privacy policy updated for these.
+- Untested on a real device: widget appearance (Simulator gallery blank),
+  BG task timing, notification buttons, the Shortcut run.
+
 ## Due next (Eden)
 
 - [ ] Real-device checks (APP-REVIEW-CHECKLIST Part 0 and Part 3): five

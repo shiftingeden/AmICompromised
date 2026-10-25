@@ -34,6 +34,27 @@ struct LogScanView: View {
                 Section { Text(error).foregroundStyle(.red).font(.footnote) }
             }
 
+            if !model.recheckFindings.isEmpty, model.logScanProgress == nil {
+                Section {
+                    StatusRow(status: .alert, title: "Found by a background re-check",
+                              detail: "Newly published spyware lists match traces saved from your last sysdiagnose. This is a lead, not proof.")
+                    ForEach(model.recheckFindings) { f in
+                        VStack(alignment: .leading, spacing: 3) {
+                            Text(f.kind).font(.headline)
+                            Text(f.value).font(.callout.monospaced()).textSelection(.enabled)
+                            if let c = f.campaign {
+                                Text(c.replacingOccurrences(of: " Indicators of Compromise", with: "")).font(.subheadline.bold())
+                            }
+                            Text(f.detail).font(.footnote).foregroundStyle(.secondary)
+                        }
+                    }
+                    Button { Task { await BackgroundMonitor.runEmergencyShortcut() } } label: {
+                        Label("Cut connections (emergency Shortcut)", systemImage: "airplane")
+                    }
+                    Link("Access Now Digital Security Helpline", destination: URL(string: "https://www.accessnow.org/help/")!)
+                }
+            }
+
             if let sample = model.sampleReport, model.logScanProgress == nil {
                 Section {
                     Label("This is a sample scan of made-up data with two planted traces, to show what results look like. It says nothing about your phone.",

@@ -35,6 +35,8 @@ final class AppModel {
     var logScanUpdating = false
     /// Set when the "sysdiagnose is ready" notification is tapped.
     var showLogScan = false
+    /// Matches found later by background re-checks of saved traces.
+    var recheckFindings: [Finding] = Saved.recheck()
 
     /// When the person pressed the sysdiagnose button combo, if we saw it.
     var sysdiagnoseStartedAt: Date? {
@@ -58,7 +60,15 @@ final class AppModel {
         // Long enough to read as a scan, not a flicker.
         try? await Task.sleep(for: .seconds(1))
         runQuickScan()
+        SharedStatus.defaults.set(Date(), forKey: "lastScan")
+        recheckFindings = Saved.recheck()
+        publishStatus()
         scanPhase = nil
+    }
+
+    /// Updates the widget.
+    func publishStatus() {
+        if let assessment { BackgroundMonitor.publishStatus(assessment: assessment, deviceChecks: deviceChecks) }
     }
 
     /// Whether the lists are old enough to fetch again before a log scan.
@@ -113,6 +123,7 @@ final class AppModel {
         assessment = catalog.assess(.current)
         deviceChecks = DeviceCheck.runAll()
         lastQuickScan = Date()
+        publishStatus()
     }
 
     // MARK: Status summaries
@@ -127,6 +138,7 @@ final class AppModel {
     }
 
     var logStatus: CheckStatus {
+        if !recheckFindings.isEmpty { return .alert }
         guard let logReport else { return .unknown }
         if !logReport.matches.isEmpty { return .alert }
         if !logReport.suspicious.isEmpty { return .warning }
@@ -167,9 +179,10 @@ final class AppModel {
         let access = url.startAccessingSecurityScopedResource()
         defer { if access { url.stopAccessingSecurityScopedResource() } }
 
+        let recorder = sample ? nil : TraceRecorder(source: url.lastPathComponent)
         let result = await Task.detached(priority: .userInitiated) { [weak self] in
             Result {
-                try SysdiagnoseScanner.scan(url, indicators: indicators) { fraction in
+                try SysdiagnoseScanner.scan(url, indicators: indicators, recorder: recorder) { fraction in
                     Task { @MainActor in self?.logScanProgress = fraction }
                 }
             }
@@ -186,6 +199,12 @@ final class AppModel {
             sampleReport = nil
             logReport = report
             Self.saveReport(report)
+            // Keep this scan's traces for background re-checks; a fresh scan
+            // replaces earlier traces and earlier re-check results.
+            if let recorder { Saved.saveTraces(recorder.traces) }
+            Saved.clearRecheck()
+            recheckFindings = []
+            publishStatus()
             cancelSysdiagnoseCapture()
             if SharedInbox.contains(url) { try? FileManager.default.removeItem(at: url) }
         case .failure(let error):

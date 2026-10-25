@@ -280,3 +280,31 @@ final class BackupTests: XCTestCase {
         XCTAssertEqual(Set(report.matches.map(\.kind)), ["Domain", "Installed app"])
     }
 }
+
+final class TraceTests: XCTestCase {
+    func testRecheckFindsTracesPublishedLater() throws {
+        let tmp = FileManager.default.temporaryDirectory.appendingPathComponent("tr-\(UUID().uuidString)")
+        try FileManager.default.createDirectory(at: tmp, withIntermediateDirectories: true)
+        try "USER PID COMMAND\nroot 1 /usr/libexec/latespyd\n".write(to: tmp.appendingPathComponent("ps.txt"), atomically: true, encoding: .utf8)
+        try "fetched https://cdn.laterhost.net/a.js and /private/var/tmp/dropper\n".write(
+            to: tmp.appendingPathComponent("net.log"), atomically: true, encoding: .utf8)
+
+        // Scan today: nothing on the lists yet.
+        let recorder = TraceRecorder(source: "test")
+        let report = try SysdiagnoseScanner.scan(tmp, indicators: IndicatorSet(), recorder: recorder)
+        XCTAssertTrue(report.findings.isEmpty)
+        XCTAssertTrue(recorder.traces.domains.contains("cdn.laterhost.net"))
+        XCTAssertTrue(recorder.traces.processes.contains("latespyd"))
+
+        // Weeks later a campaign is published.
+        var later = IndicatorSet()
+        try later.addSTIX(Data("""
+        {"objects":[{"type":"indicator","pattern":"[domain-name:value='laterhost.net']"},
+                    {"type":"indicator","pattern":"[process:name='latespyd']"},
+                    {"type":"indicator","pattern":"[file:path='/private/var/tmp/dropper']"}]}
+        """.utf8), campaign: "Late")
+        let data = try JSONEncoder().encode(recorder.traces)
+        let saved = try JSONDecoder().decode(TraceSet.self, from: data)
+        XCTAssertEqual(Set(saved.recheck(against: later).map(\.kind)), ["Domain", "Process", "File path"])
+    }
+}

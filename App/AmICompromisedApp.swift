@@ -20,9 +20,14 @@ struct AmICompromisedApp: App {
                 // A sysdiagnose shared from Settings › Analytics Data lands here.
                 .onOpenURL { url in
                     if url.isFileURL { incomingArchive = url }
+                    // The widget's Scan Now button.
+                    if url.scheme == "amicompromised", url.host == "scan" {
+                        Task { await delegate.model.scanNow() }
+                    }
                 }
                 // One dropped by the Share sheet's "Scan with" action.
                 .onChange(of: scenePhase, initial: true) { _, phase in
+                    if phase == .active { BackgroundMonitor.schedule() }
                     if phase == .active, incomingArchive == nil, delegate.model.logScanProgress == nil,
                        let url = SharedInbox.pending() {
                         incomingArchive = url
@@ -40,6 +45,7 @@ final class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCent
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         UNUserNotificationCenter.current().delegate = self
+        BackgroundMonitor.register()
         return true
     }
 
@@ -48,6 +54,14 @@ final class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCent
     }
 
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse) async {
-        model.showLogScan = true
+        switch response.actionIdentifier {
+        case BackgroundMonitor.cutAction:
+            await BackgroundMonitor.runEmergencyShortcut()
+            model.showLogScan = true
+        case BackgroundMonitor.laterAction:
+            break
+        default:
+            if response.notification.request.identifier != "restart" { model.showLogScan = true }
+        }
     }
 }

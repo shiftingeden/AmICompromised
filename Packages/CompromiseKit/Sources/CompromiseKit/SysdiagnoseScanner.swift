@@ -28,12 +28,13 @@ public enum SysdiagnoseScanner {
         "sqlite-wal", "sqlite-shm", "plsql", "epsql", "dat", "bin", "timesync", "pcap", "pcapng",
     ]
 
-    public static func scan(_ url: URL, indicators: IndicatorSet,
+    public static func scan(_ url: URL, indicators: IndicatorSet, recorder: TraceRecorder? = nil,
                             progress: @Sendable (Double) -> Void = { _ in }) throws -> LogScanReport {
         var report = LogScanReport(archiveName: url.lastPathComponent, scannedAt: Date(), findings: [],
                                    filesScanned: 0, bytesScanned: 0, indicatorCount: indicators.total,
                                    sawShutdownLog: false, sawProcessList: false, crashLogCount: 0)
-        let scanner = LogScanner(indicators: indicators)
+        var scanner = LogScanner(indicators: indicators)
+        scanner.recorder = recorder
 
         func handle(path: String, data: Data) {
             let name = (path as NSString).lastPathComponent

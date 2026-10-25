@@ -21,5 +21,11 @@ There is no remote switch and no hidden menu.
 IN-APP PURCHASES
 Four optional consumable tips. Every feature is free; tipping unlocks Orange and Gold alternate app icons and six accent colour themes (Navy icon and Ocean theme are always free). Restore Earlier Tip is on the Support screen.
 
+BACKGROUND PROTECTION (opt-in, Protection screen on the home screen)
+Off by default. When the user turns it on, the app uses Background App Refresh (BGAppRefreshTask) to: download the latest public spyware lists, re-check the traces saved from the user's last sysdiagnose scan against them (domains, process names, paths seen in that scan, stored only on the device), warn about newly exploited iOS bugs, and remind the user to restart every few days. iOS decides when it runs; the interval setting is a request. To try it: open Protection, turn on Background checks, tap "Run a check now".
+
 NOTIFICATIONS
-Local notifications only, used to say "your sysdiagnose should be ready" about 10 minutes after the user starts one. Requested only when the user starts a sysdiagnose.
+Local only. Uses: "your sysdiagnose should be ready"; restart reminders; update warnings; and, if a background re-check matches a published list, a time-sensitive alert with two buttons. "Cut connections" opens the app, which runs a Shortcut the user created themselves (named "Am I Compromised Emergency", with the standard Set Airplane Mode action) through the shortcuts:// URL; the app never changes settings itself. "Not now" dismisses. Setup steps are on the Protection screen.
+
+WIDGET
+Home Screen and Lock Screen widget showing the last result and days since restart; tapping it opens the app and runs Scan Now.

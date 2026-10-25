@@ -7,7 +7,7 @@ struct HomeView: View {
     @Binding var incomingArchive: URL?
     @State private var path: [Screen] = []
 
-    enum Screen: Hashable { case updates, device, logs, sources, about, mac, support }
+    enum Screen: Hashable { case updates, device, logs, sources, about, mac, support, protection }
 
     var body: some View {
         NavigationStack(path: $path) {
@@ -28,6 +28,18 @@ struct HomeView: View {
                     }
                     NavigationLink(value: Screen.logs) {
                         StatusRow(status: model.logStatus, title: "Spyware log scan", detail: logSummary)
+                    }
+                }
+
+                Section("Protection") {
+                    NavigationLink(value: Screen.protection) {
+                        StatusRow(status: BackgroundMonitor.enabled ? .good : .info,
+                                  title: "Background checks & alerts",
+                                  detail: protectionSummary)
+                    }
+                    if SharedStatus.restartDue {
+                        StatusRow(status: .warning, title: "Time to restart",
+                                  detail: "Your iPhone has been on for \(SharedStatus.daysSinceRestart) days. Restarting removes spyware that lives only in memory.")
                     }
                 }
 
@@ -60,6 +72,7 @@ struct HomeView: View {
                 case .sources: SourcesView()
                 case .about: AboutView()
                 case .mac: MacScanView()
+                case .protection: ProtectionView()
                 case .support: TipJarView()
                 }
             }
@@ -136,7 +149,14 @@ struct HomeView: View {
         return "iOS \(a.version) has \(a.affecting.count) bug\(a.affecting.count == 1 ? "" : "s") used in real attacks. Update now."
     }
 
+    private var protectionSummary: String {
+        guard BackgroundMonitor.enabled else { return "Off. Turn on to re-check your last logs against new spyware lists and get alerts." }
+        let last = BackgroundMonitor.lastRun.map { "Last check \($0.formatted(.relative(presentation: .named)))." } ?? "Waiting for the first check."
+        return "On. " + last
+    }
+
     private var logSummary: String {
+        if !model.recheckFindings.isEmpty { return "\(model.recheckFindings.count) match\(model.recheckFindings.count == 1 ? "" : "es") found by a background re-check." }
         guard let r = model.logReport else { return "Scan a sysdiagnose for known traces of mercenary spyware." }
         let when = r.scannedAt.formatted(date: .abbreviated, time: .shortened)
         if !r.matches.isEmpty { return "\(r.matches.count) match\(r.matches.count == 1 ? "" : "es") found (\(when))." }
