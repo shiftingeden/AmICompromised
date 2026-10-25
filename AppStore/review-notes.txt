@@ -1,9 +1,9 @@
-Am I Compromised? checks a user's iPhone and Mac for KNOWN traces of mercenary spyware and stalkerware, using public indicator lists (the mvt-indicators index maintained by Amnesty International's Mobile Verification Toolkit project). It does not claim to be an antivirus, does not claim to detect unknown (zero-day) threats, and states on first launch and under every result that a clean result cannot prove a device is clean. No login, no ads, no analytics.
+Am I Compromised? checks a user's iPhone and Mac for KNOWN traces of mercenary spyware and stalkerware, using public indicator lists (the mvt-indicators index maintained by Amnesty International's Mobile Verification Toolkit project). It is not an antivirus, makes no zero-day claims, and says on first launch and under every result that a clean result can't prove a device is clean. No login, no ads, no analytics.
 
 HOW TO REVIEW (IPHONE, NO SETUP NEEDED)
 1. Accept the "Before you start" screen.
 2. Tap Scan Now. It downloads the latest public lists from GitHub, then shows the software-update check and device checks.
-3. Spyware log scan: open "Spyware log scan" and tap "Try a sample scan" at the bottom. This scans a small bundled sample (made-up data, clearly labelled as a sample) that contains two planted traces, so you can see how findings, explanations and the "what to do" section look. It never affects the user's real status.
+3. Spyware log scan: open "Spyware log scan" and tap "Try a sample scan" at the bottom. It scans bundled, clearly labelled made-up data with two planted traces, showing findings and the "what to do" section. It never affects the user's real status.
 4. A real scan needs a sysdiagnose, which iOS only creates when the user presses both volume buttons and the side button together. The user then shares it from Settings › Privacy & Security › Analytics & Improvements › Analytics Data using the "Scan for Spyware" share action, which copies the file into the app; the app scans it on the device.
 
 WHY NO DATA LEAVES THE DEVICE
