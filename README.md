@@ -53,19 +53,20 @@ outside it:
     swift test --scratch-path /tmp/ck-build
     LIVE=1 swift test --scratch-path /tmp/ck-build --filter LiveTests   # hits GitHub
 
-## Status (2026-10-24)
+## Status (2026-10-25)
 
-**Everything is in App Store Connect for 1.0, build 5, iOS and macOS. Nothing
-has been submitted for review.** `presubmit.py` reports *Cleared for
-submission*. Full Mac build 1.0 (5) is notarized and published as GitHub
-release v1.0-5.
+**Everything is in App Store Connect for 1.0, build 6, iOS and macOS (build 6
+attached on both; description and review notes updated). Nothing has been
+submitted for review.** iOS build 6 is in TestFlight for the internal group
+"Friends and I". Full Mac build 1.0 (6) is notarized and published as GitHub
+release v1.0-6.
 
 Done: engine + tests, iPhone app, Share action, shiny Navy/Orange/Gold icons,
 Mac app (App Store + full), tip jar with themes and supporter icons, Contact
 section, website (docs/), store text, screenshots (iPhone 6.3", iPad 13",
 Mac), App Privacy, age rating, pricing (free) and availability.
 
-## Added 2026-10-25 (build 6, not uploaded yet)
+## Added 2026-10-25 (build 6, uploaded and attached)
 
 - **Widget** (`StatusWidget/`): small/medium Home Screen and lock-screen
   widget; status from `SharedStatus` in the App Group; tap = Scan Now via
@@ -82,6 +83,10 @@ Mac), App Privacy, age rating, pricing (free) and availability.
 
 ## Due next (Eden)
 
+- [ ] Install build 6 from TestFlight and check the new features: add the
+      widget (small, medium, lock screen), turn on Background checks, set up
+      the "Am I Compromised Emergency" Shortcut and tap Test, and confirm
+      alerts sound/vibrate with Cut connections / Not now buttons.
 - [ ] Real-device checks (APP-REVIEW-CHECKLIST Part 0 and Part 3): five
       minutes on an iPhone **and an iPad**; Share action in Analytics Data; a
       real sysdiagnose scan; a sandbox tip against the real App Store product
