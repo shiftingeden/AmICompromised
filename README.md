@@ -94,6 +94,14 @@ Mac), App Privacy, age rating, pricing (free) and availability.
 - Background settings keys moved into `SharedStatus` so the widget can read
   them.
 
+## Added 2026-10-26 (build 8)
+
+- Widget: new large size (all status lines, last scan, next background
+  check, restart, Scan Now + Cut buttons); medium size gains a Cut button.
+  Cut opens `amicompromised://cut`, which runs the emergency Shortcut.
+- `CutConnectionsIntent` (Intents/): a Cut Connections control for the Lock
+  Screen / Control Center / Action button (iOS 18+) and a Siri action.
+
 Future ideas (more free sources: malicious sites, stalkerware, trackers, Mac malware) are in [ROADMAP.md](ROADMAP.md).
 
 ## Due next (Eden)

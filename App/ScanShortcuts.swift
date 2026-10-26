@@ -9,5 +9,10 @@ struct ScanShortcuts: AppShortcutsProvider {
                               "Run \(.applicationName)"],
                     shortTitle: "Scan Now",
                     systemImageName: "shield.lefthalf.filled.badge.checkmark")
+        AppShortcut(intent: CutConnectionsIntent(),
+                    phrases: ["Cut connections with \(.applicationName)",
+                              "Emergency \(.applicationName)"],
+                    shortTitle: "Cut Connections",
+                    systemImageName: "airplane")
     }
 }

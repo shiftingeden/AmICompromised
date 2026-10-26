@@ -101,4 +101,17 @@ public struct SharedStatus: Codable, Sendable {
         defaults.removeObject(forKey: "scanRequested")
         return true
     }
+
+    /// Set by the Cut Connections intent; the app runs the person's
+    /// emergency Shortcut (Airplane Mode) when it next becomes active.
+    public static func requestCutConnections() {
+        defaults.set(true, forKey: "cutRequested")
+    }
+
+    /// True once per request.
+    public static func takeCutConnectionsRequest() -> Bool {
+        guard defaults.bool(forKey: "cutRequested") else { return false }
+        defaults.removeObject(forKey: "cutRequested")
+        return true
+    }
 }

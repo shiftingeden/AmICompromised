@@ -28,4 +28,4 @@ NOTIFICATIONS
 Local only. Uses: "your sysdiagnose should be ready"; restart reminders; update warnings; and, if a background re-check matches a published list, a time-sensitive alert with two buttons. "Cut connections" opens the app, which runs a Shortcut the user created themselves (named "Am I Compromised Emergency", with the standard Set Airplane Mode action) through the shortcuts:// URL; the app never changes settings itself. "Not now" dismisses. Setup steps are on the Protection screen.
 
 WIDGET
-Home/Lock Screen widgets (status, last check, next-check timer, days since restart). Tapping one, the Scan Now control (iOS 18+) or the Siri/Shortcuts action opens the app and scans.
+Home/Lock Screen widgets (status, last check, next-check timer, days since restart) with Scan Now and Cut buttons; matching controls (iOS 18+) and Siri actions. Each opens the app; Cut runs the user's Shortcut.

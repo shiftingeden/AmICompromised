@@ -10,7 +10,10 @@ import WidgetKit
 struct StatusWidgetBundle: WidgetBundle {
     var body: some Widget {
         StatusWidget()
-        if #available(iOS 18.0, *) { ScanControl() }
+        if #available(iOS 18.0, *) {
+            ScanControl()
+            CutConnectionsControl()
+        }
     }
 }
 
@@ -54,7 +57,8 @@ struct StatusWidget: Widget {
         }
         .configurationDisplayName("Am I Compromised?")
         .description("Your status, when it last checked, the next background check and a restart reminder. Tap to scan.")
-        .supportedFamilies([.systemSmall, .systemMedium, .accessoryRectangular, .accessoryCircular, .accessoryInline])
+        .supportedFamilies([.systemSmall, .systemMedium, .systemLarge,
+                            .accessoryRectangular, .accessoryCircular, .accessoryInline])
     }
 }
 
@@ -69,6 +73,20 @@ struct ScanControl: ControlWidget {
         }
         .displayName("Spyware Scan")
         .description("Opens Am I Compromised? and scans.")
+    }
+}
+
+/// Runs the person's emergency Shortcut (Airplane Mode) via the app.
+@available(iOS 18.0, *)
+struct CutConnectionsControl: ControlWidget {
+    var body: some ControlWidgetConfiguration {
+        StaticControlConfiguration(kind: "AmICompromisedCutConnections") {
+            ControlWidgetButton(action: CutConnectionsIntent()) {
+                Label("Cut Connections", systemImage: "airplane")
+            }
+        }
+        .displayName("Cut Connections")
+        .description("Runs your Am I Compromised Emergency Shortcut to turn on Airplane Mode.")
     }
 }
 
@@ -155,13 +173,34 @@ struct StatusWidgetView: View {
                 VStack(alignment: .trailing, spacing: 8) {
                     restartBadge
                     Spacer(minLength: 0)
-                    Link(destination: URL(string: "amicompromised://scan")!) {
-                        Label("Scan Now", systemImage: "shield.lefthalf.filled.badge.checkmark")
-                            .font(.caption.bold())
-                            .padding(.horizontal, 10).padding(.vertical, 7)
-                            .background(Capsule().fill(Color.accentColor))
-                            .foregroundStyle(.white)
+                    scanButton
+                    cutButton
+                }
+            }
+        case .systemLarge:
+            VStack(alignment: .leading, spacing: 10) {
+                header.font(.title3)
+                ForEach(entry.status.lines, id: \.self) { line in
+                    Label(line, systemImage: "circle.fill")
+                        .labelStyle(BulletLabelStyle())
+                        .font(.subheadline)
+                        .lineLimit(1)
+                }
+                Divider()
+                VStack(alignment: .leading, spacing: 4) {
+                    lastScanLine
+                    if let next = entry.nextCheck, next > entry.date {
+                        Text("Next background check in \(next, style: .timer)")
+                            .font(.caption.monospacedDigit()).foregroundStyle(.secondary)
+                    } else if entry.nextCheck == nil {
+                        Text("Background checks are off").font(.caption).foregroundStyle(.secondary)
                     }
+                    restartBadge
+                }
+                Spacer(minLength: 0)
+                HStack(spacing: 10) {
+                    scanButton.frame(maxWidth: .infinity)
+                    cutButton.frame(maxWidth: .infinity)
                 }
             }
         default:
@@ -173,6 +212,32 @@ struct StatusWidgetView: View {
                 Text("Tap to scan").font(.caption2.bold()).foregroundStyle(.tint)
             }
         }
+    }
+
+    private var scanButton: some View {
+        Link(destination: URL(string: "amicompromised://scan")!) {
+            Label("Scan Now", systemImage: "shield.lefthalf.filled.badge.checkmark")
+                .font(.caption.bold())
+                .lineLimit(1)
+                .padding(.horizontal, 10).padding(.vertical, 7)
+                .frame(maxWidth: family == .systemLarge ? .infinity : nil)
+                .background(Capsule().fill(Color.accentColor))
+                .foregroundStyle(.white)
+        }
+    }
+
+    /// Opens the app, which runs the emergency Shortcut (Airplane Mode).
+    private var cutButton: some View {
+        Link(destination: URL(string: "amicompromised://cut")!) {
+            Label("Cut", systemImage: "airplane")
+                .font(.caption.bold())
+                .lineLimit(1)
+                .padding(.horizontal, 10).padding(.vertical, 7)
+                .frame(maxWidth: family == .systemLarge ? .infinity : nil)
+                .background(Capsule().fill(Color.red.opacity(0.85)))
+                .foregroundStyle(.white)
+        }
+        .accessibilityLabel("Cut connections")
     }
 
     private var header: some View {
@@ -199,6 +264,16 @@ struct StatusWidgetView: View {
             Text("Checked \(last, style: .relative) ago").font(.caption2).foregroundStyle(.secondary)
         } else {
             Text("Not scanned yet").font(.caption2).foregroundStyle(.secondary)
+        }
+    }
+}
+
+/// A small coloured dot before each status line.
+private struct BulletLabelStyle: LabelStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        HStack(spacing: 6) {
+            configuration.icon.font(.system(size: 5)).foregroundStyle(.secondary)
+            configuration.title
         }
     }
 }

@@ -22,21 +22,31 @@ struct AmICompromisedApp: App {
                     if url.isFileURL { incomingArchive = url }
                     // The widget's Scan Now button.
                     if url.scheme == "amicompromised", url.host == "scan" { startScan() }
+                    // The widget's Cut connections button.
+                    if url.scheme == "amicompromised", url.host == "cut" { cutConnections() }
                 }
                 // The Scan Now control, Siri and Shortcuts.
                 .onReceive(NotificationCenter.default.publisher(for: .scanRequested)) { _ in
                     if SharedStatus.takeScanRequest() { startScan() }
                 }
+                .onReceive(NotificationCenter.default.publisher(for: .cutConnectionsRequested)) { _ in
+                    if SharedStatus.takeCutConnectionsRequest() { cutConnections() }
+                }
                 // One dropped by the Share sheet's "Scan with" action.
                 .onChange(of: scenePhase, initial: true) { _, phase in
                     if phase == .active { BackgroundMonitor.schedule() }
                     if phase == .active, SharedStatus.takeScanRequest() { startScan() }
+                    if phase == .active, SharedStatus.takeCutConnectionsRequest() { cutConnections() }
                     if phase == .active, incomingArchive == nil, delegate.model.logScanProgress == nil,
                        let url = SharedInbox.pending() {
                         incomingArchive = url
                     }
                 }
         }
+    }
+
+    private func cutConnections() {
+        Task { await BackgroundMonitor.runEmergencyShortcut() }
     }
 
     private func startScan() {
