@@ -18,6 +18,7 @@
 		180E92E46D3C2B7A043C5139 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48FA6310EA53D68BF071C0B2 /* WidgetKit.framework */; };
 		24FB495C2BEB5D21DEE21405 /* Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF5CC52690270735AF3F3DD /* Components.swift */; };
 		301BE6E62EFF56EE69D88E86 /* MacModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FCFCF54A802DE884A72EFA /* MacModel.swift */; };
+		319803125239B797E6860409 /* ScanNowIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F2EA3DDBA0882878C7CB68 /* ScanNowIntent.swift */; };
 		34F737B2CF9C173881670D58 /* MacViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AECA88006672FA01BF82A86 /* MacViews.swift */; };
 		35FB60C65004A8CFB43DE288 /* Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BEE28921B0C703B2FF52A2 /* Themes.swift */; };
 		36CBD1E829FF9D949754E157 /* Feedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49927377C483174B050127FC /* Feedback.swift */; };
@@ -29,6 +30,7 @@
 		68FEDF8B4445877EA558EF99 /* MacViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AECA88006672FA01BF82A86 /* MacViews.swift */; };
 		6974113CA341F33D2A909592 /* DeviceWatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981A15F6B78BAF734FF6FC1A /* DeviceWatcher.swift */; };
 		73CCDA7627D4A6618FAB6643 /* MacApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933A0C8A506EC94DF94D2BF /* MacApp.swift */; };
+		76F8A855A251FE50EAE81B5C /* ScanNowIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F2EA3DDBA0882878C7CB68 /* ScanNowIntent.swift */; };
 		78CD00833144B3D24999B2A2 /* ScanAction.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = EE3906118225997B9E87D827 /* ScanAction.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		7A096579BDF12C3EF3F2639E /* CompromiseKit in Frameworks */ = {isa = PBXBuildFile; productRef = BDFE189DB7C0771934D41885 /* CompromiseKit */; };
 		87E8E2F9D83F50E32AAB1ABA /* DeviceCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1F69946C1E6684B52D0A77 /* DeviceCheck.swift */; };
@@ -36,6 +38,7 @@
 		94DC66F7187B58219B6CC28D /* AppIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB914E49220A545F1E1D36B /* AppIcons.swift */; };
 		9E99F9EECA67D4369F92251B /* CompromiseKit in Frameworks */ = {isa = PBXBuildFile; productRef = 5BB0D3925F510005B3D1CBFE /* CompromiseKit */; };
 		9FA74C66764D44186F94F016 /* AppIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB914E49220A545F1E1D36B /* AppIcons.swift */; };
+		A9C82F0E2424AE75DF8F470A /* ScanShortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FD5EEA88A32BF208B0A7E2 /* ScanShortcuts.swift */; };
 		AB8F714C221F832883B1EE52 /* AppIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB914E49220A545F1E1D36B /* AppIcons.swift */; };
 		AC8A9273392A176FDCC15A00 /* Feedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49927377C483174B050127FC /* Feedback.swift */; };
 		B0D6E44DE3331E9504A53E47 /* MacModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FCFCF54A802DE884A72EFA /* MacModel.swift */; };
@@ -102,6 +105,7 @@
 /* Begin PBXFileReference section */
 		0055C7F66430E0E1006F54B8 /* StatusWidget.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = StatusWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		0660FC20318D8928BF972181 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		06F2EA3DDBA0882878C7CB68 /* ScanNowIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanNowIntent.swift; sourceTree = "<group>"; };
 		0E37ECBE67B1471ADC3EF3AF /* SysdiagnoseCapture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SysdiagnoseCapture.swift; sourceTree = "<group>"; };
 		0E85928FDF4E8BDD55DE4F4B /* ProtectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtectionView.swift; sourceTree = "<group>"; };
 		18BEE28921B0C703B2FF52A2 /* Themes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Themes.swift; sourceTree = "<group>"; };
@@ -134,6 +138,7 @@
 		CAB755A447189D31256CE91A /* sample-sysdiagnose.tar.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; path = "sample-sysdiagnose.tar.gz"; sourceTree = "<group>"; };
 		CFB914E49220A545F1E1D36B /* AppIcons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIcons.swift; sourceTree = "<group>"; };
 		DEDE16C567ADC497895CC14A /* StatusWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusWidget.swift; sourceTree = "<group>"; };
+		E5FD5EEA88A32BF208B0A7E2 /* ScanShortcuts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanShortcuts.swift; sourceTree = "<group>"; };
 		EE3906118225997B9E87D827 /* ScanAction.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = ScanAction.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE1F69946C1E6684B52D0A77 /* DeviceCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceCheck.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -190,6 +195,7 @@
 				11FF3CE1C47C59CB2AE46237 /* App */,
 				4C3E8753B0D8D60CE3C4D6BD /* AppTests */,
 				188E0F064B4B656E1AFD5295 /* Config */,
+				44FAA4F773BD895F032C3BCB /* Intents */,
 				C09A0972F0267B77E1881DA7 /* Mac */,
 				0D0DBC632C87B29EB1830000 /* Packages */,
 				AF5BFCC5D9FDEC46907145B5 /* ScanAction */,
@@ -223,6 +229,7 @@
 				7E3089AD723C0D623B93309A /* Info.plist */,
 				B0CEC0EEFF9A0AC7F4C20117 /* LogScanView.swift */,
 				0E85928FDF4E8BDD55DE4F4B /* ProtectionView.swift */,
+				E5FD5EEA88A32BF208B0A7E2 /* ScanShortcuts.swift */,
 				0E37ECBE67B1471ADC3EF3AF /* SysdiagnoseCapture.swift */,
 			);
 			path = App;
@@ -242,6 +249,14 @@
 				9E38A723828873EBD284C6CA /* AmICompromised.storekit */,
 			);
 			path = Config;
+			sourceTree = "<group>";
+		};
+		44FAA4F773BD895F032C3BCB /* Intents */ = {
+			isa = PBXGroup;
+			children = (
+				06F2EA3DDBA0882878C7CB68 /* ScanNowIntent.swift */,
+			);
+			path = Intents;
 			sourceTree = "<group>";
 		};
 		4C3E8753B0D8D60CE3C4D6BD /* AppTests */ = {
@@ -562,6 +577,8 @@
 				3BA68F4870B69520BDB3AC90 /* HomeView.swift in Sources */,
 				B69A6A6B2F1B77CE593FFFF7 /* LogScanView.swift in Sources */,
 				DCB6801EF7479585866B0A09 /* ProtectionView.swift in Sources */,
+				76F8A855A251FE50EAE81B5C /* ScanNowIntent.swift in Sources */,
+				A9C82F0E2424AE75DF8F470A /* ScanShortcuts.swift in Sources */,
 				9069719D0A04C73B5A6BDB4D /* SysdiagnoseCapture.swift in Sources */,
 				35FB60C65004A8CFB43DE288 /* Themes.swift in Sources */,
 				CE03FA6D68BEE3CD918CD9A0 /* TipJar.swift in Sources */,
@@ -605,6 +622,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				319803125239B797E6860409 /* ScanNowIntent.swift in Sources */,
 				0A4D17F9ECC8C2FEA250D267 /* StatusWidget.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -648,7 +666,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Am I Compromised?";
+				INFOPLIST_KEY_CFBundleDisplayName = "Compromised?";
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "© 2026 TechBitsMix";
@@ -777,7 +795,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = XNGW97HPY6;
@@ -845,7 +863,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = XNGW97HPY6;
@@ -882,7 +900,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Config/Mac-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Am I Compromised?";
+				INFOPLIST_KEY_CFBundleDisplayName = "Compromised?";
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "© 2026 TechBitsMix";
@@ -908,7 +926,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Config/Mac-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Am I Compromised?";
+				INFOPLIST_KEY_CFBundleDisplayName = "Compromised?";
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "© 2026 TechBitsMix";
@@ -933,7 +951,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Config/Mac-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Am I Compromised?";
+				INFOPLIST_KEY_CFBundleDisplayName = "Compromised?";
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "© 2026 TechBitsMix";
@@ -994,7 +1012,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Am I Compromised?";
+				INFOPLIST_KEY_CFBundleDisplayName = "Compromised?";
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "© 2026 TechBitsMix";
@@ -1025,7 +1043,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Config/Mac-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Am I Compromised?";
+				INFOPLIST_KEY_CFBundleDisplayName = "Compromised?";
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "© 2026 TechBitsMix";

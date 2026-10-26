@@ -24,7 +24,7 @@ settings:
   base:
     SWIFT_VERSION: "5.0"
     MARKETING_VERSION: "1.0"
-    CURRENT_PROJECT_VERSION: "6"
+    CURRENT_PROJECT_VERSION: "7"
     ENABLE_USER_SCRIPT_SANDBOXING: YES
     DEAD_CODE_STRIPPING: YES
     DEVELOPMENT_TEAM: XNGW97HPY6
@@ -40,6 +40,7 @@ targets:
     sources:
       - path: App
       - path: Shared
+      - path: Intents
     dependencies:
       - package: CompromiseKit
       - target: ScanAction
@@ -76,7 +77,8 @@ targets:
         SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD: NO
         SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD: NO
         GENERATE_INFOPLIST_FILE: YES
-        INFOPLIST_KEY_CFBundleDisplayName: Am I Compromised?
+        # Short enough to fit under the icon; the store name stays "Am I Compromised?".
+        INFOPLIST_KEY_CFBundleDisplayName: Compromised?
         INFOPLIST_KEY_UILaunchScreen_Generation: YES
         INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
         INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone: UIInterfaceOrientationPortrait
@@ -93,6 +95,7 @@ targets:
     platform: iOS
     sources:
       - path: StatusWidget
+      - path: Intents
     dependencies:
       - package: CompromiseKit
       - sdk: WidgetKit.framework
@@ -100,7 +103,7 @@ targets:
     info:
       path: Config/StatusWidget-Info.plist
       properties:
-        CFBundleDisplayName: Am I Compromised?
+        CFBundleDisplayName: Compromised?
         NSExtension:
           NSExtensionPointIdentifier: com.apple.widgetkit-extension
     settings:
@@ -151,7 +154,7 @@ targets:
         GENERATE_INFOPLIST_FILE: YES
         PRODUCT_NAME: Am I Compromised
         PRODUCT_MODULE_NAME: AmICompromisedMac
-        INFOPLIST_KEY_CFBundleDisplayName: Am I Compromised?
+        INFOPLIST_KEY_CFBundleDisplayName: Compromised?
         INFOPLIST_KEY_LSApplicationCategoryType: public.app-category.utilities
         INFOPLIST_KEY_NSHumanReadableCopyright: © 2026 TechBitsMix
         INFOPLIST_KEY_ITSAppUsesNonExemptEncryption: NO
@@ -185,7 +188,7 @@ targets:
         GENERATE_INFOPLIST_FILE: YES
         PRODUCT_NAME: Am I Compromised
         PRODUCT_MODULE_NAME: AmICompromisedMac
-        INFOPLIST_KEY_CFBundleDisplayName: Am I Compromised?
+        INFOPLIST_KEY_CFBundleDisplayName: Compromised?
         INFOPLIST_KEY_LSApplicationCategoryType: public.app-category.utilities
         INFOPLIST_KEY_NSHumanReadableCopyright: © 2026 TechBitsMix
         INFOPLIST_KEY_ITSAppUsesNonExemptEncryption: NO

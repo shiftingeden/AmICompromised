@@ -21,19 +21,27 @@ struct AmICompromisedApp: App {
                 .onOpenURL { url in
                     if url.isFileURL { incomingArchive = url }
                     // The widget's Scan Now button.
-                    if url.scheme == "amicompromised", url.host == "scan" {
-                        Task { await delegate.model.scanNow() }
-                    }
+                    if url.scheme == "amicompromised", url.host == "scan" { startScan() }
+                }
+                // The Scan Now control, Siri and Shortcuts.
+                .onReceive(NotificationCenter.default.publisher(for: .scanRequested)) { _ in
+                    if SharedStatus.takeScanRequest() { startScan() }
                 }
                 // One dropped by the Share sheet's "Scan with" action.
                 .onChange(of: scenePhase, initial: true) { _, phase in
                     if phase == .active { BackgroundMonitor.schedule() }
+                    if phase == .active, SharedStatus.takeScanRequest() { startScan() }
                     if phase == .active, incomingArchive == nil, delegate.model.logScanProgress == nil,
                        let url = SharedInbox.pending() {
                         incomingArchive = url
                     }
                 }
         }
+    }
+
+    private func startScan() {
+        guard !delegate.model.isScanning else { return }
+        Task { await delegate.model.scanNow() }
     }
 }
 

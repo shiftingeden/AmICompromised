@@ -81,6 +81,19 @@ Mac), App Privacy, age rating, pricing (free) and availability.
 - Untested on a real device: widget appearance (Simulator gallery blank),
   BG task timing, notification buttons, the Shortcut run.
 
+## Added 2026-10-25 (build 7)
+
+- Home Screen name is now **Compromised?** (`CFBundleDisplayName`); the
+  store name stays "Am I Compromised?".
+- Lock Screen widgets: rectangular (status, "Checked … ago", next background
+  check countdown or restart due), inline, and a circular restart gauge.
+- **Scan Now control** (iOS 18+, `ScanControl` in `StatusWidget/`) for the
+  Lock Screen, Control Center and Action button, plus a Siri/Shortcuts action
+  (`App/ScanShortcuts.swift`). Both run `Intents/ScanNowIntent.swift`, which
+  opens the app and sets a one-shot `scanRequested` flag in the App Group.
+- Background settings keys moved into `SharedStatus` so the widget can read
+  them.
+
 ## Due next (Eden)
 
 - [ ] Install build 6 from TestFlight and check the new features: add the

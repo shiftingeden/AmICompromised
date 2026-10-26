@@ -24,17 +24,17 @@ enum BackgroundMonitor {
     static let emergencyShortcut = "Am I Compromised Emergency"
 
     static var enabled: Bool {
-        get { SharedStatus.defaults.bool(forKey: "backgroundEnabled") }
-        set { SharedStatus.defaults.set(newValue, forKey: "backgroundEnabled"); if newValue { schedule() } else { cancel() } }
+        get { SharedStatus.backgroundEnabled }
+        set { SharedStatus.backgroundEnabled = newValue; if newValue { schedule() } else { cancel() }; WidgetCenter.shared.reloadAllTimelines() }
     }
 
     /// Requested gap between checks, in hours.
     static var intervalHours: Int {
-        get { SharedStatus.defaults.object(forKey: "intervalHours") as? Int ?? 3 }
-        set { SharedStatus.defaults.set(newValue, forKey: "intervalHours"); schedule() }
+        get { SharedStatus.backgroundIntervalHours }
+        set { SharedStatus.backgroundIntervalHours = newValue; schedule(); WidgetCenter.shared.reloadAllTimelines() }
     }
 
-    static var lastRun: Date? { SharedStatus.defaults.object(forKey: "lastBackgroundCheck") as? Date }
+    static var lastRun: Date? { SharedStatus.lastBackgroundCheck }
 
     // MARK: Scheduling
 
@@ -105,7 +105,7 @@ enum BackgroundMonitor {
 
         await remindRestartIfDue()
 
-        SharedStatus.defaults.set(Date(), forKey: "lastBackgroundCheck")
+        SharedStatus.lastBackgroundCheck = Date()
         await MainActor.run { publishStatus(assessment: assessment) }
         return newMatches
     }

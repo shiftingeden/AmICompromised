@@ -13,7 +13,8 @@ WHAT IT CHECKS ON IPHONE
 BACKGROUND PROTECTION AND WIDGET
 • Optional background checks download newly published spyware lists and re-check the traces from your last log scan, so a campaign published weeks later can still be caught. If something matches you get an alert, with a one-tap option to run your own Shortcut that switches on Airplane Mode.
 • Restart reminders every few days: many spyware implants live only in memory and are removed by a restart.
-• A Home Screen and Lock Screen widget shows your status and days since your last restart, and starts a scan with one tap.
+• Lock Screen and Home Screen widgets show your status, when it last checked, a countdown to the next background check and days since your last restart. Tap one to scan.
+• A Scan Now control for the Lock Screen, Control Center and the Action button, and "Scan with Compromised?" in Siri and Shortcuts.
 
 ON A MAC
 The same app on a Mac scans a full backup of your iPhone, which holds far more than a sysdiagnose: installed apps, messages, browsing history, data usage and configuration profiles. Encrypted backups are supported; the password never leaves your Mac. It also checks whether your macOS version has bugs used in real attacks.

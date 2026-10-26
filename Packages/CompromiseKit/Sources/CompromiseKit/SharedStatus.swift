@@ -60,4 +60,45 @@ public struct SharedStatus: Codable, Sendable {
     public static var restartDue: Bool {
         restartEveryDays > 0 && daysSinceRestart >= restartEveryDays
     }
+
+    // MARK: Background checks (set in the app, shown by the widget)
+
+    public static var backgroundEnabled: Bool {
+        get { defaults.bool(forKey: "backgroundEnabled") }
+        set { defaults.set(newValue, forKey: "backgroundEnabled") }
+    }
+
+    /// Requested gap between background checks, in hours.
+    public static var backgroundIntervalHours: Int {
+        get { defaults.object(forKey: "intervalHours") as? Int ?? 3 }
+        set { defaults.set(newValue, forKey: "intervalHours") }
+    }
+
+    public static var lastBackgroundCheck: Date? {
+        get { defaults.object(forKey: "lastBackgroundCheck") as? Date }
+        set { defaults.set(newValue, forKey: "lastBackgroundCheck") }
+    }
+
+    /// When the next background check is due, if they're on. iOS picks the
+    /// actual moment, so this is the earliest it can run.
+    public static var nextBackgroundCheck: Date? {
+        guard backgroundEnabled else { return nil }
+        let from = lastBackgroundCheck ?? defaults.object(forKey: "lastScan") as? Date ?? Date()
+        return from.addingTimeInterval(TimeInterval(backgroundIntervalHours * 3600))
+    }
+
+    // MARK: Scan requests from the lock screen, Control Center and Siri
+
+    /// Set by the Scan Now intent; the app runs a scan when it next becomes
+    /// active and clears it.
+    public static func requestScan() {
+        defaults.set(true, forKey: "scanRequested")
+    }
+
+    /// True once per request.
+    public static func takeScanRequest() -> Bool {
+        guard defaults.bool(forKey: "scanRequested") else { return false }
+        defaults.removeObject(forKey: "scanRequested")
+        return true
+    }
 }

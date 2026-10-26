@@ -3,10 +3,15 @@ import SwiftUI
 import WidgetKit
 
 /// Home screen and lock screen widget: the last result, when the phone was
-/// last restarted, and a Scan Now button that opens the app and scans.
+/// last restarted, and a Scan Now button that opens the app and scans. On
+/// iOS 18 and later there's also a Scan Now control for the lock screen,
+/// Control Center and the Action button.
 @main
 struct StatusWidgetBundle: WidgetBundle {
-    var body: some Widget { StatusWidget() }
+    var body: some Widget {
+        StatusWidget()
+        if #available(iOS 18.0, *) { ScanControl() }
+    }
 }
 
 struct StatusEntry: TimelineEntry {
@@ -14,6 +19,13 @@ struct StatusEntry: TimelineEntry {
     var status: SharedStatus
     var daysSinceRestart: Int
     var restartDue: Bool
+    var restartEveryDays: Int
+    var nextCheck: Date?
+
+    /// The most recent scan or background check.
+    var lastChecked: Date? {
+        [status.lastScan, status.lastBackgroundCheck, SharedStatus.lastBackgroundCheck].compactMap { $0 }.max()
+    }
 }
 
 struct StatusProvider: TimelineProvider {
@@ -28,7 +40,8 @@ struct StatusProvider: TimelineProvider {
 
     private func entry() -> StatusEntry {
         StatusEntry(date: Date(), status: SharedStatus.load() ?? .placeholder,
-                    daysSinceRestart: SharedStatus.daysSinceRestart, restartDue: SharedStatus.restartDue)
+                    daysSinceRestart: SharedStatus.daysSinceRestart, restartDue: SharedStatus.restartDue,
+                    restartEveryDays: SharedStatus.restartEveryDays, nextCheck: SharedStatus.nextBackgroundCheck)
     }
 }
 
@@ -40,8 +53,22 @@ struct StatusWidget: Widget {
                 .widgetURL(URL(string: "amicompromised://scan"))
         }
         .configurationDisplayName("Am I Compromised?")
-        .description("Your last check, restart reminder and a Scan Now button.")
-        .supportedFamilies([.systemSmall, .systemMedium, .accessoryRectangular, .accessoryCircular])
+        .description("Your status, when it last checked, the next background check and a restart reminder. Tap to scan.")
+        .supportedFamilies([.systemSmall, .systemMedium, .accessoryRectangular, .accessoryCircular, .accessoryInline])
+    }
+}
+
+/// A Scan Now button for the lock screen, Control Center and the Action button.
+@available(iOS 18.0, *)
+struct ScanControl: ControlWidget {
+    var body: some ControlWidgetConfiguration {
+        StaticControlConfiguration(kind: "AmICompromisedScan") {
+            ControlWidgetButton(action: ScanNowIntent()) {
+                Label("Spyware Scan", systemImage: "shield.lefthalf.filled.badge.checkmark")
+            }
+        }
+        .displayName("Spyware Scan")
+        .description("Opens Am I Compromised? and scans.")
     }
 }
 
@@ -72,19 +99,46 @@ struct StatusWidgetView: View {
     var body: some View {
         switch family {
         case .accessoryCircular:
-            ZStack {
-                AccessoryWidgetBackground()
-                Image(systemName: entry.restartDue ? "arrow.clockwise" : entry.status.level.symbol)
-                    .font(.title2)
+            if entry.restartEveryDays > 0 {
+                // The ring fills up towards the next suggested restart.
+                Gauge(value: Double(min(entry.daysSinceRestart, entry.restartEveryDays)),
+                      in: 0...Double(entry.restartEveryDays)) {
+                    Text("Restart")
+                } currentValueLabel: {
+                    Image(systemName: entry.restartDue ? "arrow.clockwise" : entry.status.level.symbol)
+                }
+                .gaugeStyle(.accessoryCircular)
+                .widgetAccentable()
+            } else {
+                ZStack {
+                    AccessoryWidgetBackground()
+                    Image(systemName: entry.status.level.symbol).font(.title2)
+                }
+            }
+        case .accessoryInline:
+            if let last = entry.lastChecked {
+                Label { Text("\(entry.status.headline) · \(last, style: .relative)") } icon: { Image(systemName: entry.status.level.symbol) }
+            } else {
+                Label(entry.status.headline, systemImage: entry.status.level.symbol)
             }
         case .accessoryRectangular:
             VStack(alignment: .leading, spacing: 1) {
-                Label(entry.status.headline, systemImage: entry.status.level.symbol).font(.headline)
-                Text(restartLine).font(.caption)
-                if let last = entry.status.lastScan {
-                    Text("Scanned \(last, style: .relative) ago").font(.caption2)
+                Label(entry.status.headline, systemImage: entry.status.level.symbol)
+                    .font(.headline).widgetAccentable()
+                if let last = entry.lastChecked {
+                    Text("Checked \(last, style: .relative) ago").font(.caption)
+                } else {
+                    Text("Tap to scan").font(.caption)
+                }
+                if entry.restartDue {
+                    Text(restartLine).font(.caption2.bold())
+                } else if let next = entry.nextCheck, next > entry.date {
+                    Text("Next check \(next, style: .timer)").font(.caption2.monospacedDigit())
+                } else {
+                    Text(restartLine).font(.caption2)
                 }
             }
+            .frame(maxWidth: .infinity, alignment: .leading)
         case .systemMedium:
             HStack(alignment: .top, spacing: 14) {
                 VStack(alignment: .leading, spacing: 6) {
@@ -92,6 +146,10 @@ struct StatusWidgetView: View {
                     ForEach(entry.status.lines.prefix(3), id: \.self) { Text($0).font(.caption).lineLimit(1) }
                     Spacer(minLength: 0)
                     lastScanLine
+                    if let next = entry.nextCheck, next > entry.date {
+                        Text("Next check in \(next, style: .timer)")
+                            .font(.caption2.monospacedDigit()).foregroundStyle(.secondary)
+                    }
                 }
                 Spacer(minLength: 0)
                 VStack(alignment: .trailing, spacing: 8) {
@@ -137,8 +195,8 @@ struct StatusWidgetView: View {
     }
 
     @ViewBuilder private var lastScanLine: some View {
-        if let last = entry.status.lastScan {
-            Text("Last scan \(last, style: .relative) ago").font(.caption2).foregroundStyle(.secondary)
+        if let last = entry.lastChecked {
+            Text("Checked \(last, style: .relative) ago").font(.caption2).foregroundStyle(.secondary)
         } else {
             Text("Not scanned yet").font(.caption2).foregroundStyle(.secondary)
         }
