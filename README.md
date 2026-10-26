@@ -81,7 +81,7 @@ Mac), App Privacy, age rating, pricing (free) and availability.
 - Untested on a real device: widget appearance (Simulator gallery blank),
   BG task timing, notification buttons, the Shortcut run.
 
-## Added 2026-10-25 (build 7)
+## Added 2026-10-25 (build 7, uploaded and attached on iOS and macOS; store text updated)
 
 - Home Screen name is now **Compromised?** (`CFBundleDisplayName`); the
   store name stays "Am I Compromised?".

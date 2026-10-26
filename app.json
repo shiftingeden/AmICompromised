@@ -1,5 +1,5 @@
 {
-  "_comment": "ASC record 6826589466 (iOS + macOS). As of 25 Oct 2026 every App Store Connect field is filled for 1.0: text, URLs, screenshots (iPhone 6.3, iPad 13, Mac), review info and notes, App Privacy 'Data Not Collected', 4+ rating, Utilities/Productivity, free in 175 countries, manual release, build 6 attached on both platforms (iOS build 6 in TestFlight group 'Friends and I'), four tips with review screenshots. NOT submitted for review. Full Mac build 1.0 (6) notarized and published as GitHub release v1.0-6.",
+  "_comment": "ASC record 6826589466 (iOS + macOS). As of 25 Oct 2026 every App Store Connect field is filled for 1.0: text, URLs, screenshots (iPhone 6.3, iPad 13, Mac), review info and notes, App Privacy 'Data Not Collected', 4+ rating, Utilities/Productivity, free in 175 countries, manual release, build 7 attached on both platforms, four tips with review screenshots. NOT submitted for review. Full Mac build 1.0 (6) notarized and published as GitHub release v1.0-6.",
   "asc_app_id": "6826589466",
   "bundle_id": "com.techbitsmix.AmICompromised",
   "sku": "amicompromised",
@@ -41,7 +41,7 @@
     }
   ],
   "has_login": false,
-  "current_build": 6,
+  "current_build": 7,
   "source_dirs": [
     "App",
     "Shared",
@@ -67,7 +67,7 @@
     "storeAvailable"
   ],
   "privacy_policy_file": "docs/privacy.html",
-  "highest_build_on_testflight": 6,
+  "highest_build_on_testflight": 7,
   "submission_hold_until": "",
   "alpha_icons_ok": [
     "icon-action-1024.png"
