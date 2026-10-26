@@ -94,6 +94,8 @@ Mac), App Privacy, age rating, pricing (free) and availability.
 - Background settings keys moved into `SharedStatus` so the widget can read
   them.
 
+Future ideas (more free sources: malicious sites, stalkerware, trackers, Mac malware) are in [ROADMAP.md](ROADMAP.md).
+
 ## Due next (Eden)
 
 - [ ] Install build 6 from TestFlight and check the new features: add the
