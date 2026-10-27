@@ -129,7 +129,7 @@ Mac), App Privacy, age rating, pricing (free) and availability.
 - `CutConnectionsIntent` (Intents/): a Cut Connections control for the Lock
   Screen / Control Center / Action button (iOS 18+) and a Siri action.
 
-## Added 2026-10-27, later (iOS build 11, Mac build 10)
+## Added 2026-10-27, later (iOS build 11 and Mac build 10, uploaded and attached)
 
 - Credits on the Indicator Sources screen for iPhone **and Mac**
   (`Shared/SourceCredits.swift`): main lists, plus an "Extra lists credits"
