@@ -188,13 +188,7 @@ struct SourcesView: View {
                     ForEach(model.failedSources, id: \.self) { Text($0) }
                 }
             }
-            Section("Credits") {
-                Link("Mobile Verification Toolkit (Amnesty International)", destination: URL(string: "https://github.com/mvt-project/mvt-indicators")!)
-                Link("Citizen Lab malware indicators", destination: URL(string: "https://github.com/citizenlab/malware-indicators")!)
-                Link("Amnesty International investigations", destination: URL(string: "https://github.com/AmnestyTech/investigations")!)
-                Link("Extra lists and how they're built", destination: URL(string: "https://github.com/shiftingeden/AmICompromised-data")!)
-                Link("CISA Known Exploited Vulnerabilities", destination: URL(string: "https://www.cisa.gov/known-exploited-vulnerabilities-catalog")!)
-            }
+            SourceCredits()
         }
         .navigationTitle("Indicator Sources")
     }

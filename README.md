@@ -14,6 +14,33 @@ it never uploads logs or results.
 Issues and pull requests are welcome, especially new checks and false-positive
 reports. MIT licensed; see `LICENSE` and `THIRD_PARTY_NOTICES.md`.
 
+## Credits
+
+The app only compares what it finds against lists that researchers publish.
+Thank you to:
+
+- **[mvt-indicators](https://github.com/mvt-project/mvt-indicators)** (Mobile
+  Verification Toolkit, Amnesty International Security Lab and contributors):
+  the main spyware lists.
+- **[CISA Known Exploited Vulnerabilities](https://www.cisa.gov/known-exploited-vulnerabilities-catalog)**
+  and the **[NVD](https://nvd.nist.gov/)**: exploited Apple bugs and the versions they affect.
+
+Optional **extra lists (unauthenticated)**, off by default in the app, built by
+[AmICompromised-data](https://github.com/shiftingeden/AmICompromised-data):
+
+- **[Amnesty International investigations](https://github.com/AmnestyTech/investigations)**:
+  Cytrox 2021, NSO Group 2018 and 2019, FinFisher 2020.
+- **[Citizen Lab malware indicators](https://github.com/citizenlab/malware-indicators)**:
+  NSO Group 2016–2018 and Cyberbit 2017 reports.
+- **AdFection (2026):** research by
+  [The Citizen Lab](https://citizenlab.ca/research/how-discover-tech-turned-targeted-ads-into-a-pipeline-for-spyware/)
+  and [Confiant](https://blog.confiant.com/p/adint-weaponized-ad-tech-for-zero-click-spyware-and-mass-identity-vacuuming),
+  with the indicator list compiled and released into the public domain (CC0) by
+  **[Zero Breach Toolkit](https://github.com/interplains/Zero-Breach-Toolkit)**.
+  We use its export pinned to one reviewed commit, primary-confidence domains only.
+
+None of these organisations or projects is affiliated with or endorses this app.
+
     xcodegen generate && open AmICompromised.xcodeproj
 
 Bundle ID `com.techbitsmix.AmICompromised`, team XNGW97HPY6, iOS 17+.
@@ -101,6 +128,14 @@ Mac), App Privacy, age rating, pricing (free) and availability.
   Cut opens `amicompromised://cut`, which runs the emergency Shortcut.
 - `CutConnectionsIntent` (Intents/): a Cut Connections control for the Lock
   Screen / Control Center / Action button (iOS 18+) and a Siri action.
+
+## Added 2026-10-27, later (iOS build 11, Mac build 10)
+
+- Credits on the Indicator Sources screen for iPhone **and Mac**
+  (`Shared/SourceCredits.swift`): main lists, plus an "Extra lists credits"
+  section linking Amnesty, Citizen Lab, the AdFection reports (Citizen Lab,
+  Confiant) and Zero Breach Toolkit. README Credits section and
+  THIRD_PARTY_NOTICES updated; website credits added.
 
 ## Added 2026-10-27 (iOS build 10 and Mac build 9, uploaded and attached; description updated)
 

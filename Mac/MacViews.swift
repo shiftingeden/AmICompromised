@@ -540,6 +540,7 @@ struct MacSourcesView: View {
                     }
                 }
             }
+            SourceCredits()
         }
         .formStyle(.grouped)
         .navigationTitle("Indicator Sources")

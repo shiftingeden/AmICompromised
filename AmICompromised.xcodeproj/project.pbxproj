@@ -26,6 +26,7 @@
 		45F6E0F2499F6F6DEBA3C24F /* CompromiseKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3D30794CC4B088B58EE62C95 /* CompromiseKit */; };
 		4DF9E8B1B9C7559279BAA3E9 /* Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BEE28921B0C703B2FF52A2 /* Themes.swift */; };
 		652DFBF41CB388708D7A584F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C495EDF0C525BC47982F4766 /* Assets.xcassets */; };
+		65FB99A8963F1739B0156446 /* SourceCredits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CBBC85781995790380AD96 /* SourceCredits.swift */; };
 		680793710EC5BFB3E6081E95 /* StatusWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 0055C7F66430E0E1006F54B8 /* StatusWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		68FEDF8B4445877EA558EF99 /* MacViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AECA88006672FA01BF82A86 /* MacViews.swift */; };
 		6974113CA341F33D2A909592 /* DeviceWatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981A15F6B78BAF734FF6FC1A /* DeviceWatcher.swift */; };
@@ -34,6 +35,7 @@
 		78CD00833144B3D24999B2A2 /* ScanAction.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = EE3906118225997B9E87D827 /* ScanAction.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		7A096579BDF12C3EF3F2639E /* CompromiseKit in Frameworks */ = {isa = PBXBuildFile; productRef = BDFE189DB7C0771934D41885 /* CompromiseKit */; };
 		87E8E2F9D83F50E32AAB1ABA /* DeviceCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1F69946C1E6684B52D0A77 /* DeviceCheck.swift */; };
+		88D83B711C59BFC67B667981 /* SourceCredits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CBBC85781995790380AD96 /* SourceCredits.swift */; };
 		9069719D0A04C73B5A6BDB4D /* SysdiagnoseCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E37ECBE67B1471ADC3EF3AF /* SysdiagnoseCapture.swift */; };
 		94DC66F7187B58219B6CC28D /* AppIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB914E49220A545F1E1D36B /* AppIcons.swift */; };
 		9E99F9EECA67D4369F92251B /* CompromiseKit in Frameworks */ = {isa = PBXBuildFile; productRef = 5BB0D3925F510005B3D1CBFE /* CompromiseKit */; };
@@ -58,6 +60,7 @@
 		E05E0F38F98EE81D9AFFF240 /* BackgroundMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D432ECD7AE5F60B2793D40F /* BackgroundMonitor.swift */; };
 		E52908DD210ED0ABB738A0FB /* ActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B90330D3C8B30B5A1696240 /* ActionViewController.swift */; };
 		E60F19F054063E182FBE37EC /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FA11F69E7F7ED14206BE7BE /* SwiftUI.framework */; };
+		EBED4271C679FA3849B3C7B9 /* SourceCredits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CBBC85781995790380AD96 /* SourceCredits.swift */; };
 		F2BD336BC5D7BE82AE69932D /* AmICompromised.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 9E38A723828873EBD284C6CA /* AmICompromised.storekit */; };
 		F7A70CCB1BC1FA61ABB1562D /* TipJar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E972CE2EDD403ADA7EEA6FE /* TipJar.swift */; };
 		F9E1189F7EFC9C6C19855CC4 /* TipJarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B87090B29F8CB05251D5F1 /* TipJarView.swift */; };
@@ -116,6 +119,7 @@
 		3D85AF03C497172945CF1FFF /* TipJarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipJarTests.swift; sourceTree = "<group>"; };
 		3FA11F69E7F7ED14206BE7BE /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		402090D16AF9C855A3B95B5F /* AmICompromised.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = AmICompromised.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		43CBBC85781995790380AD96 /* SourceCredits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceCredits.swift; sourceTree = "<group>"; };
 		48FA6310EA53D68BF071C0B2 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		49927377C483174B050127FC /* Feedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feedback.swift; sourceTree = "<group>"; };
 		5462D5856EC89415907F2B89 /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
@@ -285,6 +289,7 @@
 			children = (
 				CFB914E49220A545F1E1D36B /* AppIcons.swift */,
 				49927377C483174B050127FC /* Feedback.swift */,
+				43CBBC85781995790380AD96 /* SourceCredits.swift */,
 				18BEE28921B0C703B2FF52A2 /* Themes.swift */,
 				2E972CE2EDD403ADA7EEA6FE /* TipJar.swift */,
 				61B87090B29F8CB05251D5F1 /* TipJarView.swift */,
@@ -579,6 +584,7 @@
 				DCB6801EF7479585866B0A09 /* ProtectionView.swift in Sources */,
 				76F8A855A251FE50EAE81B5C /* ScanNowIntent.swift in Sources */,
 				A9C82F0E2424AE75DF8F470A /* ScanShortcuts.swift in Sources */,
+				88D83B711C59BFC67B667981 /* SourceCredits.swift in Sources */,
 				9069719D0A04C73B5A6BDB4D /* SysdiagnoseCapture.swift in Sources */,
 				35FB60C65004A8CFB43DE288 /* Themes.swift in Sources */,
 				CE03FA6D68BEE3CD918CD9A0 /* TipJar.swift in Sources */,
@@ -596,6 +602,7 @@
 				73CCDA7627D4A6618FAB6643 /* MacApp.swift in Sources */,
 				B0D6E44DE3331E9504A53E47 /* MacModel.swift in Sources */,
 				68FEDF8B4445877EA558EF99 /* MacViews.swift in Sources */,
+				EBED4271C679FA3849B3C7B9 /* SourceCredits.swift in Sources */,
 				BBE8F9D0A49B4A88C6E01D23 /* Themes.swift in Sources */,
 				F7A70CCB1BC1FA61ABB1562D /* TipJar.swift in Sources */,
 				F9E1189F7EFC9C6C19855CC4 /* TipJarView.swift in Sources */,
@@ -612,6 +619,7 @@
 				09D362A3015B583867FB4EB3 /* MacApp.swift in Sources */,
 				301BE6E62EFF56EE69D88E86 /* MacModel.swift in Sources */,
 				34F737B2CF9C173881670D58 /* MacViews.swift in Sources */,
+				65FB99A8963F1739B0156446 /* SourceCredits.swift in Sources */,
 				4DF9E8B1B9C7559279BAA3E9 /* Themes.swift in Sources */,
 				07E92193523311CDA4E779CB /* TipJar.swift in Sources */,
 				C460D0ED1676B6D9D81D538C /* TipJarView.swift in Sources */,
@@ -795,7 +803,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 11;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = XNGW97HPY6;
@@ -863,7 +871,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 11;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = XNGW97HPY6;
