@@ -133,6 +133,7 @@ struct FixSteps: View {
 
 struct SourcesView: View {
     @Environment(AppModel.self) private var model
+    @AppStorage("useExtraLists", store: SharedStatus.defaults) private var useExtraLists = false
 
     var body: some View {
         List {
@@ -160,11 +161,25 @@ struct SourcesView: View {
                 Text("Lists come from the public mvt-indicators index maintained by the Mobile Verification Toolkit project. New campaigns appear here as soon as they're published, without an app update.")
             }
 
+            Section {
+                Toggle("Extra lists (unauthenticated)", isOn: $useExtraLists)
+                    .onChange(of: useExtraLists) { _, _ in Task { await model.refreshData() } }
+            } footer: {
+                Text("Off by default. Adds a few hundred published indicators that the main index doesn't already include: older Amnesty International and Citizen Lab lists, reformatted by this app's data project, and the 2026 \"AdFection\" ad-tech list, taken from an anonymous third-party project and not independently verified. More lists can mean more false alarms; a match from these is a weaker lead.")
+            }
+
             if let set = model.indicators {
                 Section("Campaigns") {
-                    ForEach(set.sourceCounts.sorted { $0.key < $1.key }, id: \.key) { name, count in
+                    ForEach(set.sourceCounts.sorted { $0.key < $1.key }.filter { !set.isExtra($0.key) }, id: \.key) { name, count in
                         LabeledContent(name.replacingOccurrences(of: " Indicators of Compromise", with: ""),
                                        value: count.formatted())
+                    }
+                }
+                if set.extraCampaigns != nil {
+                    Section("Extra lists (unauthenticated)") {
+                        ForEach(set.sourceCounts.sorted { $0.key < $1.key }.filter { set.isExtra($0.key) }, id: \.key) { name, count in
+                            LabeledContent(name, value: count.formatted())
+                        }
                     }
                 }
             }
@@ -176,6 +191,8 @@ struct SourcesView: View {
             Section("Credits") {
                 Link("Mobile Verification Toolkit (Amnesty International)", destination: URL(string: "https://github.com/mvt-project/mvt-indicators")!)
                 Link("Citizen Lab malware indicators", destination: URL(string: "https://github.com/citizenlab/malware-indicators")!)
+                Link("Amnesty International investigations", destination: URL(string: "https://github.com/AmnestyTech/investigations")!)
+                Link("Extra lists and how they're built", destination: URL(string: "https://github.com/shiftingeden/AmICompromised-data")!)
                 Link("CISA Known Exploited Vulnerabilities", destination: URL(string: "https://www.cisa.gov/known-exploited-vulnerabilities-catalog")!)
             }
         }

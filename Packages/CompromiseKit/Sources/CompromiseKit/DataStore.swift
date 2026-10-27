@@ -35,15 +35,17 @@ public actor DataStore {
     }
 
     /// Fetches the index and every STIX file it lists. A source that fails
-    /// keeps its indicators from the previous download.
-    public func updateIndicators() async throws -> IndicatorUpdate {
-        let sources: [IndicatorSource]
-        if let (data, _) = try? await fetch(IndicatorSource.indexURL),
-           case let parsed = IndicatorSource.parseIndex(String(decoding: data, as: UTF8.self)),
-           !parsed.isEmpty {
-            sources = parsed
-        } else {
-            sources = IndicatorSource.bundledIndex
+    /// keeps its indicators from the previous download. With `includeExtra`
+    /// the optional extra lists are added; without it they are dropped.
+    public func updateIndicators(includeExtra: Bool = SharedStatus.useExtraLists) async throws -> IndicatorUpdate {
+        var sources = await index(IndicatorSource.indexURL, fallback: IndicatorSource.bundledIndex)
+        var extraNames: Set<String> = []
+        if includeExtra {
+            let extra = await index(IndicatorSource.extraIndexURL, fallback: IndicatorSource.bundledExtraIndex)
+            let known = Set(sources.map(\.id))
+            let added = extra.filter { !known.contains($0.id) }
+            extraNames = Set(added.map(\.name))
+            sources += added
         }
 
         let previous = cachedIndicators()
@@ -62,9 +64,19 @@ public actor DataStore {
         }
 
         if set.total == 0 { throw URLError(.cannotLoadFromNetwork) }
+        set.extraCampaigns = extraNames.isEmpty ? nil : extraNames
         set.updated = Date()
         try JSONEncoder().encode(set).write(to: indicatorsFile, options: .atomic)
         return IndicatorUpdate(set: set, failedSources: failed.sorted())
+    }
+
+    private func index(_ url: URL, fallback: [IndicatorSource]) async -> [IndicatorSource] {
+        if let (data, _) = try? await fetch(url),
+           case let parsed = IndicatorSource.parseIndex(String(decoding: data, as: UTF8.self)),
+           !parsed.isEmpty {
+            return parsed
+        }
+        return fallback
     }
 
     // MARK: Exploited bugs

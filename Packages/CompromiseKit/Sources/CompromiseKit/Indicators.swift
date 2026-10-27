@@ -16,6 +16,11 @@ public struct IndicatorSource: Codable, Hashable, Identifiable, Sendable {
 
     public static let indexURL = URL(string: "https://raw.githubusercontent.com/mvt-project/mvt-indicators/main/indicators.yaml")!
 
+    /// Optional extra lists (off by default): published indicators that
+    /// mvt-indicators doesn't list, reformatted into STIX by this project's
+    /// data repo. Same layout as `indicators.yaml`.
+    public static let extraIndexURL = URL(string: "https://raw.githubusercontent.com/shiftingeden/AmICompromised-data/main/extra-indicators.yaml")!
+
     /// Reads the few keys we need from `indicators.yaml`. The file is a flat
     /// list of `-` items, so a line scanner is enough and avoids a YAML
     /// dependency.
@@ -50,6 +55,11 @@ public struct IndicatorSource: Codable, Hashable, Identifiable, Sendable {
         let url = Bundle.module.url(forResource: "indicators", withExtension: "yaml")!
         return parseIndex((try? String(contentsOf: url, encoding: .utf8)) ?? "")
     }
+
+    public static var bundledExtraIndex: [IndicatorSource] {
+        let url = Bundle.module.url(forResource: "extra-indicators", withExtension: "yaml")!
+        return parseIndex((try? String(contentsOf: url, encoding: .utf8)) ?? "")
+    }
 }
 
 /// Every indicator we know, keyed by value, with the campaign it came from.
@@ -61,6 +71,11 @@ public struct IndicatorSet: Codable, Sendable {
     public var values: [Kind: [String: String]] = [:]
     public var sourceCounts: [String: Int] = [:]
     public var updated: Date?
+    /// Campaigns that came from the optional extra lists. Optional so sets
+    /// saved by earlier versions still decode.
+    public var extraCampaigns: Set<String>?
+
+    public func isExtra(_ campaign: String) -> Bool { extraCampaigns?.contains(campaign) ?? false }
 
     public init() {}
 

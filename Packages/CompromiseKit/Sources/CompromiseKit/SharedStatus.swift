@@ -87,6 +87,15 @@ public struct SharedStatus: Codable, Sendable {
         return from.addingTimeInterval(TimeInterval(backgroundIntervalHours * 3600))
     }
 
+    // MARK: Optional extra lists
+
+    /// "Extra lists (unauthenticated)": off by default. See
+    /// `IndicatorSource.extraIndexURL`.
+    public static var useExtraLists: Bool {
+        get { defaults.bool(forKey: "useExtraLists") }
+        set { defaults.set(newValue, forKey: "useExtraLists") }
+    }
+
     // MARK: Scan requests from the lock screen, Control Center and Siri
 
     /// Set by the Scan Now intent; the app runs a scan when it next becomes

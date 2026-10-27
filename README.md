@@ -102,6 +102,20 @@ Mac), App Privacy, age rating, pricing (free) and availability.
 - `CutConnectionsIntent` (Intents/): a Cut Connections control for the Lock
   Screen / Control Center / Action button (iOS 18+) and a Siri action.
 
+## Added 2026-10-27 (build 9)
+
+- **Extra lists (unauthenticated)**, a switch on the Indicator Sources screen
+  (iOS and Mac), **off by default** (`SharedStatus.useExtraLists`). When on,
+  `DataStore.updateIndicators` also loads `extra-indicators.yaml` from the
+  AmICompromised-data repo; when off, extras are dropped on the next refresh.
+  Shown in their own section; `IndicatorSet.extraCampaigns` marks them.
+- Lists are built by `Tools/generate_extra_indicators.py` (copied to the data
+  repo, run daily by its Action): Amnesty Cytrox 2021, NSO 2018/2019,
+  FinFisher 2020; six Citizen Lab NSO/Cyberbit reports; and AdFection (2026)
+  from the anonymous Zero Breach Toolkit's CC0 export, pinned to commit
+  fe3ad46 + SHA-256, primary-confidence domains only. About 1,360 indicators,
+  ~240 not already in mvt-indicators.
+
 Future ideas (more free sources: malicious sites, stalkerware, trackers, Mac malware) are in [ROADMAP.md](ROADMAP.md).
 
 ## Due next (Eden)

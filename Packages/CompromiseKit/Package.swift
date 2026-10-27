@@ -15,6 +15,7 @@ let package = Package(
             resources: [
                 .copy("Resources/apple-kev.json"),
                 .copy("Resources/indicators.yaml"),
+                .copy("Resources/extra-indicators.yaml"),
             ]
         ),
         .testTarget(name: "CompromiseKitTests", dependencies: ["CompromiseKit"]),

@@ -31,6 +31,15 @@ final class CompromiseKitTests: XCTestCase {
         XCTAssertTrue(index.contains { $0.name.contains("Pegasus") && $0.owner == "AmnestyTech" })
     }
 
+    func testBundledExtraIndex() {
+        let extra = IndicatorSource.bundledExtraIndex
+        XCTAssertGreaterThanOrEqual(extra.count, 10)
+        XCTAssertTrue(extra.allSatisfy { $0.owner == "shiftingeden" && $0.path.hasPrefix("extra/") })
+        // The extra lists must never collide with mvt-indicators' own sources.
+        let mvt = Set(IndicatorSource.bundledIndex.map(\.id))
+        XCTAssertTrue(extra.allSatisfy { !mvt.contains($0.id) })
+    }
+
     func testPatternParsing() {
         let p = IndicatorSet.parsePattern("[domain-name:value='Evil.Example.com']")
         XCTAssertEqual(p.first?.0, .domain)

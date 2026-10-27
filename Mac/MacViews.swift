@@ -506,6 +506,7 @@ struct LogFilesView: View {
 
 struct MacSourcesView: View {
     @Environment(MacModel.self) private var model
+    @AppStorage("useExtraLists", store: SharedStatus.defaults) private var useExtraLists = false
 
     var body: some View {
         Form {
@@ -519,10 +520,23 @@ struct MacSourcesView: View {
             } footer: {
                 Text("Spyware indicators come from the public mvt-indicators index; exploited bugs from CISA's KEV catalog with NVD version data. New campaigns appear without an app update.")
             }
+            Section {
+                Toggle("Extra lists (unauthenticated)", isOn: $useExtraLists)
+                    .onChange(of: useExtraLists) { _, _ in Task { await model.refreshData() } }
+            } footer: {
+                Text("Off by default. Adds a few hundred published indicators that the main index doesn't already include: older Amnesty International and Citizen Lab lists, reformatted by this app's data project, and the 2026 \"AdFection\" ad-tech list, taken from an anonymous third-party project and not independently verified. More lists can mean more false alarms; a match from these is a weaker lead.")
+            }
             if let set = model.indicators {
                 Section("Campaigns") {
-                    ForEach(set.sourceCounts.sorted { $0.key < $1.key }, id: \.key) { name, count in
+                    ForEach(set.sourceCounts.sorted { $0.key < $1.key }.filter { !set.isExtra($0.key) }, id: \.key) { name, count in
                         LabeledContent(name.replacingOccurrences(of: " Indicators of Compromise", with: ""), value: count.formatted())
+                    }
+                }
+                if set.extraCampaigns != nil {
+                    Section("Extra lists (unauthenticated)") {
+                        ForEach(set.sourceCounts.sorted { $0.key < $1.key }.filter { set.isExtra($0.key) }, id: \.key) { name, count in
+                            LabeledContent(name, value: count.formatted())
+                        }
                     }
                 }
             }
