@@ -102,7 +102,7 @@ Mac), App Privacy, age rating, pricing (free) and availability.
 - `CutConnectionsIntent` (Intents/): a Cut Connections control for the Lock
   Screen / Control Center / Action button (iOS 18+) and a Siri action.
 
-## Added 2026-10-27 (build 9)
+## Added 2026-10-27 (iOS build 10, Mac build 9; iOS 9 was already taken in App Store Connect)
 
 - **Extra lists (unauthenticated)**, a switch on the Indicator Sources screen
   (iOS and Mac), **off by default** (`SharedStatus.useExtraLists`). When on,
